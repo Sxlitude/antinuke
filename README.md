@@ -18,6 +18,9 @@ this is a discord tool which can be used to prevent your servers from getting ra
 - Limit Mode
 - Trust Mode
 
+### What's better?
+- Limit Mode vs Trust Mode
+
 ### Have issues?
 if you find a bug in the antinuke or want to ask something about the bot, you can report it by opening an issue ;)
 and hey u can contact me on discord too, i'm **Sxlitude#8885**
