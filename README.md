@@ -15,11 +15,11 @@ this is a discord tool which can be used to prevent your servers from getting ra
 - anti mass role delete
 
 ### Setup
-- Limit Mode
-- Trust Mode
+- [Limit Mode](https://github.com/Sxlitude/antinuke/blob/main/Tutorials/LimitMode.md)
+- [Trust Mode](https://github.com/Sxlitude/antinuke/blob/main/Tutorials/TrustMode.md)
 
 ### What's better?
-- Limit Mode vs Trust Mode
+- [Limit Mode vs Trust Mode](https://github.com/Sxlitude/antinuke/blob/main/Tutorials/WhatsBetter.md)
 
 ### Have issues?
 if you find a bug in the antinuke or want to ask something about the bot, you can report it by opening an issue ;)
