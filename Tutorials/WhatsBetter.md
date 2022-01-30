@@ -7,7 +7,7 @@ Limit Mode's known bugs to me:
 - `,reset all` command doesn't work (this too doesn't affect in any way)
 
 Trust Mode's known bugs to me:
-- trust mode is not good to use on replit for non-hacker users due to an [issue]().
+- trust mode is not good to use on replit for non-hacker users due to an [issue](https://github.com/Sxlitude/antinuke/blob/main/Tutorials/WhatsBetter.md#whats-the-issue-in-trust-mode).
 
 ### what's the issue in trust mode?
 suppose you created a trusted list by trusting some users. in the next 24 hours the list will become shorter or it will get cleared automatically. this bug happens to **non-hacker** replit users. free replit users have a problem that their repls lose data. i found [this post](https://blog.replit.com/replspace-filesystems), it might help u know more about it.
