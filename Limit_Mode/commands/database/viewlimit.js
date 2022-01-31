@@ -28,7 +28,7 @@ module.exports = {
       if (Kick === null) Kick = 0;
 
       let Statistics = new MessageEmbed()
-        .setDescription(`**${user.name} Did These Actions in the last hour**
+        .setDescription(`**${user.user.username} Did These Actions in the last hour**
 
         ﹒Channels Created: **${ChannelC}**
         ﹒Channels Deleted: **${ChannelD}**

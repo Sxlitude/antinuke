@@ -1,0 +1,2 @@
+language = "nodejs"
+run = "cd Limit_Mode && npx node ."

@@ -48,7 +48,7 @@ module.exports = {
             await db.set(`banLimit_${user.id}-${guild}`, 0);
           }
 
-          await message.channel.send(`i've forgiven all the actions done by **${user.name}** in the previous hour.`)
+          await message.channel.send(`i've forgiven all the actions done by **${user.user.username}** in the previous hour.`)
         } else {
           message.channel.send("to forgive someone, mention them")
         }
