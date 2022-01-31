@@ -1,5 +1,5 @@
 ![Discord Antinuke Bot](https://cdn.discordapp.com/attachments/936865318696017962/937368885601128528/unknown.png)
-### Antinuke: Limit Mode
+### Antinuke: Trust Mode
 The super strict mode of antinuke which only allows trusted users to make actions in your discord servers. it can be run locally & on replit.
 
 ### Commands:
@@ -18,7 +18,7 @@ The super strict mode of antinuke which only allows trusted users to make action
 - make sure to setup .replit file like this: `run = "cd Trust_Mode && node index.js"`
 
 ### Things to note
-- this can only be used on replit
+- this can be used locally & on replit 
 - make sure to enable all the intents except presence intent
 
 ### That's it!
