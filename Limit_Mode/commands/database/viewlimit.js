@@ -12,6 +12,8 @@ module.exports = {
     const user = message.mentions.members.first()
     if (!user) {
       message.channel.send("mention someone to see what they did in the last hour.")
+    } else if (user.id === message.guild.ownerID) {
+      message.channel.send("i do not track actions of server owners.")
     } else {
       let RoleC = await db.get(`roleLimit_${user.id}-${guild}`);
       let RoleD = await db.get(`roledLimit_${user.id}-${guild}`);
@@ -28,16 +30,17 @@ module.exports = {
       if (Kick === null) Kick = 0;
 
       let Statistics = new MessageEmbed()
+      .setColor("9400d3")
         .setDescription(`**${user.user.username} Did These Actions in the last hour**
 
-        ﹒Channels Created: **${ChannelC}**
-        ﹒Channels Deleted: **${ChannelD}**
+﹒Channels Created: **${ChannelC}**
+﹒Channels Deleted: **${ChannelD}**
 
-        ﹒Roles Created: **${RoleC}**
-        ﹒Roles Deleted: **${RoleD}**
+﹒Roles Created: **${RoleC}**
+﹒Roles Deleted: **${RoleD}**
 
-        ﹒Members Banned: **${Ban}**
-        ﹒Members Kicked: **${Kick}**
+﹒Members Banned: **${Ban}**
+﹒Members Kicked: **${Kick}**
         `)
       message.channel.send(Statistics);
     }

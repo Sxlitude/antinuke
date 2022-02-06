@@ -27,30 +27,33 @@ module.exports = {
       if (Kick === null) Kick = 3;
 
       const help = new MessageEmbed()
-        .setColor("ff8c00")
+        .setColor("9400d3")
         .setDescription(`
 **How to reset limits?**
 
 *For Channels:*
-﹒**,reset channelc** -> set channel create limit
-﹒**,reset channeld** -> set channel delete limit
+﹒,reset channelc -> *reset channel create limit*
+﹒,reset channeld -> *reset channel delete limit*
 
 *For Roles*
-﹒**,reset rolec** -> set role create limit
-﹒**,reset roled** -> set role delete limit
+﹒,reset rolec -> *reset role create limit*
+﹒,reset roled -> *reset role delete limit*
 
 *For Members*
-﹒**,reset ban** -> set ban limit
-﹒**,reset kick** -> set kick limit
+﹒,reset ban -> *reset ban limit*
+﹒,reset kick -> *reset kick limit*
 
 *For Everything*
-﹒**,reset all** -> reset every action's limit
-﹒**,set all 7** -> set every limit to a number
+﹒,reset all -> *reset every action's limit*
+﹒,set all 7 -> *set every limit to a number*
 
 *Tips*
-﹒to *set a limit*, do **,set** for full instructions.
-﹒you can disable the antinuke by doing **,disable**
+﹒to *set a limit*, do *,set* for full instructions.
+﹒the number *7* was just used for example.
+﹒you can disable the antinuke by doing *,disable*
       `)
+      .setImage('https://cdn.discordapp.com/attachments/937605807237906454/937624031753019412/unknown.png')
+      .setFooter('made with love by Sxlitude#8885')
 
       if (args[0] === "channelc") {
         await db.set(`channelLimit_$${message.guild.id}`, 3);

@@ -1,2 +1,5 @@
 language = "nodejs"
 run = "cd Limit_Mode && npx node ."
+
+# Trust mode -> cd Trust_Mode && npx node .
+# Limit Mode -> cd Limit_Mode && npx node .

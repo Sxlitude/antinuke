@@ -28,16 +28,17 @@ module.exports = {
 
     // Stats
     let Limits = new MessageEmbed()
+    .setColor("7f00ff")
       .setDescription(`**Limits For ${message.guild.name}**
 
-        ﹒Channel Create Limit: **${ChannelC}**
-        ﹒Channel Delete Limit: **${ChannelD}**
+﹒Channel Create Limit: **${ChannelC}**
+﹒Channel Delete Limit: **${ChannelD}**
 
-        ﹒Role Create Limit: **${RoleC}**
-        ﹒Role Delete Limit: **${RoleD}**
+﹒Role Create Limit: **${RoleC}**
+﹒Role Delete Limit: **${RoleD}**
 
-        ﹒Member Kick Limit: **${Kick}**
-        ﹒Member Ban Limit: **${Ban}**`)
+﹒Member Kick Limit: **${Kick}**
+﹒Member Ban Limit: **${Ban}**`)
     let settings = await db.get(`antinuke_${message.guild.id}`);
     if (settings === null) settings = "off"
     if (settings === "on") {

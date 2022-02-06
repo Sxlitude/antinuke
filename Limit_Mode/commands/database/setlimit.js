@@ -27,30 +27,33 @@ module.exports = {
       if (Kick === null) Kick = 3;
 
       const help = new MessageEmbed()
-        .setColor("ff8c00")
+        .setColor("8601af")
         .setDescription(`
 **How to set limits?**
 
-*For Channels:*
-﹒**,set channelc 4** -> set channel create limit
-﹒**,set channeld 4** -> set channel delete limit
+*For Channels*
+﹒,set channelc 4 -> *set channel create limit*
+﹒,set channeld 4 -> *set channel delete limit*
 
 *For Roles*
-﹒**,set rolec 2** -> set role create limit
-﹒**,set roled 2** -> set role delete limit
+﹒,set rolec 6 -> *set role create limit*
+﹒,set roled 6 -> *set role delete limit*
 
 *For Members*
-﹒**,set ban 6** -> set ban limit
-﹒**,set kick 6** -> set kick limit
+﹒,set ban 9 -> *set ban limit*
+﹒,set kick 9 -> *set kick limit*
 
 *For Everything*
-﹒**,set all 6** -> set every action's limit
-﹒**,reset all** -> reset every limit to 3
+﹒,set all 7 -> *set every action's limit*
+﹒,reset all -> *reset every limit to 3*
 
 *Tips*
-﹒to *reset a limit*, do **,reset** for full instructions.
-﹒you can disable the antinuke by doing **,disable**
+﹒to *reset a limit*, do *,reset* for full instructions.
+﹒these limits are *per hour* by default & it's not changeable yet.
+﹒the numbers *4*, *6*, *9*, *7* are just for examples
       `)
+      .setImage('https://cdn.discordapp.com/attachments/937605807237906454/937624031753019412/unknown.png')
+      .setFooter('made with love by Sxlitude#8885')
       // ----------[ Channel Create Limit ]---------- \\
       if (!args[0]) {
         message.channel.send(help)

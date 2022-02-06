@@ -32,27 +32,15 @@ client.on("ready", () => {
   `))
   console.log(chalk.magentaBright("[!]: Antinuke - Limit Mode"))
   console.log(chalk.magentaBright(`[!]: Logged in as ${client.user.tag}\n\n`))
+  client.user.setActivity({ name: ",help", type: "STREAMING", url: process.env.url })
 });
 
 // On Message
 client.on("message", async message => {
-  let prefix;
-  try {
-    let customPrefix = await db.get(`prefix_${message.guild.id}`)
-    if (customPrefix === null) {
-      prefix = ","
-    } else {
-      prefix = customPrefix;
-    }
-  } catch { console.log(" ") }
-
-  if (message.content === `<@!${client.user.id}>`) {
-    message.channel.send(`prefix for this server is **${prefix}**`)
-  }
-
+  let prefix = ","
   if (message.author.bot) return;
   if (!message.guild) return;
-  if (!message.content.startsWith(prefix) || !message.content.startsWith(",")) return;
+  if (!message.content.startsWith(prefix)) return;
 
   if (!message.member)
     message.member = await message.guild.fetchMember(message);
@@ -89,7 +77,7 @@ client.on("channelCreate", async (channel) => {
     if (!ChannelLogs) return console.log(chalk.red(`[!]: Unable to fetch Channel Creation Logs for ${channel.guild.name}`));
 
     const { executor, createdTimestamp } = ChannelLogs;
-    if (executor.id === null || executor.id === undefined) return console.log(chalk.redBright("{!}: Unable to Find Executor"));
+    if (!executor) return;
 
     if (executor.id === channel.guild.owner.id) return;
     if (executor.id === client.user.id) return;
@@ -167,7 +155,7 @@ client.on("channelDelete", async (channel) => {
     if (!ChannelLogs) return console.log(chalk.red(`[!]: Unable to fetch Channel Deletion Logs for ${channel.guild.name}`));
 
     const { executor, createdTimestamp } = ChannelLogs;
-    if (executor.id === null || executor.id === undefined) return console.log(chalk.redBright("{!}: Unable to Find Executor"));
+    if (!executor) return;
 
     if (executor.id === channel.guild.owner.id) return;
     if (executor.id === client.user.id) return;
@@ -245,7 +233,7 @@ client.on("roleCreate", async (role) => {
     if (!RoleLogs) return console.log(chalk.red(`[!]: Unable to fetch Role Creation Logs for ${role.guild.name}`));
 
     const { executor, createdTimestamp } = RoleLogs;
-    if (executor.id === null || executor.id === undefined) return console.log(chalk.redBright("{!}: Unable to Find Executor"));
+    if (!executor) return;
 
     if (executor.id === role.guild.owner.id || executor.id === client.user.id) return;
 
@@ -312,7 +300,7 @@ client.on("roleDelete", async (role) => {
     if (!RoleLogs) return console.log(chalk.red(`[!]: Unable to fetch Role Deletion Logs for ${role.guild.name}`));
 
     const { executor, createdTimestamp } = RoleLogs;
-    if (executor.id === null || executor.id === undefined) return console.log(chalk.redBright("{!}: Unable to Find Executor"))
+    if (!executor) return;
     if (executor.id === role.guild.owner.id || executor.id === client.user.id) return;
 
     const RoleDeletion = new MessageEmbed()
@@ -380,7 +368,7 @@ client.on("guildBanAdd", async (guild) => {
     if (!BanLogs) return console.log(chalk.red(`[!]: Unable to fetch Role Creation Logs for ${guild.name}`));
 
     const { executor, target, createdTimestamp } = BanLogs;
-    if (executor.id === null || executor.id === undefined) return console.log(chalk.redBright("{!}: Unable to Find Executor"));
+    if (!executor) return;
 
     if (executor.id === guild.owner.id || executor.id === client.user.id) return;
 
@@ -453,7 +441,7 @@ client.on("guildMemberRemove", async (member) => {
     if (!KickLogs) return console.log(chalk.red(`[!]: Unable to fetch Member Kick Logs for ${guild.name}`));
 
     const { executor, target, createdTimestamp } = KickLogs;
-    if (executor.id === null || executor.id === undefined) return console.log(chalk.redBright("{!}: Unable to Find Executor"))
+    if (!executor) return;
 
     if (executor.id === member.guild.owner.id || executor.id === client.user.id) return;
 
@@ -518,7 +506,7 @@ client.on("guildMemberAdd", async (bot) => {
   if (!BotLogs) return console.log(chalk.red(`[!]: Unable to fetch Bot Add Logs for ${guild.name}`));
 
   const { executor, target, createdTimestamp } = BotLogs;
-  if (executor.id === null || executor.id === undefined) return console.log(chalk.redBright("{!}: Unable to Find Executor"));
+  if (!executor) return;
 
   let trustedusers = db.get(`trustedusers_${bot.guild.id}`);
   if (executor.id === bot.guild.owner.id || executor.id === client.user.id) return;
