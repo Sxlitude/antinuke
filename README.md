@@ -1,6 +1,6 @@
 ![Discord Antinuke Tool](https://cdn.discordapp.com/attachments/935796428775755776/937000111702179880/unknown.png)
 ## description
-this is a discord tool which can be used to prevent your servers from getting raided/nuked/wizzed. This tool is tested on fast nukers. Some of them are lithium nuker, 09 nuker & rex nuker. There are two reasons for why i made this tool. One of them is that some people from 09 nuked my friend's server & i liked how bladee works. since 7teen is not much active & some haters say that bladee is trash so i tried to make an antinuke like bladee.
+this is a discord tool which can be used to prevent your servers from getting raided/nuked/wizzed. This tool is tested on fast nukers. A complete rewrite of this antinuke in discord.js v13 is coming soon!
 ### Things to note:
 - There are two modes of the antinuke - **Limit Mode** & **Trust Mode**
 - Limit Mode can only be used on [replit](https://replit.com/)
