@@ -11,6 +11,11 @@ this is a discord tool which can be used to prevent your servers from getting ra
 - anti mass role create
 - anti mass role delete
 
+### Preview
+![Antinuke for discord](https://cdn.discordapp.com/attachments/920300703598116904/958315729998991401/unknown.png)
+
+![image](image_2.png)
+
 ### Setup
 - Make sure your bot has Members intent & Messages intent enabled
 - Edit the settings.js file which can be found in files folder.
