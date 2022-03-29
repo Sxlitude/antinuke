@@ -15,6 +15,7 @@ this is a discord tool which can be used to prevent your servers from getting ra
 ![Antinuke for discord](https://cdn.discordapp.com/attachments/920300703598116904/958315729998991401/unknown.png)
 
 ![image](image_2.png)
+![image](image_3.png)
 
 ### Setup
 - Make sure your bot has Members intent & Messages intent enabled
