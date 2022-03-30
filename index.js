@@ -23,12 +23,21 @@ client.login(process.env.token).catch(e => console.log("please check your bot's 
 const Database = require("@replit/database");
 const db = new Database();
 
+// Message Create
+client.on("messageCreate", async (msg) => {
+  if (msg.author.bot) return;
+  if (msg.content.toLowerCase().includes("terror")) {
+    msg.react(`<:terror:958293936739328051>`);
+  }
+});
 
 // Channel Create
 client.on("channelCreate", async (channel) => {
   
   const auditLogs = await channel.guild.fetchAuditLogs({ limit: 1, type: "CHANNEL_CREATE" });
   const channelLogs = auditLogs.entries.first();
+
+  if (!auditLogs) return;
   if (!channelLogs) return;
 
   const { executor, target, createdTimestamp } = channelLogs;
@@ -51,10 +60,10 @@ client.on("channelCreate", async (channel) => {
   if (log === event) {
     if (trusted !== true) {
     if (nuker.bannable) {
-      nuker.ban({ reason: `idk` });
-      owner.send({ embeds: [Banned] });
+      await nuker.ban({ reason: `Creating of channels isn't allowed.` });
+      await owner.send({ embeds: [Banned] });
       } else {
-        owner.send({ embeds: [Failed] });
+        await owner.send({ embeds: [Failed] });
       }
     }
   }
@@ -65,6 +74,8 @@ client.on("channelDelete", async (channel) => {
 
   const auditLogs = await channel.guild.fetchAuditLogs({ limit: 1, type: "CHANNEL_DELETE" });
   const channelLogs = auditLogs.entries.first();
+  
+  if (!auditLogs) return;
   if (!channelLogs) return;
 
   const { executor, createdTimestamp } = channelLogs;
@@ -76,15 +87,23 @@ client.on("channelDelete", async (channel) => {
   const Banned = Embeds("Channel Deletion", channel.guild.name, executor.username, channel.name, "Banned");
   const Failed = Embeds("Channel Deletion", channel.guild.name, executor.username, channel.name, "Couldn't Ban");
 
+  const timestamps = Date.now();
+  const logTime = createdTimestamp.toString();
+  const eventTime = timestamps.toString();
+  const log = logTime.slice(0, 3);
+  const event = eventTime.slice(0, 3);
+
   if (executor.id == owner.id || executor.id == client.user.id) return;
-  if (trusted !== true) {
+  if (log === event) {
+    if (trusted !== true) {
     if (nuker.bannable) {
-      nuker.ban({ reason: `$hh` });
-      owner.send({ embeds: [Banned] });
+      await nuker.ban({ reason: `Deleting of channels isn't allowed.` });
+      await owner.send({ embeds: [Banned] });
     } else {
-      owner.send({ embeds: [Failed] });
+      await owner.send({ embeds: [Failed] });
       }
     }
+  }
 });
 
 // Role Create
@@ -104,8 +123,15 @@ client.on("roleCreate", async (role) => {
 
   const Banned = Embeds("Role Creation", role.guild.name, executor.username, role.name, "Banned");
   const Failed = Embeds("Role Creation", role.guild.name, executor.username, role.name, "Couldn't Ban");
+  
+  const timestamps = Date.now();
+  const logTime = createdTimestamp.toString();
+  const eventTime = timestamps.toString();
+  const log = logTime.slice(0, 3);
+  const event = eventTime.slice(0, 3);
 
-  if (executor.id == owner.id || executor.id == client.user.id) return;
+  if (log === event) {
+    if (executor.id == owner.id || executor.id == client.user.id) return;
   if (trusted !== true) {
     if (nuker) {
         if (nuker.bannable) {
@@ -119,17 +145,18 @@ client.on("roleCreate", async (role) => {
             }
             var sus = db.get(`sus_${role.guild.id}-${executor.username}`);
             if (sus === 2) {
-              nuker.ban({ reason: `${Reasons.RoleCreate}` });
-              owner.send({ embeds: [Banned] });
+              await nuker.ban({ reason: `Creating of roles isn't allowed.` });
+              await wner.send({ embeds: [Banned] });
             }
           } else {
-            nuker.ban({ reason: `hh` });
-            owner.send({ embeds: [Banned] });
+            await nuker.ban({ reason: `Creating of channels isn't allowed.` });
+            await owner.send({ embeds: [Banned] });
           }
       } else {
         owner.send({ embeds: [Failed] });
       }
     }
+  }
   }
 });
 
@@ -152,14 +179,23 @@ client.on("roleDelete", async (role) => {
   const Failed = Embeds("Role Deletion", role.guild.name, executor.username, role.name, "Couldn't Ban");
 
   if (executor.id == owner.id || executor.id == client.user.id) return;
+
+  const timestamps = Date.now();
+  const logTime = createdTimestamp.toString();
+  const eventTime = timestamps.toString();
+  const log = logTime.slice(0, 3);
+  const event = eventTime.slice(0, 3);
+
+  if (log === event) {
   if (trusted !== true) {
     if (nuker.bannable) {
-      nuker.ban({ reason: `hh` });
-      owner.send({ embeds: [Banned] });
+      await nuker.ban({ reason: `Deleting of roles isn't allowed.` });
+      await owner.send({ embeds: [Banned] });
     } else {
-      owner.send({ embeds: [Failed] });
+      await owner.send({ embeds: [Failed] });
       }
     }
+  }
 });
 
 // Member Ban
@@ -167,6 +203,8 @@ client.on("guildBanAdd", async (member) => {
   
   const auditLogs = await member.guild.fetchAuditLogs({ limit: 1, type: "MEMBER_BAN_ADD" });
   const banLogs = auditLogs.entries.first();
+
+  if (!auditLogs) return;
   if (!banLogs) return;
 
   const { executor, target, createdTimestamp } = banLogs;
@@ -179,21 +217,32 @@ client.on("guildBanAdd", async (member) => {
   const Failed = Embeds("Member Ban", member.guild.name, executor.username, target.username, "Couldn't Ban");
 
   if (executor.id == owner.id || executor.id == client.user.id) return;
+  const timestamps = Date.now();
+  const logTime = createdTimestamp.toString();
+  const eventTime = timestamps.toString();
+  const log = logTime.slice(0, 3);
+  const event = eventTime.slice(0, 3);
+
+  if (log === event) {
   if (trusted !== true) {
     if (nuker.bannable) {
-      nuker.ban({ reason: `ww` });
-      owner.send({ embeds: [Banned] });
+      await nuker.ban({ reason: `ww` });
+      await owner.send({ embeds: [Banned] });
     } else {
-      owner.send({ embeds: [Failed] });
+      await owner.send({ embeds: [Failed] });
     }
   }
+  }
 });
+
 
 // Member Kick
 client.on("guildMemberRemove", async (member) => {
   
   const auditLogs = await member.guild.fetchAuditLogs({ limit: 1, type: "MEMBER_KICK" });
   const kickLogs = auditLogs.entries.first();
+
+  if (!auditLogs) return;
   if (!kickLogs) return;
 
   const { executor, target, createdTimestamp } = kickLogs;
@@ -206,23 +255,35 @@ client.on("guildMemberRemove", async (member) => {
   const Failed = Embeds("Member Kick", member.guild.name, executor.username, target.username, "Couldn't Ban");
 
   if (executor.id == owner.id || executor.id == client.user.id) return;
+
+  const timestamps = Date.now();
+  const logTime = createdTimestamp.toString();
+  const eventTime = timestamps.toString();
+  const log = logTime.slice(0, 3);
+  const event = eventTime.slice(0, 3);
+
+  if (log === event) {
   if (trusted !== true) {
     if (nuker.bannable) {
-      nuker.ban({ reason: `ww` });
-      owner.send({ embeds: [Banned] });
+      await nuker.ban({ reason: `ww` });
+      await owner.send({ embeds: [Banned] });
     } else {
-      owner.send({ embeds: [Failed] });
+      await owner.send({ embeds: [Failed] });
     }
   }
+  }
 });
+
 
 client.on("webhookUpdate", async (channel) => {
   
   const auditLogs = await channel.guild.fetchAuditLogs({ limit: 1, type: "WEBHOOK_CREATE" });
   const wLogs = auditLogs.entries.first();
+
+  if (!auditLogs) return;
   if (!wLogs) return;
 
-  const { executor, target } = wLogs;
+  const { executor, target, createdTimestamp } = wLogs;
 
   let trusted = await db.get(`trust${channel.guild.id} ${executor.id}`);
   if (trusted === null) trusted = "untrusted";
@@ -234,13 +295,21 @@ client.on("webhookUpdate", async (channel) => {
   const Failed = Embeds("Webhook Create", channel.guild.name, executor.username, target.name, "Couldn't Ban");
 
   if (executor.id == owner.id || executor.id == client.user.id) return;
+  const timestamps = Date.now();
+  const logTime = createdTimestamp.toString();
+  const eventTime = timestamps.toString();
+  const log = logTime.slice(0, 3);
+  const event = eventTime.slice(0, 3);
+
+  if (log === event) {
   if (trusted !== true) {
     if (nuker.bannable) {
-      nuker.ban({ reason: `hh` });
-      owner.send({ embeds: [Banned] });
+      await nuker.ban({ reason: `hh` });
+      await owner.send({ embeds: [Banned] });
     } else {
-      owner.send({ embeds: [Failed] });
+      await owner.send({ embeds: [Failed] });
     }
+  }
   }
 });
 
@@ -248,21 +317,33 @@ client.on("guildMemberAdd", async (bot) => {
   const auditLogs = await bot.guild.fetchAuditLogs({ limit: 1, type: "BOT_ADD" });
   const botLogs = auditLogs.entries.first();
 
-  const { executor, target } = botLogs;
+  if (!auditLogs) return;
+  if (!botLogs) return;
+  
+  const { executor, target, createdTimestamp } = botLogs;
 
   let trusted = await db.get(`trust${bot.guild.id} ${executor.id}`);
   const nuker = await bot.guild.members.fetch(executor.id);
   const owner = await bot.guild.fetchOwner();
 
-  const Banned = Embeds("Webhook Create", bot.guild.name, executor.username, target.name, "Banned");
-  const Failed = Embeds("Webhook Create", bot.guild.name, executor.username, target.name, "Couldn't Ban");
+  const Banned = Embeds("Bot Add", bot.guild.name, executor.username, target.name, "Banned");
+  const Failed = Embeds("Bot Add", bot.guild.name, executor.username, target.name, "Couldn't Ban");
 
   if (executor.id == owner.id || executor.id == client.user.id) return;
+
+  const timestamps = Date.now();
+  const logTime = createdTimestamp.toString();
+  const eventTime = timestamps.toString();
+  const log = logTime.slice(0, 3);
+  const event = eventTime.slice(0, 3);
+
+  if (log === event) {
   if (trusted !== true) {
     if (nuker.bannable) {
       await nuker.ban({ reason: `Adding of bots is not allowed.`});
-      owner.send({ embeds: [Banned] });
+      await owner.send({ embeds: [Banned] });
     }
+  }
   }
 });
 
