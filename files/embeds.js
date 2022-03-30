@@ -31,6 +31,10 @@ module.exports = {
       return new MessageEmbed()
         .setDescription(`***__EVENT TRIGGERED!__***\n\n﹒Server :: **${guild}**\n﹒Event :: **${event}**\n\n***__EVENT DETAILS:__***\n\n﹒Executor :: **${executor}**\n﹒Webhook :: **${target}**\n﹒Punishment :: **${punishment}**`)
         .setColor("8a2be2")
+    } else if (event === "Bot Add") {
+      return new MessageEmbed()
+        .setDescription(`***__EVENT TRIGGERED!__***\n\n﹒Server :: **${guild}**\n﹒Event :: **${event}**\n\n***__EVENT DETAILS:__***\n\n﹒Executor :: **${executor}**\n﹒Bot :: **${target}**\n﹒Punishment :: **${punishment}**`)
+        .setColor("8a2be2")
     }
   },
   InteractionEmbeds: {
