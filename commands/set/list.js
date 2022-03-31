@@ -12,9 +12,10 @@ module.exports = {
       message.channel.send({ content: `only the owner can check the list` });
       
     } else {
+      var enabled = await db.get(`antinuke_${message.guild.id}`);
+      if (enabled === true) {
       const users = [];
       const Guild = message.guildId;
-
       // Get all trusted users from a guild
       await db.list(`trust${message.guild.id} `).then(async array => {
 
@@ -39,6 +40,9 @@ module.exports = {
           message.channel.send({ content: 'there are no trusted users.' })
         }
       });
+      } else {
+        message.channel.send({ content: `To run this command, enable antinuke first.`});
+      }
     }
   },
 }
