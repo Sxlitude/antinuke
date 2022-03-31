@@ -5,11 +5,11 @@ This is a discord tool which can be used to prevent your servers from getting ra
 ### Protection features
 - anti massban
 - anti masskick
-- anti addbot
 - anti mass channel create
 - anti mass channel delete
 - anti mass role create
 - anti mass role delete
+- anti mass webhook create
 
 ### Setup
 #### Developer Portal
@@ -25,6 +25,14 @@ This is a discord tool which can be used to prevent your servers from getting ra
 - go to [freshping](https://freshping.com) & sign up. Also, verify your account.
 - create a new monitor using the link ending with `repl.co`
 - Done! Still need help? open an issue!
+### Thing to note
+- make sure to enable antinuke by using `enable` command in ur server.
+- keep your bot's role on the topmost position so it can moderate.
+- make sure your bot has required permissions. administrator is recommended.
+- run the trust cmd on your admins and bots so that they won't get banned from the bot.
+- you can check the list of trusted users by doing the `list` command
+- you can untrust your admins and bots by running `untrust` command.
+- guild whitelisting/blacklisting doesn't work if privateMode is set to false.
 
 ### Have issues?
 if you find a bug in the antinuke or want to ask something about the bot, you can report it by opening an issue ;)
