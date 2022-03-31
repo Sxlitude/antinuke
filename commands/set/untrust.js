@@ -4,11 +4,13 @@ const db = new Database();
 
 module.exports = {
   name: "untrust",
-  aliases: ['ut', 'uwl', 'unwhitelist'],
+  aliases: ['ut'],
   run: async (client, message, args) => {
     if (message.author.id !== message.guild.ownerId) {
       message.channel.send({ content: `only the owner can untrust users in this server.` });
     } else {
+      let enabled = await db.get(`antinuke_${message.guild.id}`);
+      if (enabled === true) {
       const user = message.mentions.users.first();
       const ID = user.id;
       const Guild = message.guildId;
@@ -22,6 +24,9 @@ module.exports = {
         await db.delete(`trust${Guild} ${ID}`)
         await message.channel.send({ content: `**${user.username}** was removed from the trusted admins' list.` })
       }
+    } else {
+        message.channel.send({ content: `To run this command, enable antinuke first.`});
+    }
     }
   },
 }
