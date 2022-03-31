@@ -12,14 +12,15 @@ this is a discord tool which can be used to prevent your servers from getting ra
 - anti mass role delete
 
 ### Setup
-#### Private Mode
-- Change the `files/settings.js` and use the bot as normal.
-- Make sure your bot has Members intent & Messages intent enabled
-- Edit the settings.js file which can be found in files folder.
-#### Public Mode
-- in `files/settings.js`, make sure privateMode is set to false.
-- Make sure your bot has Members intent & Messages intent enabled
-- Edit the settings.js file which can be found in files folder.
+#### Developer Portal
+- make sure to have `Members Intent` enabled.
+- make sure to have `Message Content Intent` enabled.
+#### Importing
+- [Click Here](https://replit.com/github/sxlitude/antinuke) to directly import the repo & wait.
+- Once it's done, do `npm install` in shell & wait.
+- Once it's done, go to `files` folder and edit `settings.js`
+- In secrets, put your bot token. (key = token)
+- Done! if you have problems open an issue
 
 ### Have issues?
 if you find a bug in the antinuke or want to ask something about the bot, you can report it by opening an issue ;)
