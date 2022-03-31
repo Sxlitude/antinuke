@@ -1,6 +1,6 @@
 ![Discord Antinuke Tool](https://cdn.discordapp.com/attachments/935796428775755776/937000111702179880/unknown.png)
-## description
-this is a discord tool which can be used to prevent your servers from getting raided/nuked/wizzed. This tool is tested on fast nukers. A complete rewrite of this antinuke in discord.js v13 is coming soon!
+## Description
+This is a discord tool which can be used to prevent your servers from getting raided/nuked/wizzed. This tool is tested on fast nukers like Lithium.
 
 ### Protection features
 - anti massban
