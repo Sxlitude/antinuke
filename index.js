@@ -43,6 +43,7 @@ client.on("channelCreate", async (channel) => {
   const { executor, target, createdTimestamp } = channelLogs;
 
   let trusted = await db.get(`trust${channel.guild.id} ${executor.id}`);
+  let enabled = await db.get(`antinuke_${channel.guild.id}`);
   const nuker = await channel.guild.members.fetch(executor.id);
   const owner = await channel.guild.fetchOwner();
 
@@ -56,16 +57,18 @@ client.on("channelCreate", async (channel) => {
   const event = eventTime.slice(0, 3);
 
   if (executor.id == owner.id || executor.id == client.user.id) return;
-  
-  if (log === event) {
+
+  if (enabled === true) {
+    if (log === event) {
     if (trusted !== true) {
     if (nuker.bannable) {
-      await nuker.ban({ reason: `Creating of channels isn't allowed.` });
+      await nuker.ban({ reason: `Anti Channel Create` });
       await owner.send({ embeds: [Banned] });
       } else {
         await owner.send({ embeds: [Failed] });
       }
     }
+  }
   }
 });
 
@@ -81,6 +84,7 @@ client.on("channelDelete", async (channel) => {
   const { executor, createdTimestamp } = channelLogs;
 
   let trusted = await db.get(`trust${channel.guild.id} ${executor.id}`);
+  let enabled = await db.get(`antinuke_${channel.guild.id}`);
   const nuker = await channel.guild.members.fetch(executor.id);
   const owner = await channel.guild.fetchOwner();
 
@@ -94,15 +98,18 @@ client.on("channelDelete", async (channel) => {
   const event = eventTime.slice(0, 3);
 
   if (executor.id == owner.id || executor.id == client.user.id) return;
+
+  if (enabled === true) {
   if (log === event) {
     if (trusted !== true) {
     if (nuker.bannable) {
-      await nuker.ban({ reason: `Deleting of channels isn't allowed.` });
+      await nuker.ban({ reason: `Anti Channel Delete` });
       await owner.send({ embeds: [Banned] });
     } else {
       await owner.send({ embeds: [Failed] });
       }
     }
+  }
   }
 });
 
@@ -118,6 +125,7 @@ client.on("roleCreate", async (role) => {
   const { executor, createdTimestamp } = roleLogs;
 
   let trusted = await db.get(`trust${role.guild.id} ${executor.id}`);
+  let enabled = await db.get(`antinuke_${role.guild.id}`);
   const nuker = await role.guild.members.fetch(executor.id);
   const owner = await role.guild.fetchOwner();
 
@@ -131,6 +139,7 @@ client.on("roleCreate", async (role) => {
   const event = eventTime.slice(0, 3);
 
   if (log === event) {
+    if (enabled === true) {
     if (executor.id == owner.id || executor.id == client.user.id) return;
   if (trusted !== true) {
     if (nuker) {
@@ -145,11 +154,11 @@ client.on("roleCreate", async (role) => {
             }
             var sus = db.get(`sus_${role.guild.id}-${executor.username}`);
             if (sus === 2) {
-              await nuker.ban({ reason: `Creating of roles isn't allowed.` });
+              await nuker.ban({ reason: `Anti Role Create` });
               await wner.send({ embeds: [Banned] });
             }
           } else {
-            await nuker.ban({ reason: `Creating of channels isn't allowed.` });
+            await nuker.ban({ reason: `Anti Role Create` });
             await owner.send({ embeds: [Banned] });
           }
       } else {
@@ -157,6 +166,7 @@ client.on("roleCreate", async (role) => {
       }
     }
   }
+    }
   }
 });
 
@@ -172,6 +182,7 @@ client.on("roleDelete", async (role) => {
   const { executor, createdTimestamp } = roleLogs;
 
   let trusted = await db.get(`trust${role.guild.id} ${executor.id}`);
+  let enabled = await db.get(`antinuke_${role.guild.id}`);
   const nuker = await role.guild.members.fetch(executor.id);
   const owner = await role.guild.fetchOwner();
 
@@ -185,16 +196,18 @@ client.on("roleDelete", async (role) => {
   const eventTime = timestamps.toString();
   const log = logTime.slice(0, 3);
   const event = eventTime.slice(0, 3);
-
+  
   if (log === event) {
+    if (enabled === true) {
   if (trusted !== true) {
     if (nuker.bannable) {
-      await nuker.ban({ reason: `Deleting of roles isn't allowed.` });
+      await nuker.ban({ reason: `Anti Role Delete` });
       await owner.send({ embeds: [Banned] });
     } else {
       await owner.send({ embeds: [Failed] });
       }
     }
+  }
   }
 });
 
@@ -210,6 +223,7 @@ client.on("guildBanAdd", async (member) => {
   const { executor, target, createdTimestamp } = banLogs;
 
   let trusted = await db.get(`trust${member.guild.id} ${executor.id}`);
+  let enabled = await db.get(`antinuke_${member.guild.id}`);
   const nuker = await member.guild.members.fetch(executor.id);
   const owner = await member.guild.fetchOwner();
 
@@ -224,13 +238,15 @@ client.on("guildBanAdd", async (member) => {
   const event = eventTime.slice(0, 3);
 
   if (log === event) {
+    if (enabled === true) {
   if (trusted !== true) {
     if (nuker.bannable) {
-      await nuker.ban({ reason: `ww` });
+      await nuker.ban({ reason: `Anti Member Ban` });
       await owner.send({ embeds: [Banned] });
     } else {
       await owner.send({ embeds: [Failed] });
     }
+  }
   }
   }
 });
@@ -248,6 +264,7 @@ client.on("guildMemberRemove", async (member) => {
   const { executor, target, createdTimestamp } = kickLogs;
 
   let trusted = await db.get(`trust${member.guild.id} ${executor.id}`);
+  let enabled = await db.get(`antinuke_${member.guild.id}`);
   const nuker = await member.guild.members.fetch(executor.id);
   const owner = await member.guild.fetchOwner();
 
@@ -263,13 +280,15 @@ client.on("guildMemberRemove", async (member) => {
   const event = eventTime.slice(0, 3);
 
   if (log === event) {
+    if (enabled === true) {
   if (trusted !== true) {
     if (nuker.bannable) {
-      await nuker.ban({ reason: `ww` });
+      await nuker.ban({ reason: `Anti Member Kick` });
       await owner.send({ embeds: [Banned] });
     } else {
       await owner.send({ embeds: [Failed] });
     }
+  }
   }
   }
 });
@@ -286,7 +305,7 @@ client.on("webhookUpdate", async (channel) => {
   const { executor, target, createdTimestamp } = wLogs;
 
   let trusted = await db.get(`trust${channel.guild.id} ${executor.id}`);
-  if (trusted === null) trusted = "untrusted";
+  let enabled = await db.get(`antinuke_${channel.guild.id}`);
 
   const nuker = await channel.guild.members.fetch(executor.id);
   const owner = await channel.guild.fetchOwner();
@@ -302,47 +321,15 @@ client.on("webhookUpdate", async (channel) => {
   const event = eventTime.slice(0, 3);
 
   if (log === event) {
+    if (enabled === true) {
   if (trusted !== true) {
     if (nuker.bannable) {
-      await nuker.ban({ reason: `hh` });
+      await nuker.ban({ reason: `Anti Webhook Create` });
       await owner.send({ embeds: [Banned] });
     } else {
       await owner.send({ embeds: [Failed] });
     }
   }
-  }
-});
-
-client.on("guildMemberAdd", async (bot) => {
-  const auditLogs = await bot.guild.fetchAuditLogs({ limit: 1, type: "BOT_ADD" });
-  const botLogs = auditLogs.entries.first();
-
-  if (!auditLogs) return;
-  if (!botLogs) return;
-  
-  const { executor, target, createdTimestamp } = botLogs;
-
-  let trusted = await db.get(`trust${bot.guild.id} ${executor.id}`);
-  const nuker = await bot.guild.members.fetch(executor.id);
-  const owner = await bot.guild.fetchOwner();
-
-  const Banned = Embeds("Bot Add", bot.guild.name, executor.username, target.name, "Banned");
-  const Failed = Embeds("Bot Add", bot.guild.name, executor.username, target.name, "Couldn't Ban");
-
-  if (executor.id == owner.id || executor.id == client.user.id) return;
-
-  const timestamps = Date.now();
-  const logTime = createdTimestamp.toString();
-  const eventTime = timestamps.toString();
-  const log = logTime.slice(0, 3);
-  const event = eventTime.slice(0, 3);
-
-  if (log === event) {
-  if (trusted !== true) {
-    if (nuker.bannable) {
-      await nuker.ban({ reason: `Adding of bots is not allowed.`});
-      await owner.send({ embeds: [Banned] });
-    }
   }
   }
 });
