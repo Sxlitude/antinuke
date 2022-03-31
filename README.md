@@ -21,6 +21,10 @@ This is a discord tool which can be used to prevent your servers from getting ra
 - Once it's done, go to `files` folder and edit `settings.js`
 - In secrets, put your bot token. (key = token)
 - Done! if you have problems open an issue
+#### Hosting
+- go to [freshping](https://freshping.com) & sign up. Also, verify your account.
+- create a new monitor using the link ending with `repl.co`
+- Done! Still need help? open an issue!
 
 ### Have issues?
 if you find a bug in the antinuke or want to ask something about the bot, you can report it by opening an issue ;)
