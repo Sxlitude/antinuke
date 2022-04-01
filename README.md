@@ -16,7 +16,8 @@ This is a discord tool which can be used to prevent your servers from getting ra
 - make sure to have `Members Intent` enabled.
 - make sure to have `Message Content Intent` enabled.
 #### Importing
-- Click on new repl button and import this repo from github.
+- Click on new repl button and click `import from github`
+- Use this repo link while importing in repit
 - Once it's done, do `npm install` in shell & wait.
 - Once it's done, go to `files` folder and edit `settings.js`
 - In secrets, put your bot token. (key = token)
