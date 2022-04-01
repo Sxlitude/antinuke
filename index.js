@@ -17,7 +17,7 @@ client.slashCommands = new Collection();
 
 // Handler 
 require("./handler")(client);
-client.login(process.env.token).catch(e => console.log("please check your bot's token"));
+client.login(process.env.token).catch(e => console.log("The bot token is invalid or it is missing Messages & Members Intent"));
 
 // Database
 const Database = require("@replit/database");
