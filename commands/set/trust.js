@@ -3,12 +3,10 @@ const Database = require("@replit/database");
 const db = new Database();
 
 const settings = require('../../files/settings');
-const ok = settings.emojis.okay;
-const que = settings.emojis.question;
 
 module.exports = {
   name: "trust",
-  aliases: ['t'],
+  aliases: ['t', 'wl', 'whitelist'],
   run: async (client, message, args) => {
     if (message.author.id !== message.guild.ownerId) {
       message.channel.send({ content: `*This command is only for the server owner.*` });

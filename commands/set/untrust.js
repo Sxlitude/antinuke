@@ -4,7 +4,7 @@ const db = new Database();
 
 module.exports = {
   name: "untrust",
-  aliases: ['ut'],
+  aliases: ['ut', 'uwl', 'unwhitelist'],
   run: async (client, message, args) => {
     if (message.author.id !== message.guild.ownerId) {
       message.channel.send({ content: `only the owner can untrust users in this server.` });

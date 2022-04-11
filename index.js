@@ -17,7 +17,7 @@ client.slashCommands = new Collection();
 
 // Handler 
 require("./handler")(client);
-client.login(process.env.token).catch(e => console.log("The bot token is invalid or it is missing Messages & Members Intent"));
+client.login(process.env.token).catch(e => console.log("please check your bot's token"));
 
 // Database
 const Database = require("@replit/database");
@@ -334,6 +334,7 @@ client.on("webhookUpdate", async (channel) => {
   }
 });
 
+/*
 // #1
 process.on("unhandledRejection", (reason, promise) => {
   console.log("Unhandled Rejection at: " + promise)
@@ -361,3 +362,4 @@ process.on('exit', (code) => {
 process.on('multipleResolves', (type, promise, reason) => {
   console.log(type, promise, reason);
 });
+*/

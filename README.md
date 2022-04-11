@@ -9,9 +9,24 @@ This is a discord tool which can be used to prevent your servers from getting ra
 - anti mass channel delete
 - anti mass role create
 - anti mass role delete
-- anti mass webhook create
+
+### Bot Commands
+#### For Everyone
+- help
+- about
+#### For Owner
+- trust
+- untrust
+- list
+- antinuke enable
+- antinuke disable
+#### For Admins
+- autorole **(NEW)**
+- welcomer **(NEW)**
 
 ### Setup
+#### Video Guide
+- the setup guide is availible on YouTube too, but the code shown in the video is a little different. But the guide still works. For you, the difference is just in settings.js file. [Click Here](https://www.youtube.com/watch?v=zuevPtIvkcI) to watch the setup guide.
 #### Developer Portal
 - make sure to have `Members Intent` enabled.
 - make sure to have `Message Content Intent` enabled.
