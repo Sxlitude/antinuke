@@ -1,5 +1,7 @@
 // Files
 const { Embeds } = require(`./files/embeds`);
+const { bot } = require('./files/settings');
+const prefix = bot.prefix;
 
 // Packages
 const { Client, Collection, MessageEmbed } = require("discord.js");
@@ -31,9 +33,14 @@ const db = new Database();
 // Message Create
 client.on("messageCreate", async (msg) => {
   if (msg.author.bot) return;
-  if (msg.content.toLowerCase().includes("terror")) {
-    msg.react(`<:terror:958293936739328051>`);
-  }
+  if (msg.content.startsWith(`<@${client.user.id}>`) ||
+     msg.content.startsWith(`<@!${client.user.id}>`) ||
+     msg.content.includes(`<@${client.user.id}>`)) {
+    msg.channel.send({ content: `my prefix is **${prefix}**`})
+     }
+  // if (msg.content.toLowerCase().includes("terror")) {
+  //   msg.react(`<:terror:958293936739328051>`);
+  // }
 });
 
 // Channel Create
