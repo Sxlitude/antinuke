@@ -33,7 +33,7 @@ module.exports = {
       const servers = client.guilds.cache.size;
       const users = client.guilds.cache.map((guild) => guild.memberCount).reduce((x, y) => x + y);
     const embed3 = new MessageEmbed()
-      .setColor("7289da")
+      .setColor("PURPLE")
       .setDescription(`***Server Settings Overview***\n﹒*Antinuke Status* :: ${status}\n﹒*Trusted Admins* :: ${amount.length}\n\n***Bot's Statistics Overview***\n﹒*Total Servers* :: ${servers}\n﹒*Total Users* :: ${users}\n﹒*Bot Ping* :: ${client.ws.ping}ms\n\n***Bot's Credits Overview***\n﹒*Coded by* :: Sxlitude#8885\n﹒*GitHub* :: [Click Here](https://github.com/sxlitude/antinuke)\n﹒*Discord Server* :: [Click to Join]()`)
 
     // Sending

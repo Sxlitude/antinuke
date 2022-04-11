@@ -1,6 +1,6 @@
 module.exports = {
   bot: {
-    prefix: ";",
+    prefix: "--",
     token: process.env.token,
   },
   presence: {
