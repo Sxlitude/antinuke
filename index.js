@@ -3,7 +3,7 @@ const { Embeds } = require(`./files/embeds`);
 
 // Packages
 const { Client, Collection, MessageEmbed } = require("discord.js");
-const client = new Client({ intents: 519 });
+const client = new Client({ intents: 32767 });
 const chalk = require('chalk');
 module.exports = client;
 
@@ -17,7 +17,12 @@ client.slashCommands = new Collection();
 
 // Handler 
 require("./handler")(client);
-client.login(process.env.token).catch(e => console.log("please check your bot's token"));
+client.login(process.env.token).catch((e) => {
+  console.log(`${chalk.red(`\n{!} :: Failed to log in.. Please check if your bot tokem is valid or it has all intents enabled..`)}`)
+  setTimeout(() => {
+    process.exit();
+  }, 5000)
+});
 
 // Database
 const Database = require("@replit/database");
@@ -334,32 +339,26 @@ client.on("webhookUpdate", async (channel) => {
   }
 });
 
-/*
+
 // #1
 process.on("unhandledRejection", (reason, promise) => {
   console.log("Unhandled Rejection at: " + promise)
   console.log("Reason: " + reason)
-})
+});
+
 // #2
 process.on("uncaughtException", (err, origin) => {
   console.log("Caught exception: " + err)
   console.log("Origin: " + origin)
-})
+});
+
 // #3
 process.on('uncaughtExceptionMonitor', (err, origin) => {
   console.log(err);
   console.log("Origin: " + origin)
 });
+
 // #4
-process.on('beforeExit', (code) => {
-  console.log('Process beforeExit event with code: ', code);
-});
-// #5
-process.on('exit', (code) => {
-  console.log('Process exit event with code: ', code);
-});
-// #6
 process.on('multipleResolves', (type, promise, reason) => {
   console.log(type, promise, reason);
 });
-*/

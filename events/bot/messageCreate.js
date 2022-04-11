@@ -16,7 +16,7 @@ client.on("messageCreate", async (message) => {
 
     if (!command) {
       const error = new MessageEmbed()
-        .setDescription("***Wrong Command***\n﹒*this is not a valid command.*\n﹒*try ;help to see a list of commands.*")
+        .setDescription(`***Wrong Command***\n﹒*this is not a valid command.*\n﹒*try ${prefix}help to see a list of commands.*`)
         .setColor("PURPLE")
       message.channel.send({ embeds: [error] });
     }
