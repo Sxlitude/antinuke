@@ -23,6 +23,9 @@ This is a discord tool which can be used to prevent your servers from getting ra
 #### For Admins
 - autorole **(NEW)**
 - welcomer **(NEW)**
+- kick **(NEW)**
+- ban **(NEW)**
+- nick **(NEW)**
 
 ### Setup
 #### Video Guide
