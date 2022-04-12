@@ -41,7 +41,7 @@ This is a discord tool which can be used to prevent your servers from getting ra
 - In secrets, put your bot token. (key = token)
 - Done! if you have problems open an issue
 #### Hosting
-- go to [freshping](https://freshping.com) & sign up. Also, verify your account.
+- go to [freshping](https://www.freshworks.com/website-monitoring/) & sign up. Also, verify your account.
 - create a new monitor using the link ending with `repl.co`
 - Done! Still need help? open an issue!
 ### Thing to note
