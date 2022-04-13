@@ -72,15 +72,15 @@ client.on("channelCreate", async (channel) => {
 
   if (enabled === true) {
     if (log === event) {
-    if (trusted !== true) {
-    if (nuker.bannable) {
-      await nuker.ban({ reason: `Anti Channel Create` });
-      await owner.send({ embeds: [Banned] });
-      } else {
-        await owner.send({ embeds: [Failed] });
+      if (trusted !== true) {
+        if (nuker.bannable) {
+          await nuker.ban({ reason: `Anti Channel Create` });
+          await owner.send({ embeds: [Banned] });
+        } else {
+          await owner.send({ embeds: [Failed] });
+        }
       }
     }
-  }
   }
 });
 
@@ -112,16 +112,16 @@ client.on("channelDelete", async (channel) => {
   if (executor.id == owner.id || executor.id == client.user.id) return;
 
   if (enabled === true) {
-  if (log === event) {
-    if (trusted !== true) {
-    if (nuker.bannable) {
-      await nuker.ban({ reason: `Anti Channel Delete` });
-      await owner.send({ embeds: [Banned] });
-    } else {
-      await owner.send({ embeds: [Failed] });
+    if (log === event) {
+      if (trusted !== true) {
+        if (nuker.bannable) {
+          await nuker.ban({ reason: `Anti Channel Delete` });
+          await owner.send({ embeds: [Banned] });
+        } else {
+          await owner.send({ embeds: [Failed] });
+        }
       }
     }
-  }
   }
 });
 
@@ -153,31 +153,31 @@ client.on("roleCreate", async (role) => {
   if (log === event) {
     if (enabled === true) {
     if (executor.id == owner.id || executor.id == client.user.id) return;
-  if (trusted !== true) {
-    if (nuker) {
-        if (nuker.bannable) {
-          if (nuker.user.bot) {
-            if (role.name === `${executor.username}`) {
-              var bot = db.get(`sus_${role.guild.id}-${executor.username}`);
-              db.set(`sus_${role.guild.id}-${executor.username}`, bot + 1)
-              setTimeout(() => {
-                db.set(`sus_${role.guild.id}-${executor.username}`, 0)
-              }, 5000);
-            }
-            var sus = db.get(`sus_${role.guild.id}-${executor.username}`);
-            if (sus === 2) {
+    if (trusted !== true) {
+      if (nuker) {
+          if (nuker.bannable) {
+            if (nuker.user.bot) {
+              if (role.name === `${executor.username}`) {
+                var bot = db.get(`sus_${role.guild.id}-${executor.username}`);
+                db.set(`sus_${role.guild.id}-${executor.username}`, bot + 1)
+                setTimeout(() => {
+                  db.set(`sus_${role.guild.id}-${executor.username}`, 0)
+                }, 5000);
+              }
+              var sus = db.get(`sus_${role.guild.id}-${executor.username}`);
+              if (sus === 2) {
+                await nuker.ban({ reason: `Anti Role Create` });
+                await wner.send({ embeds: [Banned] });
+              }
+            } else {
               await nuker.ban({ reason: `Anti Role Create` });
-              await wner.send({ embeds: [Banned] });
-            }
+              await owner.send({ embeds: [Banned] });
+              }
           } else {
-            await nuker.ban({ reason: `Anti Role Create` });
-            await owner.send({ embeds: [Banned] });
+            owner.send({ embeds: [Failed] });
           }
-      } else {
-        owner.send({ embeds: [Failed] });
+        }
       }
-    }
-  }
     }
   }
 });
@@ -211,15 +211,15 @@ client.on("roleDelete", async (role) => {
   
   if (log === event) {
     if (enabled === true) {
-  if (trusted !== true) {
-    if (nuker.bannable) {
-      await nuker.ban({ reason: `Anti Role Delete` });
-      await owner.send({ embeds: [Banned] });
-    } else {
-      await owner.send({ embeds: [Failed] });
+      if (trusted !== true) {
+        if (nuker.bannable) {
+          await nuker.ban({ reason: `Anti Role Delete` });
+          await owner.send({ embeds: [Banned] });
+        } else {
+          await owner.send({ embeds: [Failed] });
+        }
       }
     }
-  }
   }
 });
 
@@ -251,15 +251,15 @@ client.on("guildBanAdd", async (member) => {
 
   if (log === event) {
     if (enabled === true) {
-  if (trusted !== true) {
-    if (nuker.bannable) {
-      await nuker.ban({ reason: `Anti Member Ban` });
-      await owner.send({ embeds: [Banned] });
-    } else {
-      await owner.send({ embeds: [Failed] });
+      if (trusted !== true) {
+        if (nuker.bannable) {
+          await nuker.ban({ reason: `Anti Member Ban` });
+          await owner.send({ embeds: [Banned] });
+        } else {
+          await owner.send({ embeds: [Failed] });
+        }
+      }
     }
-  }
-  }
   }
 });
 
@@ -293,15 +293,15 @@ client.on("guildMemberRemove", async (member) => {
 
   if (log === event) {
     if (enabled === true) {
-  if (trusted !== true) {
-    if (nuker.bannable) {
-      await nuker.ban({ reason: `Anti Member Kick` });
-      await owner.send({ embeds: [Banned] });
-    } else {
-      await owner.send({ embeds: [Failed] });
+      if (trusted !== true) {
+        if (nuker.bannable) {
+          await nuker.ban({ reason: `Anti Member Kick` });
+          await owner.send({ embeds: [Banned] });
+        } else {
+          await owner.send({ embeds: [Failed] });
+        }
+      }
     }
-  }
-  }
   }
 });
 
@@ -349,8 +349,8 @@ client.on("webhookUpdate", async (channel) => {
 
 // #1
 process.on("unhandledRejection", (reason, promise) => {
-  console.log("Unhandled Rejection at: " + promise)
-  console.log("Reason: " + reason)
+  // console.log("Unhandled Rejection at: " + promise)
+  // console.log("Reason: " + reason)
 });
 
 // #2

@@ -8,7 +8,10 @@ module.exports = {
   run: async (client, message, args) => {
     var antinuke = await db.get(`antinuke_${message.guild.id}`);
     if (message.author.id !== message.guild.ownerId) {
-      message.channel.send({ content: `This command is for the server's owner only.`});
+      const guide = new MessageEmbed()
+        .setColor("PURPLE")
+        .setDescription("***Antinuke :: Disable***\n*If antinuke is disabled, then every admin is allowed to modify your server without getting punished from me.*\n\n﹒*Usage* :: disable *or* d\n﹒*Requires Server Ownership*")
+      message.channel.send({ embeds: [guide] });
     } else {
       if (antinuke === false) {
         message.channel.send({ content: `Antinuke is already disabled for this server.` });
