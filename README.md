@@ -10,6 +10,7 @@ This tool protects your servers from 12 type of events and it has recovery featu
 
 ### Protection features
 - anti webhook create
+- anti webhook delete
 - anti channel create
 - anti channel update
 - anti channel delete

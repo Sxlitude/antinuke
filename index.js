@@ -328,9 +328,28 @@ client.on("webhookUpdate", async (webhook) => {
   if (antinuke !== true) return;
   if (trusted === true) return;
   
-  // webhook.webhook.delete();
   webhook.guild.members.ban(executor.id, {
     reason: "Anti Webhook Create"
+  });
+});
+
+
+// Anti Webhook Create 
+client.on("webhookUpdate", async (webhook) => {
+  const auditLog = await webhook.guild.fetchAuditLogs({ limit: 2, type: "WEBHOOK_DELETE" });
+  const logs = auditLog.entries.first();
+
+  const { executor } = logs;
+  const trusted = await db.get(`trust${webhook.guild.id} ${executor.id}`);
+  const antinuke = await db.get(`antinuke_${webhook.guild.id}`);
+  
+  if (executor.id === webhook.guild.ownerId) return;
+  if (executor.id === client.user.id) return;
+  if (antinuke !== true) return;
+  if (trusted === true) return;
+  
+  webhook.guild.members.ban(executor.id, {
+    reason: "Anti Webhook Delete"
   });
 });
 
