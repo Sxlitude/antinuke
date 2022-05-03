@@ -2,6 +2,7 @@ module.exports = {
   bot: {
     prefix: ";",
     token: process.env.token,
+    invLink: `https://dsc.gg/antiwizz`
   },
   presence: {
     status: 'idle',

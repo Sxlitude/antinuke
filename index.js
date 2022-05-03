@@ -8,10 +8,11 @@ const { Client, Collection, MessageEmbed } = require("discord.js");
 const client = new Client({ intents: 32767 });
 const chalk = require('chalk');
 module.exports = client;
-
+/*
 // Hosting
 const keepAlive = require('./files/server');
 keepAlive();
+*/
 
 // Global Variables
 client.commands = new Collection();
@@ -20,7 +21,7 @@ client.slashCommands = new Collection();
 // Handler 
 require("./handler")(client);
 client.login(process.env.token).catch((e) => {
-  console.log(`${chalk.red(`\n{!} :: Failed to log in.. Please check if your bot tokem is valid or it has all intents enabled..`)}`)
+  console.log(`${chalk.red(`\n{!} :: Failed to log in.. Please check if your bot token is valid or it has all intents enabled..`)}`)
   setTimeout(() => {
     process.exit();
   }, 5000)
@@ -30,327 +31,323 @@ client.login(process.env.token).catch((e) => {
 const Database = require("@replit/database");
 const db = new Database();
 
-// Message Create
-client.on("messageCreate", async (msg) => {
-  if (msg.author.bot) return;
-  if (msg.content.startsWith(`<@${client.user.id}>`) ||
-     msg.content.startsWith(`<@!${client.user.id}>`) ||
-     msg.content.includes(`<@${client.user.id}>`)) {
-    msg.channel.send({ content: `my prefix is **${prefix}**`})
-     }
-  // if (msg.content.toLowerCase().includes("terror")) {
-  //   msg.react(`<:terror:958293936739328051>`);
-  // }
-});
 
-// Channel Create
+// Anti Channel Create
 client.on("channelCreate", async (channel) => {
+  const auditLogs = await channel.guild.fetchAuditLogs({ limit: 2, type: "CHANNEL_CREATE" });
+
+  const logs = auditLogs.entries.first();
+  const { executor } = logs;
+
+  const trusted = await db.get(`trust${channel.guild.id} ${executor.id}`);
+  const antinuke = await db.get(`antinuke_${channel.guild.id}`);
+
+  if (executor.id === channel.guild.ownerId) return;
+  if (executor.id === client.user.id) return;
+  if (antinuke !== true) return;
+  if (trusted === true) return;
   
-  const auditLogs = await channel.guild.fetchAuditLogs({ limit: 1, type: "CHANNEL_CREATE" });
-  const channelLogs = auditLogs.entries.first();
+  channel.delete();
+  channel.guild.members.ban(executor.id, { 
+    reason: "Anti Channel Create"
+  });
+}); 
 
-  if (!auditLogs) return;
-  if (!channelLogs) return;
 
-  const { executor, target, createdTimestamp } = channelLogs;
-
-  let trusted = await db.get(`trust${channel.guild.id} ${executor.id}`);
-  let enabled = await db.get(`antinuke_${channel.guild.id}`);
-  const nuker = await channel.guild.members.fetch(executor.id);
-  const owner = await channel.guild.fetchOwner();
-
-  const Banned = Embeds("Channel Creation", channel.guild.name, executor.username, channel.name, "Banned");
-  const Failed = Embeds("Channel Creation", channel.guild.name, executor.username, channel.name, "Couldn't Ban");
-
-  const timestamps = Date.now();
-  const logTime = createdTimestamp.toString();
-  const eventTime = timestamps.toString();
-  const log = logTime.slice(0, 3);
-  const event = eventTime.slice(0, 3);
-
-  if (executor.id == owner.id || executor.id == client.user.id) return;
-
-  if (enabled === true) {
-    if (log === event) {
-      if (trusted !== true) {
-        if (nuker.bannable) {
-          await nuker.ban({ reason: `Anti Channel Create` });
-          await owner.send({ embeds: [Banned] });
-        } else {
-          await owner.send({ embeds: [Failed] });
-        }
-      }
-    }
-  }
-});
-
-// Channel Delete
+// Anti Channel Delete
 client.on("channelDelete", async (channel) => {
+  const auditLogs = await channel.guild.fetchAuditLogs({ limit: 2, type: "CHANNEL_DELETE" });
 
-  const auditLogs = await channel.guild.fetchAuditLogs({ limit: 1, type: "CHANNEL_DELETE" });
-  const channelLogs = auditLogs.entries.first();
-  
-  if (!auditLogs) return;
-  if (!channelLogs) return;
+  const logs = auditLogs.entries.first();
+  const { executor } = logs;
+  const trusted = await db.get(`trust${channel.guild.id} ${executor.id}`);
+  const antinuke = await db.get(`antinuke_${channel.guild.id}`);
 
-  const { executor, createdTimestamp } = channelLogs;
+  if (executor.id === channel.guild.ownerId) return;
+  if (executor.id === client.user.id) return;
+  if (antinuke !== true) return;
+  if (trusted === true) return;
+  channel.clone();
+  channel.guild.members.ban(executor.id, { 
+    reason: "Anti Channel Delete"
+  });
+});   
 
-  let trusted = await db.get(`trust${channel.guild.id} ${executor.id}`);
-  let enabled = await db.get(`antinuke_${channel.guild.id}`);
-  const nuker = await channel.guild.members.fetch(executor.id);
-  const owner = await channel.guild.fetchOwner();
 
-  const Banned = Embeds("Channel Deletion", channel.guild.name, executor.username, channel.name, "Banned");
-  const Failed = Embeds("Channel Deletion", channel.guild.name, executor.username, channel.name, "Couldn't Ban");
-
-  const timestamps = Date.now();
-  const logTime = createdTimestamp.toString();
-  const eventTime = timestamps.toString();
-  const log = logTime.slice(0, 3);
-  const event = eventTime.slice(0, 3);
-
-  if (executor.id == owner.id || executor.id == client.user.id) return;
-
-  if (enabled === true) {
-    if (log === event) {
-      if (trusted !== true) {
-        if (nuker.bannable) {
-          await nuker.ban({ reason: `Anti Channel Delete` });
-          await owner.send({ embeds: [Banned] });
-        } else {
-          await owner.send({ embeds: [Failed] });
-        }
-      }
-    }
-  }
-});
-
-// Role Create
+// Anti Role Create
 client.on("roleCreate", async (role) => {
+  const auditLogs = await role.guild.fetchAuditLogs({ limit: 2, type: "ROLE_CREATE" });
 
-  const roleAuditLogs = await role.guild.fetchAuditLogs({ limit: 1, type: "ROLE_CREATE" });
-  const roleLogs = roleAuditLogs.entries.first();
+  const logs = auditLogs.entries.first();
+  const { executor, createdTimestamp } = logs;
 
-  if (!roleAuditLogs) return;
-  if (!roleLogs) return;
+  const trusted = await db.get(`trust${role.guild.id} ${executor.id}`);
+  const antinuke = await db.get(`antinuke_${role.guild.id}`);
 
-  const { executor, createdTimestamp } = roleLogs;
-
-  let trusted = await db.get(`trust${role.guild.id} ${executor.id}`);
-  let enabled = await db.get(`antinuke_${role.guild.id}`);
-  const nuker = await role.guild.members.fetch(executor.id);
-  const owner = await role.guild.fetchOwner();
-
-  const Banned = Embeds("Role Creation", role.guild.name, executor.username, role.name, "Banned");
-  const Failed = Embeds("Role Creation", role.guild.name, executor.username, role.name, "Couldn't Ban");
-  
   const timestamps = Date.now();
   const logTime = createdTimestamp.toString();
   const eventTime = timestamps.toString();
   const log = logTime.slice(0, 3);
   const event = eventTime.slice(0, 3);
+  
+  if (executor.id === role.guild.ownerId) return;
+  if (executor.id === client.user.id) return;
+  if (antinuke !== true) return;
+  if (trusted === true) return;
+  if (log !== event) return;
 
-  if (log === event) {
-    if (enabled === true) {
-    if (executor.id == owner.id || executor.id == client.user.id) return;
-    if (trusted !== true) {
-      if (nuker) {
-          if (nuker.bannable) {
-            if (nuker.user.bot) {
-              if (role.name === `${executor.username}`) {
-                var bot = db.get(`sus_${role.guild.id}-${executor.username}`);
-                db.set(`sus_${role.guild.id}-${executor.username}`, bot + 1)
-                setTimeout(() => {
-                  db.set(`sus_${role.guild.id}-${executor.username}`, 0)
-                }, 5000);
-              }
-              var sus = db.get(`sus_${role.guild.id}-${executor.username}`);
-              if (sus === 2) {
-                await nuker.ban({ reason: `Anti Role Create` });
-                await wner.send({ embeds: [Banned] });
-              }
-            } else {
-              await nuker.ban({ reason: `Anti Role Create` });
-              await owner.send({ embeds: [Banned] });
-              }
-          } else {
-            owner.send({ embeds: [Failed] });
-          }
-        }
-      }
-    }
-  }
-});
+  role.delete();
+  role.guild.members.ban(executor.id, { 
+    reason: "Anti Role Create"
+  });
+});    
 
-// Role Delete
+// Anti Role Delete
 client.on("roleDelete", async (role) => {
+  const auditLogs = await role.guild.fetchAuditLogs({ limit: 2, type: "ROLE_DELETE" });
+
+  const logs = auditLogs.entries.first();
+  const { executor } = logs;
+
+  const trusted = await db.get(`trust${role.guild.id} ${executor.id}`);
+  const antinuke = await db.get(`antinuke_${role.guild.id}`);
   
-  const roleAuditLogs = await role.guild.fetchAuditLogs({ limit: 1, type: "ROLE_DELETE", }).catch(e => {});
-  const roleLogs = roleAuditLogs.entries.first();
-  
-  if (!roleAuditLogs) return;
-  if (!roleLogs) return;
-
-  const { executor, createdTimestamp } = roleLogs;
-
-  let trusted = await db.get(`trust${role.guild.id} ${executor.id}`);
-  let enabled = await db.get(`antinuke_${role.guild.id}`);
-  const nuker = await role.guild.members.fetch(executor.id);
-  const owner = await role.guild.fetchOwner();
-
-  const Banned = Embeds("Role Deletion", role.guild.name, executor.username, role.name, "Banned");
-  const Failed = Embeds("Role Deletion", role.guild.name, executor.username, role.name, "Couldn't Ban");
-
-  if (executor.id == owner.id || executor.id == client.user.id) return;
-
-  const timestamps = Date.now();
-  const logTime = createdTimestamp.toString();
-  const eventTime = timestamps.toString();
-  const log = logTime.slice(0, 3);
-  const event = eventTime.slice(0, 3);
-  
-  if (log === event) {
-    if (enabled === true) {
-      if (trusted !== true) {
-        if (nuker.bannable) {
-          await nuker.ban({ reason: `Anti Role Delete` });
-          await owner.send({ embeds: [Banned] });
-        } else {
-          await owner.send({ embeds: [Failed] });
-        }
-      }
-    }
-  }
+  if (executor.id === role.guild.ownerId) return;
+  if (executor.id === client.user.id) return;
+  if (antinuke !== true) return;
+  if (trusted === true) return;
+  role.guild.roles.create({
+    name: role.name,
+    color: role.color,
+  });
+  role.guild.members.ban(executor.id, { 
+    reason: "Anti Role Delete"
+  });
 });
 
-// Member Ban
+// Anti Emoji Create
+client.on("emojiCreate", async (emoji) => {
+  const auditLogs = await emoji.guild.fetchAuditLogs({
+    limit: 2,
+    type: "EMOJI_CREATE"
+  });
+
+  const logs = auditLogs.entries.first();
+  const { executor } = logs;
+
+  const trusted = await db.get(`trust${emoji.guild.id} ${executor.id}`);
+  const antinuke = await db.get(`antinuke_${emoji.guild.id}`);
+  
+  if (executor.id === emoji.guild.ownerId) return;
+  if (executor.id === client.user.id) return;
+  if (antinuke !== true) return;
+  if (trusted === true) return;
+  
+emoji.guild.members.ban(executor.id, { 
+    reason: "Anti Emoji Create"
+  });
+});
+
+
+// Anti Emoji Delete
+client.on("emojiDelete", async (emoji) => {
+  const auditLogs = await emoji.guild.fetchAuditLogs({
+    limit: 2,
+    type: "EMOJI_DELETE"
+  });
+
+  const logs = auditLogs.entries.first();
+  const { executor } = logs;
+
+  const trusted = await db.get(`trust${emoji.guild.id} ${executor.id}`);
+  const antinuke = await db.get(`antinuke_${emoji.guild.id}`);
+  
+  if (executor.id === emoji.guild.ownerId) return;
+  if (executor.id === client.user.id) return;
+  if (antinuke !== true) return;
+  if (trusted === true) return;
+  
+emoji.guild.members.ban(executor.id, { 
+    reason: "Anti Emoji Delete"
+  });
+});
+
+
+// Anti Member Ban
 client.on("guildBanAdd", async (member) => {
+  const auditLogs = await member.guild.fetchAuditLogs({ limit: 2, type: "MEMBER_BAN_ADD" });
+
+  const logs = auditLogs.entries.first();
+  const { executor, target } = logs;
+
+  const trusted = await db.get(`trust${member.guild.id} ${executor.id}`);
+  const antinuke = await db.get(`antinuke_${member.guild.id}`);
   
-  const auditLogs = await member.guild.fetchAuditLogs({ limit: 1, type: "MEMBER_BAN_ADD" });
-  const banLogs = auditLogs.entries.first();
-
-  if (!auditLogs) return;
-  if (!banLogs) return;
-
-  const { executor, target, createdTimestamp } = banLogs;
-
-  let trusted = await db.get(`trust${member.guild.id} ${executor.id}`);
-  let enabled = await db.get(`antinuke_${member.guild.id}`);
-  const nuker = await member.guild.members.fetch(executor.id);
-  const owner = await member.guild.fetchOwner();
-
-  const Banned = Embeds("Member Ban", member.guild.name, executor.username, target.username, "Banned");
-  const Failed = Embeds("Member Ban", member.guild.name, executor.username, target.username, "Couldn't Ban");
-
-  if (executor.id == owner.id || executor.id == client.user.id) return;
-  const timestamps = Date.now();
-  const logTime = createdTimestamp.toString();
-  const eventTime = timestamps.toString();
-  const log = logTime.slice(0, 3);
-  const event = eventTime.slice(0, 3);
-
-  if (log === event) {
-    if (enabled === true) {
-      if (trusted !== true) {
-        if (nuker.bannable) {
-          await nuker.ban({ reason: `Anti Member Ban` });
-          await owner.send({ embeds: [Banned] });
-        } else {
-          await owner.send({ embeds: [Failed] });
-        }
-      }
-    }
-  }
+  if (executor.id === member.guild.ownerId) return;
+  if (executor.id === client.user.id) return;
+  if (antinuke !== true) return;
+  if (trusted === true) return;
+member.guild.members.kick(executor.id, { 
+    reason: "Anti Member Ban"
+  });
+  member.guild.members.unban(target.id, {
+    reason: "Anti Member Ban"
+  })
 });
 
-
-// Member Kick
+// Anti Member Kick
 client.on("guildMemberRemove", async (member) => {
+  const auditLogs = await member.guild.fetchAuditLogs({ limit: 2, type: "MEMBER_KICK" });
+
+  const logs = auditLogs.entries.first();
+  const { executor } = logs;
+
+  const trusted = await db.get(`trust${member.guild.id} ${executor.id}`);
+  const antinuke = await db.get(`antinuke_${member.guild.id}`);
   
-  const auditLogs = await member.guild.fetchAuditLogs({ limit: 1, type: "MEMBER_KICK" });
-  const kickLogs = auditLogs.entries.first();
+  if (executor.id === member.guild.ownerId) return;
+  if (executor.id === client.user.id) return;
+  if (antinuke !== true) return;
+  if (trusted === true) return;
+member.guild.members.ban(executor.id, { 
+    reason: "Anti Member Kick"
+  });
+});
 
-  if (!auditLogs) return;
-  if (!kickLogs) return;
 
-  const { executor, target, createdTimestamp } = kickLogs;
+// Anti Bot Add
+client.on("guildMemberAdd", async (member) => {
+  const auditLogs = await member.guild.fetchAuditLogs({
+    limit: 2, 
+    type: "BOT_ADD" 
+  });
 
-  let trusted = await db.get(`trust${member.guild.id} ${executor.id}`);
-  let enabled = await db.get(`antinuke_${member.guild.id}`);
-  const nuker = await member.guild.members.fetch(executor.id);
-  const owner = await member.guild.fetchOwner();
+  const logs = auditLogs.entries.first();
+  const { executor, target } = logs;
 
-  const Banned = Embeds("Member Kick", member.guild.name, executor.username, target.username, "Banned");
-  const Failed = Embeds("Member Kick", member.guild.name, executor.username, target.username, "Couldn't Ban");
+  const trusted = await db.get(`trust${member.guild.id} ${executor.id}`);
+  const antinuke = await db.get(`antinuke_${member.guild.id}`);
+  
+  if (executor.id === member.guild.ownerId) return;
+  if (executor.id === client.user.id) return;
+  if (antinuke !== true) return;
+  if (trusted === true) return;
 
-  if (executor.id == owner.id || executor.id == client.user.id) return;
 
-  const timestamps = Date.now();
-  const logTime = createdTimestamp.toString();
-  const eventTime = timestamps.toString();
-  const log = logTime.slice(0, 3);
-  const event = eventTime.slice(0, 3);
+member.guild.members.ban(executor.id, { 
+    reason: "Anti Bot Add"
+  });
+  member.guild.members.ban(target.id, { 
+    reason: "illegal bot"
+  });
+});
 
-  if (log === event) {
-    if (enabled === true) {
-      if (trusted !== true) {
-        if (nuker.bannable) {
-          await nuker.ban({ reason: `Anti Member Kick` });
-          await owner.send({ embeds: [Banned] });
-        } else {
-          await owner.send({ embeds: [Failed] });
-        }
-      }
+
+// Anti Role Update
+client.on("roleUpdate", async (o,n) => {
+  const auditLogs = await n.guild.fetchAuditLogs({
+    limit: 2,
+    type: "ROLE_UPDATE"
+  });
+  const logs = auditLogs.entries.first();
+  const { executor } = logs;
+
+  const trusted = await db.get(`trust${n.guild.id} ${executor.id}`);
+  const antinuke = await db.get(`antinuke_${n.guild.id}`);
+  
+  if (executor.id === o.guild.ownerId) return;
+  if (executor.id === client.user.id) return;
+  if (antinuke !== true) return;
+  if (trusted === true) return;
+
+  n.setPermissions(o.permissions);
+  n.guild.members.ban(executor.id, {
+    reason: "Anti Role Update"
+  })
+});
+
+
+// Anti Channel Update
+client.on("channelUpdate", async (o,n) => {
+  const auditLogs = await n.guild.fetchAuditLogs({
+    limit: 2,
+    type: "CHANNEL_UPDATE"
+  });
+  const logs = auditLogs.entries.first();
+  const { executor } = logs;
+
+  const trusted = await db.get(`trust${n.guild.id} ${executor.id}`);
+  const antinuke = await db.get(`antinuke_${n.guild.id}`);
+  
+  if (executor.id === o.guild.ownerId) return;
+  if (executor.id === client.user.id) return;
+  if (antinuke !== true) return;
+  if (trusted === true) return;
+
+  const oldName = o.name;
+  const newName = n.name;
+  
+n.guild.members.ban(executor.id, {
+  reason: "Anti Channel Update"
+});
+
+  if (oldName !== newName) {
+    await n.edit({
+      name: oldName
+    })
+  }
+  
+  if (n.isText()) {
+    const oldTopic = o.topic;
+    const newTopic = n.topic;
+    if (oldTopic !== newTopic) {
+      await n.setTopic(oldTopic)
     }
   }
 });
 
 
-client.on("webhookUpdate", async (channel) => {
+// Anti Server Update
+client.on("guildUpdate", async (o,n) => {
+  const auditLogs = await n.fetchAuditLogs({
+    limit: 3,
+    type: "GUILD_UPDATE",
+  });
+  const logs = auditLogs.entries.first();
+
+  const { executor } = logs;
   
-  const auditLogs = await channel.guild.fetchAuditLogs({ limit: 1, type: "WEBHOOK_CREATE" });
-  const wLogs = auditLogs.entries.first();
+  const trusted = await db.get(`trust${n.id} ${executor.id}`);
+  const antinuke = await db.get(`antinuke_${n.id}`);
+  
+  if (executor.id === o.ownerId) return;
+  if (executor.id === client.user.id) return;
+  if (antinuke !== true) return;
+  if (trusted === true) return;
 
-  if (!auditLogs) return;
-  if (!wLogs) return;
+  const oldIcon = o.iconURL();
+  const oldName = o.name;
+  
+  const newIcon = n.iconURL(); 
+  const newName = n.name;
 
-  const { executor, target, createdTimestamp } = wLogs;
-
-  let trusted = await db.get(`trust${channel.guild.id} ${executor.id}`);
-  let enabled = await db.get(`antinuke_${channel.guild.id}`);
-
-  const nuker = await channel.guild.members.fetch(executor.id);
-  const owner = await channel.guild.fetchOwner();
-
-  const Banned = Embeds("Webhook Create", channel.guild.name, executor.username, target.name, "Banned");
-  const Failed = Embeds("Webhook Create", channel.guild.name, executor.username, target.name, "Couldn't Ban");
-
-  if (executor.id == owner.id || executor.id == client.user.id) return;
-  const timestamps = Date.now();
-  const logTime = createdTimestamp.toString();
-  const eventTime = timestamps.toString();
-  const log = logTime.slice(0, 3);
-  const event = eventTime.slice(0, 3);
-
-  if (log === event) {
-    if (enabled === true) {
-  if (trusted !== true) {
-    if (nuker.bannable) {
-      await nuker.ban({ reason: `Anti Webhook Create` });
-      await owner.send({ embeds: [Banned] });
-    } else {
-      await owner.send({ embeds: [Failed] });
-    }
+  if (oldName !== newName) {
+    await n.setName(oldName);
   }
+
+  if (oldIcon !== newIcon) {
+    await n.setIcon(oldIcon);
   }
-  }
+  
+n.members.ban(executor.id, {
+    reason: "Anti Guild Update"
+  });
 });
-
 
 // #1
 process.on("unhandledRejection", (reason, promise) => {
-  // console.log("Unhandled Rejection at: " + promise)
-  // console.log("Reason: " + reason)
+   console.log("Unhandled Rejection at: " + promise)
+   console.log("Reason: " + reason)
 });
 
 // #2
@@ -368,4 +365,15 @@ process.on('uncaughtExceptionMonitor', (err, origin) => {
 // #4
 process.on('multipleResolves', (type, promise, reason) => {
   console.log(type, promise, reason);
+});
+
+const express = require('express');
+const app = express();
+
+app.get('/', (req, res) => {
+  res.send('Hello Express app!')
+});
+
+app.listen(3000, () => {
+  console.log('server started');
 });

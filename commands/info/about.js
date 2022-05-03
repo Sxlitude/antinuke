@@ -46,13 +46,13 @@ module.exports = {
       var autorole = await db.get(`autoRole_${message.guild.id}`);
       var role;
       if (autorole === null) role = "none";
-      if (autorole !== null) role = "<@" + autorole +">";
+      if (autorole !== null) role = "<@&" + autorole +">";
       
       const servers = client.guilds.cache.size;
       const users = client.guilds.cache.map((guild) => guild.memberCount).reduce((x, y) => x + y);
     const embed3 = new MessageEmbed()
       .setColor("PURPLE")
-      .setDescription(`***Server Settings Overview***\n﹒*Antinuke Status* :: ${status}\n﹒*Trusted Admins* :: ${count}\n﹒*Welcome Channel* :: ${channel}\n﹒*Welcome Role* :: ${role}\n\n***Bot's Statistics Overview***\n﹒*Total Servers* :: ${servers}\n﹒*Total Users* :: ${users}\n﹒*Bot Ping* :: ${client.ws.ping}ms\n\n***Bot's Credits Overview***\n﹒*Coded by* :: Sxlitude#8885\n﹒*GitHub* :: [Click Here](https://github.com/sxlitude/antinuke)\n﹒*Discord Server* :: [Click to Join]()`)
+      .setDescription(`***Server Settings Overview***\n﹒*Antinuke Status* :: ${status}\n﹒*Trusted Admins* :: ${amount.length}\n﹒*Welcome Channel* :: ${channel}\n﹒*Welcome Role* :: ${role}\n\n***Bot's Statistics Overview***\n﹒*Total Servers* :: ${servers}\n﹒*Total Users* :: ${users}\n﹒*Bot Ping* :: ${client.ws.ping}ms\n\n***Bot's Credits Overview***\n﹒*Coded by* :: Sxlitude#8885\n﹒*GitHub* :: [Click Here](https://github.com/sxlitude/antinuke)\n﹒*Discord Server* :: [Click to Join](https://discord.gg/KMw8stwEuN)`)
 
     // Sending
     message.channel.send({ embeds: [embed3]});

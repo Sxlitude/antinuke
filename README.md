@@ -1,14 +1,25 @@
 ![Discord Antinuke Tool](https://cdn.discordapp.com/attachments/935796428775755776/937000111702179880/unknown.png)
+## Brief Description
+Use this tool to protect your discord servers against nukes.
+
 ## Description
-This is a discord tool which can be used to prevent your servers from getting raided/nuked/wizzed. This tool is tested on fast nukers like Lithium.
+This tool protects your servers from 12 type of events and it has recovery feature like Flantic. the difference is, you need to pay for recovery feature in flantic and this bot is always free ❤️. This tool is tested on nukers like Lithium & PlayZ nuker, so no chance to bypass it 😎😈🔥
+
 
 ### Protection features
-- anti massban
-- anti masskick
-- anti mass channel create
-- anti mass channel delete
-- anti mass role create
-- anti mass role delete
+- anti channel create
+- anti channel update
+- anti channel delete
+- anti role create
+- anti role update
+- anti role delete
+- anti emoji create
+- anti emoji delete
+- anti guild update
+- anti member kick
+- anti member ban
+- anti bot add
+
 
 ### Bot Commands
 #### For Everyone

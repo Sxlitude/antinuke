@@ -20,12 +20,23 @@ const ascii = `
 ░░░╚═╝░░░╚══════╝╚═╝░░╚═╝╚═╝░░╚═╝░╚════╝░╚═╝░░╚═╝                                                    
 `;
 
-client.on("ready", () => {
-  client.user.setStatus(`${activity.status}`);
-  client.user.setActivity({
-    name: `${activity.prefix}help`,
+client.once("ready", () => {
+  // client.user.setStatus(`${activity.status}`);
+  // Set the client user's presence
+  /*
+client.user.setPresence({
+  activities: [{
+    name: `${activity.prefix}`,
     type: `${activity.type}`
-  });
+  }], status: `${activity.status}` 
+});
+  */
+  client.user.setPresence({
+  activities: [{
+    name: `;help`,
+    type: `LISTENING`
+  }], status: `idle` 
+});
   
   if (isPrivate === true) {
     console.log(gradient("orange", "red")(`${ascii}`));
