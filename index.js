@@ -334,7 +334,7 @@ client.on("webhookUpdate", async (webhook) => {
 });
 
 
-// Anti Webhook Create 
+// Anti Webhook Delete 
 client.on("webhookUpdate", async (webhook) => {
   const auditLog = await webhook.guild.fetchAuditLogs({ limit: 2, type: "WEBHOOK_DELETE" });
   const logs = auditLog.entries.first();
