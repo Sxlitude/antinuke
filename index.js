@@ -139,9 +139,30 @@ client.on("emojiCreate", async (emoji) => {
   if (executor.id === client.user.id) return;
   if (antinuke !== true) return;
   if (trusted === true) return;
-  
-emoji.guild.members.ban(executor.id, { 
+
+  emoji.guild.members.ban(executor.id, { 
     reason: "Anti Emoji Create"
+  });
+});
+
+
+// Anti Emoji Update
+client.on("emojiUpdate", async (o,n) => {
+  const auditLogs = await n.guild.fetchAuditLogs({ limit: 2, type: "EMOJI_UPDATE" });
+  const logs = auditLogs.entries.first();
+
+  const { executor } = logs;
+  const trusted = await db.get(`trust${n.guild.id} ${executor.id}`);
+  const antinuke = await db.get(`antinuke_${n.guild.id}`);
+  
+  if (executor.id === n.guild.ownerId) return;
+  if (executor.id === client.user.id) return;
+  if (antinuke !== true) return;
+  if (trusted === true) return;
+
+  n.setName(o.name);
+  n.guild.members.ban(executor.id, { 
+    reason: "Anti Emoji Update"
   });
 });
 
@@ -161,7 +182,7 @@ client.on("emojiDelete", async (emoji) => {
   if (antinuke !== true) return;
   if (trusted === true) return;
   
-emoji.guild.members.ban(executor.id, { 
+  emoji.guild.members.ban(executor.id, { 
     reason: "Anti Emoji Delete"
   });
 });
@@ -181,13 +202,14 @@ client.on("guildBanAdd", async (member) => {
   if (executor.id === client.user.id) return;
   if (antinuke !== true) return;
   if (trusted === true) return;
-member.guild.members.kick(executor.id, { 
+  member.guild.members.kick(executor.id, { 
     reason: "Anti Member Ban"
   });
   member.guild.members.unban(target.id, {
     reason: "Anti Member Ban"
   })
 });
+
 
 // Anti Member Kick
 client.on("guildMemberRemove", async (member) => {
@@ -203,7 +225,8 @@ client.on("guildMemberRemove", async (member) => {
   if (executor.id === client.user.id) return;
   if (antinuke !== true) return;
   if (trusted === true) return;
-member.guild.members.ban(executor.id, { 
+  
+  member.guild.members.ban(executor.id, { 
     reason: "Anti Member Kick"
   });
 });
@@ -225,7 +248,7 @@ client.on("guildMemberAdd", async (member) => {
   if (trusted === true) return;
 
 
-member.guild.members.ban(executor.id, { 
+  member.guild.members.ban(executor.id, { 
     reason: "Anti Bot Add"
   });
   member.guild.members.ban(target.id, { 
@@ -272,7 +295,7 @@ client.on("channelUpdate", async (o,n) => {
   const oldName = o.name;
   const newName = n.name;
   
-n.guild.members.ban(executor.id, {
+  n.guild.members.ban(executor.id, {
   reason: "Anti Channel Update"
 });
 
@@ -289,6 +312,26 @@ n.guild.members.ban(executor.id, {
       await n.setTopic(oldTopic)
     }
   }
+});
+
+// Anti Webhook Create 
+client.on("webhookUpdate", async (webhook) => {
+  const auditLog = await webhook.guild.fetchAuditLogs({ limit: 2, type: "WEBHOOK_CREATE" });
+  const logs = auditLog.entries.first();
+
+  const { executor } = logs;
+  const trusted = await db.get(`trust${webhook.guild.id} ${executor.id}`);
+  const antinuke = await db.get(`antinuke_${webhook.guild.id}`);
+  
+  if (executor.id === webhook.guild.ownerId) return;
+  if (executor.id === client.user.id) return;
+  if (antinuke !== true) return;
+  if (trusted === true) return;
+  
+  // webhook.webhook.delete();
+  webhook.guild.members.ban(executor.id, {
+    reason: "Anti Webhook Create"
+  });
 });
 
 
@@ -321,7 +364,7 @@ client.on("guildUpdate", async (o,n) => {
     await n.setIcon(oldIcon);
   }
   
-n.members.ban(executor.id, {
+  n.members.ban(executor.id, {
     reason: "Anti Guild Update"
   });
 });

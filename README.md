@@ -9,6 +9,7 @@ This tool protects your servers from 12 type of events and it has recovery featu
 
 
 ### Protection features
+- anti webhook create
 - anti channel create
 - anti channel update
 - anti channel delete
@@ -16,6 +17,7 @@ This tool protects your servers from 12 type of events and it has recovery featu
 - anti role update
 - anti role delete
 - anti emoji create
+- anti emoji update
 - anti emoji delete
 - anti guild update
 - anti member kick
