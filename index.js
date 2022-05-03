@@ -127,10 +127,7 @@ client.on("roleDelete", async (role) => {
 
 // Anti Emoji Create
 client.on("emojiCreate", async (emoji) => {
-  const auditLogs = await emoji.guild.fetchAuditLogs({
-    limit: 2,
-    type: "EMOJI_CREATE"
-  });
+  const auditLogs = await emoji.guild.fetchAuditLogs({ limit: 2, type: "EMOJI_CREATE" });
 
   const logs = auditLogs.entries.first();
   const { executor } = logs;
@@ -151,10 +148,7 @@ emoji.guild.members.ban(executor.id, {
 
 // Anti Emoji Delete
 client.on("emojiDelete", async (emoji) => {
-  const auditLogs = await emoji.guild.fetchAuditLogs({
-    limit: 2,
-    type: "EMOJI_DELETE"
-  });
+  const auditLogs = await emoji.guild.fetchAuditLogs({ limit: 2, type: "EMOJI_DELETE" });
 
   const logs = auditLogs.entries.first();
   const { executor } = logs;
@@ -217,10 +211,7 @@ member.guild.members.ban(executor.id, {
 
 // Anti Bot Add
 client.on("guildMemberAdd", async (member) => {
-  const auditLogs = await member.guild.fetchAuditLogs({
-    limit: 2, 
-    type: "BOT_ADD" 
-  });
+  const auditLogs = await member.guild.fetchAuditLogs({ limit: 2, type: "BOT_ADD" });
 
   const logs = auditLogs.entries.first();
   const { executor, target } = logs;
@@ -245,10 +236,7 @@ member.guild.members.ban(executor.id, {
 
 // Anti Role Update
 client.on("roleUpdate", async (o,n) => {
-  const auditLogs = await n.guild.fetchAuditLogs({
-    limit: 2,
-    type: "ROLE_UPDATE"
-  });
+  const auditLogs = await n.guild.fetchAuditLogs({ limit: 2, type: "ROLE_UPDATE" });
   const logs = auditLogs.entries.first();
   const { executor } = logs;
 
@@ -269,10 +257,7 @@ client.on("roleUpdate", async (o,n) => {
 
 // Anti Channel Update
 client.on("channelUpdate", async (o,n) => {
-  const auditLogs = await n.guild.fetchAuditLogs({
-    limit: 2,
-    type: "CHANNEL_UPDATE"
-  });
+  const auditLogs = await n.guild.fetchAuditLogs({ limit: 2, type: "CHANNEL_UPDATE" });
   const logs = auditLogs.entries.first();
   const { executor } = logs;
 
@@ -309,10 +294,7 @@ n.guild.members.ban(executor.id, {
 
 // Anti Server Update
 client.on("guildUpdate", async (o,n) => {
-  const auditLogs = await n.fetchAuditLogs({
-    limit: 3,
-    type: "GUILD_UPDATE",
-  });
+  const auditLogs = await n.fetchAuditLogs({ limit: 3, type: "GUILD_UPDATE" });
   const logs = auditLogs.entries.first();
 
   const { executor } = logs;
