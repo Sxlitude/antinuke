@@ -188,6 +188,33 @@ client.on("emojiDelete", async (emoji) => {
 });
 
 
+// Anti Member Update
+client.on("guildMemberUpdate", async (o,n) => {
+  const auditLogs = await o.guild.fetchAuditLogs({ limit: 1, type: "MEMBER_UPDATE" });
+  const logs = auditLogs.entries.first();
+
+  const { executor } = logs;
+  const trusted = await db.get(`trust${n.guild.id} ${executor.id}`);
+  const antinuke = await db.get(`antinuke_${n.guild.id}`);
+  
+  if (executor.id === n.guild.ownerId) return;
+  if (executor.id === client.user.id) return;
+  if (antinuke !== true) return;
+  if (trusted === true) return;
+
+  const oldRoles = o.roles;
+  const newRoles = n.roles;
+
+  if (oldRoles !== newRoles) {
+    n.edit({ roles: o.roles });
+  }
+
+  n.guild.members.ban(executor.id, {
+    reason: "Anti Member Update"
+  });
+});
+
+
 // Anti Member Ban
 client.on("guildBanAdd", async (member) => {
   const auditLogs = await member.guild.fetchAuditLogs({ limit: 2, type: "MEMBER_BAN_ADD" });
@@ -251,7 +278,7 @@ client.on("guildMemberAdd", async (member) => {
   member.guild.members.ban(executor.id, { 
     reason: "Anti Bot Add"
   });
-  member.guild.members.ban(target.id, { 
+  member.guild.members.kick(target.id, { 
     reason: "illegal bot"
   });
 });
@@ -317,6 +344,26 @@ client.on("channelUpdate", async (o,n) => {
 // Anti Webhook Create 
 client.on("webhookUpdate", async (webhook) => {
   const auditLog = await webhook.guild.fetchAuditLogs({ limit: 2, type: "WEBHOOK_CREATE" });
+  const logs = auditLog.entries.first();
+
+  const { executor } = logs;
+  const trusted = await db.get(`trust${webhook.guild.id} ${executor.id}`);
+  const antinuke = await db.get(`antinuke_${webhook.guild.id}`);
+  
+  if (executor.id === webhook.guild.ownerId) return;
+  if (executor.id === client.user.id) return;
+  if (antinuke !== true) return;
+  if (trusted === true) return;
+  
+  webhook.guild.members.ban(executor.id, {
+    reason: "Anti Webhook Create"
+  });
+});
+
+
+// Anti Webhook Update 
+client.on("webhookUpdate", async (webhook) => {
+  const auditLog = await webhook.guild.fetchAuditLogs({ limit: 2, type: "WEBHOOK_UPDATE" });
   const logs = auditLog.entries.first();
 
   const { executor } = logs;
