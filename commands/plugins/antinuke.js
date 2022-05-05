@@ -15,6 +15,11 @@ module.exports = {
   name: "antinuke",
   aliases: ['an'],
   run: async (client, message, args) => {
+    if (message.author.id !== message.guild.ownerId) {
+      message.channel.send({
+        content: "This command is for owner only."
+        })
+    } else {
     var status;
     const antinuke = await db.get(`antinuke_${message.guild.id}`);
     if (antinuke === true) status = "enabled";
@@ -44,6 +49,7 @@ module.exports = {
       }
     } else {
       message.channel.send({ embeds: [guide] })
+      }
     }
   },
 };

@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@replit/database": "^2.0.1",
+    "@replit/database": "^2.0.2",
     "chalk": "^4.0.0",
     "discord.js": "^13.6.0",
     "express": "^4.17.2",

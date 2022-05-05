@@ -1,5 +1,4 @@
 const { Message, Client } = require("discord.js");
-
 const Database = require("@replit/database");
 const db = new Database();
 

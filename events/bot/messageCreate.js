@@ -23,6 +23,6 @@ client.on("messageCreate", async (message) => {
   try {
     await command.run(client, message, args)
   } catch (e) {
-      console.log(`${chalk.red(`{!} :: Invalid Command Ran! :: ${message.content.split(" ")[0]}\n${chalk.magentaBright(`{!} :: Ran By ${message.author.tag} in ${message.guild.name}\n${chalk.cyanBright(`{!} :: If It's Valid, Check For Errors.`)}\n`)}`)}`)
-    }
+      console.log(`${chalk.red(`{!} :: Invalid Command Ran! :: ${message.content.split(" ")[0]}\n${chalk.magentaBright(`{!} :: Ran By ${message.author.tag} in ${message.guild.name}\n${chalk.cyanBright(`{!} :: If It's Valid, Check For Errors.`)}\n{!} :: ${e}`)}`)}`)
+   }
 });
