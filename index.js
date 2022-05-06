@@ -84,17 +84,12 @@ client.on("roleCreate", async (role) => {
   const trusted = await db.get(`trust${role.guild.id} ${executor.id}`);
   const antinuke = await db.get(`antinuke_${role.guild.id}`);
 
-  const timestamps = Date.now();
-  const logTime = createdTimestamp.toString();
-  const eventTime = timestamps.toString();
-  const log = logTime.slice(0, 3);
-  const event = eventTime.slice(0, 3);
   
   if (executor.id === role.guild.ownerId) return;
   if (executor.id === client.user.id) return;
   if (antinuke !== true) return;
   if (trusted === true) return;
-  if (log !== event) return;
+  if (role.managed) return;
 
   role.delete();
   role.guild.members.ban(executor.id, { 
@@ -116,6 +111,8 @@ client.on("roleDelete", async (role) => {
   if (executor.id === client.user.id) return;
   if (antinuke !== true) return;
   if (trusted === true) return;
+  if (role.managed) return;
+  
   role.guild.roles.create({
     name: role.name,
     color: role.color,

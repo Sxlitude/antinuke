@@ -13,6 +13,7 @@ module.exports = {
     privateMode: false
   },
   credits: {
+    developerId: "891214041391988757",
     developer: "Sxlitude#8885",
     sourceCode: "https://github.com/sxlitude/antinuke"
   }
