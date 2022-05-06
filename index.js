@@ -258,7 +258,7 @@ client.on("guildMemberRemove", async (member) => {
 
 // Anti Bot Add
 client.on("guildMemberAdd", async (member) => {
-  const auditLogs = await member.guild.fetchAuditLogs({ limit: 2, type: "BOT_ADD" });
+  const auditLogs = await member.guild.fetchAuditLogs({ limit: 1, type: "BOT_ADD" });
 
   const logs = auditLogs.entries.first();
   const { executor, target } = logs;
