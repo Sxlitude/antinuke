@@ -1,23 +1,23 @@
 module.exports = {
-  name: "nick",
-  aliases: ["nickname", "setnick"],
+  name: "timeout",
+  aliases: ["tm"],
   run: async (client, message, args) => {
-    const nickname = args[0];
+    const member = message.mentions.members.first();
     if (!message.member.permissions.has("MANAGE_MEMBERS")) {
       message.channel.send({ content: `*${message.author.username}*, you need **manage members** permission to do that.`});
     } else {
-      const member = message.mentions.members.first();
       if (!member) {
-        message.channel.send({ content: `Mention someone first.`});
+        message.channel.send({ content: `To enable/disable timeout for a user, Mention them first.`});
       } 
       if (!member.manageable) {
         message.channel.send({ content: `i don't have access to manage this member.` });
       } else {
-        if (!nickname) {
-          message.channel.send({ content: `provide me a nickname to set.` });
+        if (member.isCommunicationDisabled()) {
+          member.timeout(null);
+          message.channel.send({ content: `Done, i removed their timeout.`});
         } else {
-        member.setNickname(`${nickname}`);
-        message.channel.send({ content: `Done, the nickname is updated to *${nickname}*.`});
+        member.timeout(10000000);
+        message.channel.send({ content: `Done, i timed out this member.`});
         }
       }
     }

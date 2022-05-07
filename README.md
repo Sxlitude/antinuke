@@ -38,11 +38,12 @@ This tool protects your servers from 12 type of events and it has recovery featu
 - antinuke enable
 - antinuke disable
 #### For Admins
-- autorole **(NEW)**
-- welcomer **(NEW)**
-- kick **(NEW)**
-- ban **(NEW)**
-- nick **(NEW)**
+- autorole 
+- welcomer
+- kick 
+- ban 
+- nick
+- timeout **(NEW)**
 
 ### Setup
 #### Video Guide

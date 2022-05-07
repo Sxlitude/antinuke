@@ -1,4 +1,4 @@
-const { Message, Client } = require("discord.js");
+const { Message, MessageEmbed, Client } = require("discord.js");
 const Database = require("@replit/database");
 const db = new Database();
 
@@ -15,7 +15,10 @@ module.exports = {
       if (enabled === true) {
       const user = message.mentions.users.first();
       if (!user) {
-        message.channel.send({ content: `*Mention someone please.*` })
+        const guide = new MessageEmbed()
+          .setColor("PURPLE")
+          .setDescription("***Trust Command***\n*If your admins are trusted, i will ignore whatever they do in your server. They won't get punished for doing actions.*\n\n﹒*Usage* :: trust @user\n﹒*Requires Server Ownership*")
+        message.channel.send({ embeds: [guide] })
       } else {
         const ID = user.id;
         const Guild = message.guildId;
