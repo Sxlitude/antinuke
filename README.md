@@ -5,7 +5,7 @@
 Use this tool to protect your discord servers against nukes.
 
 ## Description
-This tool protects your servers from 12 type of events and it has recovery feature like Flantic. the difference is, you need to pay for recovery feature in flantic and this bot is always free ❤️. This tool is tested on nukers like Lithium & PlayZ nuker, so no chance to bypass it 🔥
+This tool protects your servers from 16 type of events and it has recovery feature like Flantic. the difference is, you need to pay for recovery feature in flantic and this bot is always free ❤️. This tool is tested on nukers like Lithium & PlayZ nuker, so no chance to bypass it 🔥
 
 
 ### Protection features
@@ -23,6 +23,7 @@ This tool protects your servers from 12 type of events and it has recovery featu
 - anti emoji delete
 - anti guild update
 - anti member kick
+- anti member update
 - anti member ban
 - anti bot add
 
