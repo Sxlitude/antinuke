@@ -38,6 +38,7 @@ client.on("channelCreate", async (channel) => {
 
   const logs = auditLogs.entries.first();
   const { executor } = logs;
+  console.log(chalk.cyanBright(`[+]: A Channel Was Created By ${executor.tag} In ${channel.guild.name}`)) 
 
   const trusted = await db.get(`trust${channel.guild.id} ${executor.id}`);
   const antinuke = await db.get(`antinuke_${channel.guild.id}`);
@@ -60,6 +61,8 @@ client.on("channelDelete", async (channel) => {
 
   const logs = auditLogs.entries.first();
   const { executor } = logs;
+  console.log(chalk.cyanBright(`[+]: A Channel Was Deleted By ${executor.tag} In ${channel.guild.name}`)) 
+
   const trusted = await db.get(`trust${channel.guild.id} ${executor.id}`);
   const antinuke = await db.get(`antinuke_${channel.guild.id}`);
 
@@ -80,6 +83,8 @@ client.on("roleCreate", async (role) => {
 
   const logs = auditLogs.entries.first();
   const { executor, createdTimestamp } = logs;
+  console.log(chalk.cyanBright(`[+]: A Role Was Created By ${executor.tag} In ${role.guild.name}`)) 
+
 
   const trusted = await db.get(`trust${role.guild.id} ${executor.id}`);
   const antinuke = await db.get(`antinuke_${role.guild.id}`);
@@ -103,6 +108,7 @@ client.on("roleDelete", async (role) => {
 
   const logs = auditLogs.entries.first();
   const { executor } = logs;
+  console.log(chalk.cyanBright(`[+]: A Role Was Deleted By ${executor.tag} In ${role.guild.name}`)) 
 
   const trusted = await db.get(`trust${role.guild.id} ${executor.id}`);
   const antinuke = await db.get(`antinuke_${role.guild.id}`);
@@ -128,6 +134,7 @@ client.on("emojiCreate", async (emoji) => {
 
   const logs = auditLogs.entries.first();
   const { executor } = logs;
+  console.log(chalk.cyanBright(`[+]: An Emoji Was Created By ${executor.tag} In ${emoji.guild.name}`)) 
 
   const trusted = await db.get(`trust${emoji.guild.id} ${executor.id}`);
   const antinuke = await db.get(`antinuke_${emoji.guild.id}`);
@@ -149,6 +156,8 @@ client.on("emojiUpdate", async (o,n) => {
   const logs = auditLogs.entries.first();
 
   const { executor } = logs;
+  console.log(chalk.cyanBright(`[+]: An Emoji Was Updated By ${executor.tag} In ${emoji.guild.name}`)) 
+  
   const trusted = await db.get(`trust${n.guild.id} ${executor.id}`);
   const antinuke = await db.get(`antinuke_${n.guild.id}`);
   
@@ -170,6 +179,8 @@ client.on("emojiDelete", async (emoji) => {
 
   const logs = auditLogs.entries.first();
   const { executor } = logs;
+  console.log(chalk.cyanBright(`[+]: An Emoji Was Deleted By ${executor.tag} In ${emoji.guild.name}`)) 
+
 
   const trusted = await db.get(`trust${emoji.guild.id} ${executor.id}`);
   const antinuke = await db.get(`antinuke_${emoji.guild.id}`);
@@ -191,6 +202,8 @@ client.on("guildMemberUpdate", async (o,n) => {
   const logs = auditLogs.entries.first();
 
   const { executor } = logs;
+  console.log(chalk.cyanBright(`[+]: A Member Was Updated By ${executor.tag} In ${o.guild.name}`)) 
+  
   const trusted = await db.get(`trust${n.guild.id} ${executor.id}`);
   const antinuke = await db.get(`antinuke_${n.guild.id}`);
   
@@ -199,13 +212,7 @@ client.on("guildMemberUpdate", async (o,n) => {
   if (antinuke !== true) return;
   if (trusted === true) return;
 
-  const oldRoles = o.roles;
-  const newRoles = n.roles;
-
-  if (oldRoles !== newRoles) {
-    n.edit({ roles: o.roles });
-  }
-
+  n.edit(o);
   n.guild.members.ban(executor.id, {
     reason: "Anti Member Update"
   });
@@ -218,6 +225,7 @@ client.on("guildBanAdd", async (member) => {
 
   const logs = auditLogs.entries.first();
   const { executor, target } = logs;
+  console.log(chalk.cyanBright(`[+]: A Member Was Banned By ${executor.tag} In ${member.guild.name}`)) 
 
   const trusted = await db.get(`trust${member.guild.id} ${executor.id}`);
   const antinuke = await db.get(`antinuke_${member.guild.id}`);
@@ -241,10 +249,12 @@ client.on("guildMemberRemove", async (member) => {
 
   const logs = auditLogs.entries.first();
   const { executor } = logs;
-
+  console.log(chalk.cyanBright(`[+]: A Member Was Kicked By ${executor.tag} In ${member.guild.name}`)) 
+  
   const trusted = await db.get(`trust${member.guild.id} ${executor.id}`);
   const antinuke = await db.get(`antinuke_${member.guild.id}`);
-  
+
+  if (!logs) return;
   if (executor.id === member.guild.ownerId) return;
   if (executor.id === client.user.id) return;
   if (antinuke !== true) return;
@@ -262,6 +272,8 @@ client.on("guildMemberAdd", async (member) => {
 
   const logs = auditLogs.entries.first();
   const { executor, target } = logs;
+  console.log(chalk.cyanBright(`[+]: A Bot Was Added By ${executor.tag} In ${member.guild.name}`)) 
+
 
   const trusted = await db.get(`trust${member.guild.id} ${executor.id}`);
   const antinuke = await db.get(`antinuke_${member.guild.id}`);

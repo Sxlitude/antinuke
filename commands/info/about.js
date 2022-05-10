@@ -9,6 +9,7 @@ const db = new Database();
 // Settings
 const Settings = require('../../files/settings.js');
 const prefix = Settings.bot.prefix;
+const src = Settings.credits.sourceCode;
 
 // Command
 module.exports = {
@@ -54,8 +55,17 @@ module.exports = {
       .setColor("PURPLE")
       .setDescription(`***Server Settings Overview***\n﹒*Antinuke Status* :: ${status}\n﹒*Trusted Admins* :: ${amount.length}\n﹒*Welcome Channel* :: ${channel}\n﹒*Welcome Role* :: ${role}\n\n***Bot's Statistics Overview***\n﹒*Total Servers* :: ${servers}\n﹒*Total Users* :: ${users}\n﹒*Bot Ping* :: ${client.ws.ping}ms\n\n***Bot's Credits Overview***\n﹒*Coded by* :: Sxlitude#8885\n﹒*GitHub* :: [Click Here](https://github.com/sxlitude/antinuke)\n﹒*Discord Server* :: [Click to Join](https://discord.gg/KMw8stwEuN)`)
 
+      const btn = new MessageActionRow().addComponents(
+        new MessageButton()
+         .setStyle("LINK")
+         .setLabel("GitHub Repo")
+         .setURL(`${src}`)
+      )
     // Sending
-    message.channel.send({ embeds: [embed3]});
+    message.channel.send({ 
+      embeds: [embed3],
+      components: [btn]
+      });
     });
   },
 };

@@ -3,8 +3,8 @@ module.exports = {
   aliases: ["tm"],
   run: async (client, message, args) => {
     const member = message.mentions.members.first();
-    if (!message.member.permissions.has("MANAGE_MEMBERS")) {
-      message.channel.send({ content: `*${message.author.username}*, you need **manage members** permission to do that.`});
+    if (!message.member.permissions.has("MANAGE_MESSAGES")) {
+      message.channel.send({ content: `*${message.author.username}*, you need **manage messages** permission to do that.`});
     } else {
       if (!member) {
         message.channel.send({ content: `To enable/disable timeout for a user, Mention them first.`});

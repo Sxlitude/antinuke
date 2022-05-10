@@ -1,6 +1,7 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 const Database = require("@replit/database");
 const db = new Database();
+const client = require("../../index");
 
 module.exports = {
   name: "list",
@@ -34,8 +35,18 @@ module.exports = {
           const trustedUsers = new MessageEmbed()
             .setTitle('trusted users')
             .setDescription(`${users.join("\n")}`)
-            .setColor("6a5acd")
-          message.channel.send({ embeds: [trustedUsers] })
+            .setColor("PURPLE")
+
+          const btn = new MessageActionRow().addComponents(
+            new MessageButton()
+             .setLabel("Clear")
+             .setStyle("DANGER")
+             .setCustomId('clear')                                                                  
+          )
+          message.channel.send({
+            embeds: [trustedUsers] ,
+            components: [btn]
+          })
         } else {
           message.channel.send({ content: 'there are no trusted users.' })
         }
@@ -46,3 +57,64 @@ module.exports = {
     }
   },
 }
+
+
+// Interaction
+client.on("interactionCreate", async (i) => {
+  if (i.isButton()) {
+    if (i.customId === 'clear') {
+      if (i.user.id !== i.guild.ownerId) {
+        i.reply({
+          content: 'Only the server owner is allowed to do this.',
+          ephemeral: true
+        })
+      } else {
+        const b = new MessageActionRow().addComponents(
+          new MessageButton()
+          .setCustomId('yes')
+          .setLabel('Yes')
+          .setStyle('SUCCESS'),
+          new MessageButton()
+          .setCustomId('no')
+          .setLabel('No')
+          .setStyle('DANGER')
+        )
+        i.reply({
+          content: 'Are you sure that you wanna clear this list?',
+          components: [b],
+          ephemeral: true                       
+        })
+      }
+    }
+    if (i.customId === 'yes') {
+      if (i.user.id !== i.guild.ownerId) {
+        i.reply({
+          content: `${i.user.username}, you aren't allowed to do this.`,
+          ephemeral: true
+        })
+      } else {
+        await db.list(`trust${i.guild.id}`).then(async (keys) => {
+          keys.forEach(async (key) => {
+            await db.delete(`${key}`);
+          });
+          await i.reply({
+            content: "Cleared the list :thumbsup:",
+            ephemeral: true
+          })
+        }) 
+      }
+    } else if (i.customId === 'no') {
+      if (i.user.id !== i.guild.ownerId) {
+        i.reply({
+          content: 'Only the server owner is allowed to do this.',
+          ephemeral: true
+        })
+      } else {
+        i.reply({
+          content: 'Process Cancelled.',
+          ephemeral: true,
+        })
+      }
+    }
+  }
+})

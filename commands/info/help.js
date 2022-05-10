@@ -21,9 +21,9 @@ module.exports = {
         .setStyle("LINK")
         .setURL(`${Settings.bot.invLink}`),
       new MessageButton()
-        .setLabel("GitHub Repo")
+        .setLabel("Support Server")
         .setStyle("LINK")
-        .setURL(`${Settings.credits.sourceCode}`)
+        .setURL(`${Settings.credits.supportServer}`)
     )
     const help = new MessageEmbed()
       .setColor("PURPLE")
