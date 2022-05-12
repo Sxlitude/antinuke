@@ -32,6 +32,8 @@ This tool protects your servers from 16 type of events and it has recovery featu
 #### For Everyone
 - help
 - about
+- screenshot
+- suggest
 #### For Owner
 - trust
 - untrust

@@ -6,7 +6,9 @@ module.exports = {
   },
   presence: {
     status: 'idle',
-    activity: 'LISTENING'
+    activity: 'LISTENING',
+    name: ';help',
+    url: 'https://dsc.gg/antiwizz'
   },
   options: {
     reportChannelId: '958293762445049906',

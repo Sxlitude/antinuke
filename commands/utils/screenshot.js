@@ -9,7 +9,7 @@ module.exports = {
         content: 'Please specify a URL. Example: `ss github.com`'
       })
     } else {
-      const res = `https://api.popcat.xyz/screenshot?url=https://${url}`
+      const res = `https://api.popcat.xyz/screenshot?url=https://${url}`.toLowerCase();
       const ss = new MessageEmbed()
       .setTitle('screenshot')
       .setColor("PURPLE")

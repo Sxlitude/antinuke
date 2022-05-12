@@ -27,7 +27,7 @@ module.exports = {
     )
     const help = new MessageEmbed()
       .setColor("PURPLE")
-      .setDescription(`**__HELP MENU__**\n\nHere is a list of plugins you can enable or disable in the server. You can run a plugin's name or a name from commands to get more information. \n\n***EXAMPLES***\n﹒*Plugins* :: \`${prefix}antinuke\`\n﹒*Commands* :: \`${prefix}moderation\`\n\n***PLUGINS***\n﹒*Antinuke*\n﹒*Antiraid*\n\n***COMMANDS***\n﹒*Moderation*`)
+      .setDescription(`**__HELP MENU__**\n\nHere is a list of plugins you can enable or disable in the server. You can run a plugin's name or a name from commands to get more information. \n\n***EXAMPLES***\n﹒*Plugins* :: \`${prefix}antinuke\`\n﹒*Commands* :: \`${prefix}moderation\`\n\n***PLUGINS***\n﹒*Welcomer*\n﹒*Antinuke*\n﹒*Antiraid*\n\n***COMMANDS***\n﹒*Moderation*`)
     // Sending
     message.channel.send({ embeds: [help], components: [button] });
   },

@@ -28,7 +28,7 @@ module.exports = {
     const guide = new MessageEmbed()
       .setColor("PURPLE")
       .setDescription(`**__ANTINUKE__**\n\n*This plugin, if enabled, sets strict restrictions on performing actions in your server. Only admin you trust can do actions on your server. Run any command to get deeper knowledge of it.*\n\n***ACTIVATION***\n﹒to enable :: \`${prefix}antinuke enable\`\n﹒to disable :: \`${prefix}antinuke disable\`\n\n***COMMANDS***\n﹒*trust*
-﹒*untrust*\n﹒*list*\n\n***STATUS***\n﹒*Antinuke is ${status} in this server.*`)
+﹒*untrust*\n﹒*list*\n﹒*features*\n\n***STATUS***\n﹒*Antinuke is ${status} in this server.*`)
 
     const option = args[0];
     if (option === "enable"||

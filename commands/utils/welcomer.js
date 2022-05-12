@@ -3,12 +3,12 @@ const Database = require("@replit/database");
 const db = new Database();
 
 module.exports = {
-  name: "welcomer",
-  aliases: ['welc', 'w'],
+  name: "welcomechannel",
+  aliases: ['channel', 'welcchannel'],
   run: async (client, message, args) => {
     const guide = new MessageEmbed()
       .setColor("PURPLE")
-      .setDescription("***Welcomer Command***\n*I'll welcome new members once they join this server. Mention a channel to set it for new members.*\n\n﹒*Usage* :: welcomer #channel\n﹒*Requires Admin Permissions*")
+      .setDescription("***Welcome Channel Command***\n*I'll welcome new members once they join this server. Mention a channel to set it for new members.*\n\n﹒*Usage* :: channel #channel\n﹒*Requires Admin Permissions*")
     
     if (!message.member.permissions.has("ADMINISTRATOR")) {
       message.channel.send({ embeds: [guide] });
