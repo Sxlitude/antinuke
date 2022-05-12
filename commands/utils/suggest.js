@@ -18,14 +18,30 @@ module.exports = {
       .setDescription(`_ _\n${msg}\n_ _`)
       .setFooter({ text: `by ${message.author.tag}`});
 
-      const channel = client.channels.cache.get(`${Settings.options.reportChannelId}`);
-      if (channel) {
-        message.channel.send({
-          content: `suggestion/report submitted :thumbsup:`
-        })
-        channel.send({
-          embeds: [suggestion]
-        })
+      // Feature Suggested by Hy
+      const user = client.users.cache.get(`${Settings.reports.reportDmId}`);
+      const channel = client.channels.cache.get(`${Settings.reports.channelId}`); 
+
+      const sendInDms = Settings.reports.sendInDMs;
+
+      if (sendInDms === true) {
+        if (user) {
+          message.channel.send({
+            content: `suggestion/report submitted :thumbsup:`
+          });
+          user.send({
+            embeds: [suggestion]
+          })
+        }
+      } else {
+        if (channel) {
+          message.channel.send({
+            content: `suggestion/report submitted :thumbsup:`
+          })
+          channel.send({
+            embeds: [suggestion]
+          })
+        }
       }
     };
   }

@@ -11,9 +11,13 @@ module.exports = {
     url: 'https://dsc.gg/antiwizz'
   },
   options: {
-    reportChannelId: '958293762445049906',
     founders: ["891214041391988757"],
     privateMode: false
+  },
+  reports: {
+    sendInDMs: true,
+    reportDmId: '891214041391988757',
+    channelId: '958293762445049906'
   },
   credits: {
     developerId: "891214041391988757",
