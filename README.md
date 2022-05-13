@@ -1,11 +1,13 @@
-![Discord Antinuke Tool](https://cdn.discordapp.com/attachments/935796428775755776/937000111702179880/unknown.png)
-
-#### Discord: Sxlitude#8885
 ## Brief Description
 Use this tool to protect your discord servers against nukes.
 
 ## Description
 This tool protects your servers from 16 type of events and it has recovery feature like Flantic. the difference is, you need to pay for recovery feature in flantic and this bot is always free ❤️. This tool is tested on nukers like Lithium & PlayZ nuker, so no chance to bypass it 🔥
+
+### Quick Links [SOON]
+- [About This Antinuke]()
+- [Antinuke Setup Guide]()
+- [Server Setup Guide]()
 
 
 ### Protection features

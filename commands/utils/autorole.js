@@ -6,13 +6,13 @@ module.exports = {
   name: "autorole",
   aliases: ["ar"],
   run: async (client, message, args) => {
-    const role = message.mentions.roles.first();
+    const role = message.mentions.roles.first() || message.guild.roles.cache.find(r => r.id == args[0]);
     const guide = new MessageEmbed()
           .setColor("PURPLE")
           .setDescription(`***Autorole Command***
 *I'll give a role to new members once they join this server. Mention a role to set it for new members.*
 
-﹒*Usage* :: autorole @role
+﹒*Usage* :: autorole roleID *or* @role
 ﹒*Requires Admin Permissions*`)
     if (!message.member.permissions.has("ADMINISTRATOR")) {
       if (!role) {

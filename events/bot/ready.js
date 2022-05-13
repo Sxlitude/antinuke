@@ -26,7 +26,7 @@ const db = new Database();
 
 client.once("ready", async () => {
   await db.set(`uptime`, `${Math.floor(Date.now() / 1000)}`) 
-
+/*
 client.user.setPresence({
   activities: [{
     name: `${activity.name}`,
@@ -34,14 +34,15 @@ client.user.setPresence({
     url: `${activity.url}`
   }], status: `${activity.status}` 
 });
-/*
+*/
+
   client.user.setPresence({
   activities: [{
     name: `;help`,
     type: `LISTENING`
   }], status: `idle` 
 });
-  */
+  
   if (isPrivate === true) {
     console.log(gradient("orange", "red")(`${ascii}`));
     console.log(chalk.red(`{!} :: Logged in as ${client.user.tag}\n{!} :: Bot is on Private Mode\n\n`));
