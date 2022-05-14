@@ -9,12 +9,12 @@ module.exports = {
        if (!ID) {
          message.channel.send({ content: `Provide me an ID to unban.` });
        } else {
-         const list = await message.guild.bans.fetch();
-         const user = list.find((user) => { user.id == `${ID}` });
+         const user = await message.guild.bans.fetch(ID);
+         
          if (!user) {
            message.channel.send({ content: `That user is not banned from this server.` });
          } else {
-           message.guild.members.users.unban(ID)
+           message.guild.members.unban(ID)
            message.channel.send({ content: `Unbanned!` });
          }
        }

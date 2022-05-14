@@ -200,22 +200,23 @@ client.on("emojiDelete", async (emoji) => {
 client.on("guildMemberUpdate", async (o,n) => {
   const auditLogs = await o.guild.fetchAuditLogs({ limit: 1, type: "MEMBER_UPDATE" });
   const logs = auditLogs.entries.first();
-
-  const { executor } = logs;
-  console.log(chalk.cyanBright(`[+]: A Member Was Updated By ${executor.tag} In ${o.guild.name}`)) 
+  if (logs) {
+    const { executor } = logs;
+    console.log(chalk.cyanBright(`[+]: A Member Was Updated By ${executor.tag} In ${o.guild.name}`)) 
   
-  const trusted = await db.get(`trust${o.guild.id} ${executor.id}`);
-  const antinuke = await db.get(`antinuke_${o.guild.id}`);
+    const trusted = await db.get(`trust${o.guild.id} ${executor.id}`);
+    const antinuke = await db.get(`antinuke_${o.guild.id}`);
   
-  if (executor.id === o.guild.ownerId) return;
-  if (executor.id === client.user.id) return;
-  if (antinuke !== true) return;
-  if (trusted === true) return;
+    if (executor.id === o.guild.ownerId) return;
+    if (executor.id === client.user.id) return;
+    if (antinuke !== true) return;
+    if (trusted === true) return;
 
-  n.edit(o);
-  o.guild.members.ban(executor.id, {
-    reason: "Anti Member Update"
-  });
+    n.edit(o);
+    o.guild.members.ban(executor.id, {
+      reason: "Anti Member Update"
+    });
+  }
 });
 
 
@@ -446,6 +447,7 @@ client.on("guildUpdate", async (o,n) => {
     reason: "Anti Guild Update"
   });
 });
+
 
 // #1
 process.on("unhandledRejection", (reason, promise) => {
