@@ -204,16 +204,16 @@ client.on("guildMemberUpdate", async (o,n) => {
   const { executor } = logs;
   console.log(chalk.cyanBright(`[+]: A Member Was Updated By ${executor.tag} In ${o.guild.name}`)) 
   
-  const trusted = await db.get(`trust${n.guild.id} ${executor.id}`);
-  const antinuke = await db.get(`antinuke_${n.guild.id}`);
+  const trusted = await db.get(`trust${o.guild.id} ${executor.id}`);
+  const antinuke = await db.get(`antinuke_${o.guild.id}`);
   
-  if (executor.id === n.guild.ownerId) return;
+  if (executor.id === o.guild.ownerId) return;
   if (executor.id === client.user.id) return;
   if (antinuke !== true) return;
   if (trusted === true) return;
 
   n.edit(o);
-  n.guild.members.ban(executor.id, {
+  o.guild.members.ban(executor.id, {
     reason: "Anti Member Update"
   });
 });
@@ -271,25 +271,28 @@ client.on("guildMemberAdd", async (member) => {
   const auditLogs = await member.guild.fetchAuditLogs({ limit: 1, type: "BOT_ADD" });
 
   const logs = auditLogs.entries.first();
-  const { executor, target } = logs;
-  console.log(chalk.cyanBright(`[+]: A Bot Was Added By ${executor.tag} In ${member.guild.name}`)) 
+  if (logs) {
+    const { executor, target } = logs;
+    console.log(chalk.cyanBright(`[+]: A Bot Was Added By ${executor.tag} In ${member.guild.name}`)) 
 
 
-  const trusted = await db.get(`trust${member.guild.id} ${executor.id}`);
-  const antinuke = await db.get(`antinuke_${member.guild.id}`);
+    const trusted = await db.get(`trust${member.guild.id} ${executor.id}`);
+    const antinuke = await db.get(`antinuke_${member.guild.id}`);
   
-  if (executor.id === member.guild.ownerId) return;
-  if (executor.id === client.user.id) return;
-  if (antinuke !== true) return;
-  if (trusted === true) return;
+    if (executor.id === member.guild.ownerId) return;
+    if (executor.id === client.user.id) return;
+    if (target.bot !== true) return;
+    if (antinuke !== true) return;
+    if (trusted === true) return;
 
 
-  member.guild.members.ban(executor.id, { 
-    reason: "Anti Bot Add"
-  });
-  member.guild.members.kick(target.id, { 
-    reason: "illegal bot"
-  });
+    member.guild.members.ban(executor.id, { 
+      reason: "Anti Bot Add"
+    });
+    member.guild.members.kick(target.id, { 
+      reason: "illegal bot"
+    });
+  }
 });
 
 
@@ -446,8 +449,8 @@ client.on("guildUpdate", async (o,n) => {
 
 // #1
 process.on("unhandledRejection", (reason, promise) => {
-   console.log("Unhandled Rejection at: " + promise)
-   console.log("Reason: " + reason)
+  // console.log("Unhandled Rejection at: " + promise)
+   console.log(chalk.red("[-]: " + reason))
 });
 
 // #2
