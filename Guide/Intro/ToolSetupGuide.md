@@ -20,8 +20,8 @@
 > - save the key & run the repl
 
 #### More Links
-- [Antinuke: Introduction]()
-- [Antinuke Server Setup Guide]()
-- 
+- [Antinuke: Introduction](https://github.com/Sxlitude/antinuke/blob/main/Guide/Intro/AboutThisAntinuke.md)
+- [Antinuke Server Setup Guide](https://github.com/Sxlitude/antinuke/blob/main/Guide/Intro/ServerSetupGuide.md)
+  
 #### Having issues?
 You can open an issue to describe the problem, or you can contact me on discord: `Sxlitude#8885`

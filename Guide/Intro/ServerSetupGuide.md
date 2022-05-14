@@ -13,8 +13,8 @@
 > - Make sure to run the `trust` command on your admins & bots. The usage is `(prefix)trust @user`; to know more about this command, just send `(prefix)trust`
 
 #### More Links
-- [Antinuke Tool Setup Guide]()
-- [Introduction: Antinuke Tool]()
+- [Antinuke Tool Setup Guide](https://github.com/Sxlitude/antinuke/blob/main/Guide/Intro/ToolSetupGuide.md)
+- [Introduction: Antinuke Tool](https://github.com/Sxlitude/antinuke/blob/main/Guide/Intro/AboutThisAntinuke.md)
 
 
 #### Having issues?

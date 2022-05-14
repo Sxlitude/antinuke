@@ -63,5 +63,5 @@
 > - autorole
 > - channel
 #### More Links
-- [Antinuke Tool Setup Guide]()
-- [Antinuke Server Setup Guide]()
+- [Antinuke Tool Setup Guide](https://github.com/Sxlitude/antinuke/blob/main/Guide/Intro/ToolSetupGuide.md)
+- [Antinuke Server Setup Guide](https://github.com/Sxlitude/antinuke/blob/main/Guide/Intro/ServerSetupGuide.md)
