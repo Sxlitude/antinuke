@@ -12,7 +12,11 @@ module.exports = {
   },
   options: {
     founders: ["891214041391988757"],
-    privateMode: false
+    privateMode: false,
+  },
+  onServerJoin: {
+    minMemberCount: 6,
+    notifyOwner: true
   },
   reports: {
     sendInDMs: true,

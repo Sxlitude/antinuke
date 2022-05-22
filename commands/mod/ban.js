@@ -15,7 +15,9 @@ module.exports = {
          var reason = args.slice(1).join(" ");
          if (!reason) reason = `banned by ${message.author.tag}`
          person.ban({ reason: `${reason}` });
+         if (person.id !== client.userId) {
          message.channel.send({ content: `banned!` });
+         }
        }
      }
   },

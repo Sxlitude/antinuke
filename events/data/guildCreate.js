@@ -8,6 +8,7 @@ const prefix = bot.prefix;
 
 const Settings = require('../../files/settings');
 const isPrivate = Settings.options.privateMode;
+const minCount = Settings.onServerJoin.minMemberCount;
 
 client.on("guildCreate", async (guild) => {
   if (isPrivate === true) {
@@ -29,6 +30,15 @@ client.on("guildCreate", async (guild) => {
       );
     if (channel) {
       channel.send({ embeds: [intro ] });
+
+  const x = guild.members.cache.size;
+      if (minCount > x) {
+        const o = await guild.fetchOwner();
+        o.send({
+           content: `Your Server **${guild.name}** has less than **${minCount}** members, so i had to leave..`
+         })
+        guild.leave();
+      }
     }
   }
 });

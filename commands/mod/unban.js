@@ -14,7 +14,9 @@ module.exports = {
          if (!user) {
            message.channel.send({ content: `That user is not banned from this server.` });
          } else {
-           message.guild.members.unban(ID)
+           message.guild.members.unban(ID).catch(() => {
+             message.channel.send(`:warning: Unknown Ban, failed to unban that user..`)
+           })
            message.channel.send({ content: `Unbanned!` });
          }
        }

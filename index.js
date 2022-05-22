@@ -1,10 +1,10 @@
 // Files
-const { Embeds } = require(`./files/embeds`);
+const { EmbedLogger } = require(`./files/logging`);
 const { bot } = require('./files/settings');
 const prefix = bot.prefix;
 
 // Packages
-const { Client, Collection, MessageEmbed } = require("discord.js");
+const { Client, Collection } = require("discord.js");
 const client = new Client({ intents: 32767 });
 const chalk = require('chalk');
 module.exports = client;
@@ -37,21 +37,24 @@ client.on("channelCreate", async (channel) => {
   const auditLogs = await channel.guild.fetchAuditLogs({ limit: 2, type: "CHANNEL_CREATE" });
 
   const logs = auditLogs.entries.first();
-  const { executor } = logs;
-  console.log(chalk.cyanBright(`[+]: A Channel Was Created By ${executor.tag} In ${channel.guild.name}`)) 
+  const { executor, target } = logs;
 
+  
   const trusted = await db.get(`trust${channel.guild.id} ${executor.id}`);
   const antinuke = await db.get(`antinuke_${channel.guild.id}`);
+  
 
   if (executor.id === channel.guild.ownerId) return;
   if (executor.id === client.user.id) return;
   if (antinuke !== true) return;
   if (trusted === true) return;
-  
+
   channel.delete();
   channel.guild.members.ban(executor.id, { 
     reason: "Anti Channel Create"
   });
+  
+  EmbedLogger(channel, 'Channel Creation', executor, target); 
 }); 
 
 
@@ -60,9 +63,9 @@ client.on("channelDelete", async (channel) => {
   const auditLogs = await channel.guild.fetchAuditLogs({ limit: 2, type: "CHANNEL_DELETE" });
 
   const logs = auditLogs.entries.first();
-  const { executor } = logs;
-  console.log(chalk.cyanBright(`[+]: A Channel Was Deleted By ${executor.tag} In ${channel.guild.name}`)) 
+  const { executor, target } = logs;
 
+  
   const trusted = await db.get(`trust${channel.guild.id} ${executor.id}`);
   const antinuke = await db.get(`antinuke_${channel.guild.id}`);
 
@@ -74,6 +77,8 @@ client.on("channelDelete", async (channel) => {
   channel.guild.members.ban(executor.id, { 
     reason: "Anti Channel Delete"
   });
+  
+  EmbedLogger(channel, 'Channel Deletion', executor, target);
 });   
 
 
@@ -82,9 +87,8 @@ client.on("roleCreate", async (role) => {
   const auditLogs = await role.guild.fetchAuditLogs({ limit: 2, type: "ROLE_CREATE" });
 
   const logs = auditLogs.entries.first();
-  const { executor, createdTimestamp } = logs;
-  console.log(chalk.cyanBright(`[+]: A Role Was Created By ${executor.tag} In ${role.guild.name}`)) 
-
+  const { executor, target } = logs;
+  
 
   const trusted = await db.get(`trust${role.guild.id} ${executor.id}`);
   const antinuke = await db.get(`antinuke_${role.guild.id}`);
@@ -100,6 +104,8 @@ client.on("roleCreate", async (role) => {
   role.guild.members.ban(executor.id, { 
     reason: "Anti Role Create"
   });
+
+  EmbedLogger(role, 'Role Creation', executor, target);
 });    
 
 // Anti Role Delete
@@ -107,9 +113,9 @@ client.on("roleDelete", async (role) => {
   const auditLogs = await role.guild.fetchAuditLogs({ limit: 2, type: "ROLE_DELETE" });
 
   const logs = auditLogs.entries.first();
-  const { executor } = logs;
-  console.log(chalk.cyanBright(`[+]: A Role Was Deleted By ${executor.tag} In ${role.guild.name}`)) 
+  const { executor, target } = logs;
 
+  
   const trusted = await db.get(`trust${role.guild.id} ${executor.id}`);
   const antinuke = await db.get(`antinuke_${role.guild.id}`);
   
@@ -126,6 +132,8 @@ client.on("roleDelete", async (role) => {
   role.guild.members.ban(executor.id, { 
     reason: "Anti Role Delete"
   });
+
+  EmbedLogger(role, 'Role Deletion', executor, target);
 });
 
 // Anti Emoji Create
@@ -133,8 +141,8 @@ client.on("emojiCreate", async (emoji) => {
   const auditLogs = await emoji.guild.fetchAuditLogs({ limit: 2, type: "EMOJI_CREATE" });
 
   const logs = auditLogs.entries.first();
-  const { executor } = logs;
-  console.log(chalk.cyanBright(`[+]: An Emoji Was Created By ${executor.tag} In ${emoji.guild.name}`)) 
+  const { executor, target } = logs;
+  
 
   const trusted = await db.get(`trust${emoji.guild.id} ${executor.id}`);
   const antinuke = await db.get(`antinuke_${emoji.guild.id}`);
@@ -147,6 +155,8 @@ client.on("emojiCreate", async (emoji) => {
   emoji.guild.members.ban(executor.id, { 
     reason: "Anti Emoji Create"
   });
+
+  EmbedLogger(emoji, 'Emoji Creation', executor, target);
 });
 
 
@@ -155,8 +165,8 @@ client.on("emojiUpdate", async (o,n) => {
   const auditLogs = await n.guild.fetchAuditLogs({ limit: 2, type: "EMOJI_UPDATE" });
   const logs = auditLogs.entries.first();
 
-  const { executor } = logs;
-  console.log(chalk.cyanBright(`[+]: An Emoji Was Updated By ${executor.tag} In ${emoji.guild.name}`)) 
+  const { executor, target } = logs;
+  
   
   const trusted = await db.get(`trust${n.guild.id} ${executor.id}`);
   const antinuke = await db.get(`antinuke_${n.guild.id}`);
@@ -170,6 +180,8 @@ client.on("emojiUpdate", async (o,n) => {
   n.guild.members.ban(executor.id, { 
     reason: "Anti Emoji Update"
   });
+
+  EmbedLogger(o, 'Emoji Update', executor, target);
 });
 
 
@@ -178,8 +190,7 @@ client.on("emojiDelete", async (emoji) => {
   const auditLogs = await emoji.guild.fetchAuditLogs({ limit: 2, type: "EMOJI_DELETE" });
 
   const logs = auditLogs.entries.first();
-  const { executor } = logs;
-  console.log(chalk.cyanBright(`[+]: An Emoji Was Deleted By ${executor.tag} In ${emoji.guild.name}`)) 
+  const { executor, target } = logs;
 
 
   const trusted = await db.get(`trust${emoji.guild.id} ${executor.id}`);
@@ -193,6 +204,8 @@ client.on("emojiDelete", async (emoji) => {
   emoji.guild.members.ban(executor.id, { 
     reason: "Anti Emoji Delete"
   });
+
+  EmbedLogger(emoji, 'Emoji Delete', executor, target);
 });
 
 
@@ -201,8 +214,8 @@ client.on("guildMemberUpdate", async (o,n) => {
   const auditLogs = await o.guild.fetchAuditLogs({ limit: 1, type: "MEMBER_UPDATE" });
   const logs = auditLogs.entries.first();
   if (logs) {
-    const { executor } = logs;
-    console.log(chalk.cyanBright(`[+]: A Member Was Updated By ${executor.tag} In ${o.guild.name}`)) 
+    const { executor, target } = logs;
+    
   
     const trusted = await db.get(`trust${o.guild.id} ${executor.id}`);
     const antinuke = await db.get(`antinuke_${o.guild.id}`);
@@ -216,6 +229,8 @@ client.on("guildMemberUpdate", async (o,n) => {
     o.guild.members.ban(executor.id, {
       reason: "Anti Member Update"
     });
+
+  EmbedLogger(o, 'Member Update', executor, target);
   }
 });
 
@@ -226,7 +241,7 @@ client.on("guildBanAdd", async (member) => {
 
   const logs = auditLogs.entries.first();
   const { executor, target } = logs;
-  console.log(chalk.cyanBright(`[+]: A Member Was Banned By ${executor.tag} In ${member.guild.name}`)) 
+  
 
   const trusted = await db.get(`trust${member.guild.id} ${executor.id}`);
   const antinuke = await db.get(`antinuke_${member.guild.id}`);
@@ -240,7 +255,9 @@ client.on("guildBanAdd", async (member) => {
   });
   member.guild.members.unban(target.id, {
     reason: "Anti Member Ban"
-  })
+  });
+
+  EmbedLogger(member, 'Member Ban', executor, target);
 });
 
 
@@ -249,8 +266,8 @@ client.on("guildMemberRemove", async (member) => {
   const auditLogs = await member.guild.fetchAuditLogs({ limit: 2, type: "MEMBER_KICK" });
 
   const logs = auditLogs.entries.first();
-  const { executor } = logs;
-  console.log(chalk.cyanBright(`[+]: A Member Was Kicked By ${executor.tag} In ${member.guild.name}`)) 
+  const { executor, target } = logs;
+
   
   const trusted = await db.get(`trust${member.guild.id} ${executor.id}`);
   const antinuke = await db.get(`antinuke_${member.guild.id}`);
@@ -264,6 +281,8 @@ client.on("guildMemberRemove", async (member) => {
   member.guild.members.ban(executor.id, { 
     reason: "Anti Member Kick"
   });
+
+  EmbedLogger(member, 'Member Kick', executor, target);
 });
 
 
@@ -274,7 +293,6 @@ client.on("guildMemberAdd", async (member) => {
   const logs = auditLogs.entries.first();
   if (logs) {
     const { executor, target } = logs;
-    console.log(chalk.cyanBright(`[+]: A Bot Was Added By ${executor.tag} In ${member.guild.name}`)) 
 
 
     const trusted = await db.get(`trust${member.guild.id} ${executor.id}`);
@@ -293,6 +311,8 @@ client.on("guildMemberAdd", async (member) => {
     member.guild.members.kick(target.id, { 
       reason: "illegal bot"
     });
+
+  EmbedLogger(member, 'Bot Add', executor, target);
   }
 });
 
@@ -301,7 +321,7 @@ client.on("guildMemberAdd", async (member) => {
 client.on("roleUpdate", async (o,n) => {
   const auditLogs = await n.guild.fetchAuditLogs({ limit: 2, type: "ROLE_UPDATE" });
   const logs = auditLogs.entries.first();
-  const { executor } = logs;
+  const { executor, target } = logs;
 
   const trusted = await db.get(`trust${n.guild.id} ${executor.id}`);
   const antinuke = await db.get(`antinuke_${n.guild.id}`);
@@ -314,7 +334,9 @@ client.on("roleUpdate", async (o,n) => {
   n.setPermissions(o.permissions);
   n.guild.members.ban(executor.id, {
     reason: "Anti Role Update"
-  })
+  });
+
+  EmbedLogger(o, 'Role Update', executor, target);
 });
 
 
@@ -322,7 +344,7 @@ client.on("roleUpdate", async (o,n) => {
 client.on("channelUpdate", async (o,n) => {
   const auditLogs = await n.guild.fetchAuditLogs({ limit: 2, type: "CHANNEL_UPDATE" });
   const logs = auditLogs.entries.first();
-  const { executor } = logs;
+  const { executor, target } = logs;
 
   const trusted = await db.get(`trust${n.guild.id} ${executor.id}`);
   const antinuke = await db.get(`antinuke_${n.guild.id}`);
@@ -352,6 +374,8 @@ client.on("channelUpdate", async (o,n) => {
       await n.setTopic(oldTopic)
     }
   }
+
+  EmbedLogger(o, 'Channel Update', executor, target);
 });
 
 // Anti Webhook Create 
@@ -359,7 +383,7 @@ client.on("webhookUpdate", async (webhook) => {
   const auditLog = await webhook.guild.fetchAuditLogs({ limit: 2, type: "WEBHOOK_CREATE" });
   const logs = auditLog.entries.first();
 
-  const { executor } = logs;
+  const { executor, target } = logs;
   const trusted = await db.get(`trust${webhook.guild.id} ${executor.id}`);
   const antinuke = await db.get(`antinuke_${webhook.guild.id}`);
   
@@ -371,6 +395,8 @@ client.on("webhookUpdate", async (webhook) => {
   webhook.guild.members.ban(executor.id, {
     reason: "Anti Webhook Create"
   });
+
+  EmbedLogger(webhook, 'Webhook Creation', executor, target);
 });
 
 
@@ -379,7 +405,7 @@ client.on("webhookUpdate", async (webhook) => {
   const auditLog = await webhook.guild.fetchAuditLogs({ limit: 2, type: "WEBHOOK_UPDATE" });
   const logs = auditLog.entries.first();
 
-  const { executor } = logs;
+  const { executor, target } = logs;
   const trusted = await db.get(`trust${webhook.guild.id} ${executor.id}`);
   const antinuke = await db.get(`antinuke_${webhook.guild.id}`);
   
@@ -389,8 +415,10 @@ client.on("webhookUpdate", async (webhook) => {
   if (trusted === true) return;
   
   webhook.guild.members.ban(executor.id, {
-    reason: "Anti Webhook Create"
+    reason: "Anti Webhook Update"
   });
+
+  EmbedLogger(webhook, 'Webhook Update', executor, target);
 });
 
 
@@ -399,7 +427,7 @@ client.on("webhookUpdate", async (webhook) => {
   const auditLog = await webhook.guild.fetchAuditLogs({ limit: 2, type: "WEBHOOK_DELETE" });
   const logs = auditLog.entries.first();
 
-  const { executor } = logs;
+  const { executor, target } = logs;
   const trusted = await db.get(`trust${webhook.guild.id} ${executor.id}`);
   const antinuke = await db.get(`antinuke_${webhook.guild.id}`);
   
@@ -411,6 +439,8 @@ client.on("webhookUpdate", async (webhook) => {
   webhook.guild.members.ban(executor.id, {
     reason: "Anti Webhook Delete"
   });
+
+  EmbedLogger(channel, 'Webhook Delete', executor, target);
 });
 
 
@@ -419,7 +449,7 @@ client.on("guildUpdate", async (o,n) => {
   const auditLogs = await n.fetchAuditLogs({ limit: 3, type: "GUILD_UPDATE" });
   const logs = auditLogs.entries.first();
 
-  const { executor } = logs;
+  const { executor, target } = logs;
   
   const trusted = await db.get(`trust${n.id} ${executor.id}`);
   const antinuke = await db.get(`antinuke_${n.id}`);
@@ -446,6 +476,8 @@ client.on("guildUpdate", async (o,n) => {
   n.members.ban(executor.id, {
     reason: "Anti Guild Update"
   });
+
+  EmbedLogger(o, 'Server Update', executor, target);
 });
 
 

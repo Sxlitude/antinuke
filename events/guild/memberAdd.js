@@ -1,9 +1,63 @@
-const { MessageEmbed } = require("discord.js");
+const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 const client = require('../../index');
 const Database = require("@replit/database");
 const db = new Database();
 
+const { onServerJoin } = require('../../files/settings');
+
+
+
+/* Just for Promotion xD */
+const desc = `🛡️ __**This Server is Protected by Terror Antinuke**__
+
+***Overview***
+﹒*This bot has a fast speed*
+﹒*Over 100k users are protected*
+﹒*It is tested on blazing fast nukers*
+﹒*It is an easy to use security bot*
+
+***Features***
+﹒*It protects from 17 unauthorised events*
+﹒*It can bring back all channels if they're nuked*
+﹒*it will delete unauthorised created channels*
+﹒*it will delete unauthorised created roles*
+﹒*It can recover deleted roles too*
+
+***Interested?***
+﹒*Click the button to invite me!*
+﹒*Make sure to enable the antinuke*
+﹒*Do* **\`;antinuke\`** *in a server for info*
+﹒*My prefix is ;*
+
+***Have questions?***
+﹒*Join the support server if you wanna ask something*
+﹒*This bot is an open sourced antinuke tool*
+
+***One thing to note***
+﹒*Your server should have 5+ members*`;
+
 client.on("guildMemberAdd", async (member) => {
+  const btn = new MessageActionRow().addComponents(
+    new MessageButton()
+      .setLabel('Invite Me')
+      .setStyle('LINK')
+      .setURL('https://dsc.gg/antiwizz'),
+    new MessageButton()
+    .setLabel('Support Server')
+    .setStyle('LINK')   
+    .setURL('https://discord.gg/KMw8stwEuN')                                         
+  );
+  /*
+  member.send({
+    content: `${desc}`,
+    components: [btn]
+  }).then((m) => {
+    setTimeout(() => {
+      m.delete()
+    }, 600000)
+  })
+*/
+
   // AutoRole
   const roleID = await db.get(`autoRole_${member.guild.id}`);
   if (roleID !== null) {
