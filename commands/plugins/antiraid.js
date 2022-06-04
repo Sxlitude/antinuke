@@ -3,11 +3,10 @@ const { Message, Client, MessageEmbed } = require("discord.js");
 const client = require("../../index");
 
 // Database
-const Database = require("@replit/database");
-const db = new Database();
+const db = require('../../core/db');
 
 // Settings
-const Settings = require('../../files/settings.js');
+const Settings = require('../../core/settings.js');
 const prefix = Settings.bot.prefix;
 
 // Command

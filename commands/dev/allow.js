@@ -1,8 +1,7 @@
 const { Message, Client } = require("discord.js");
-const Database = require("@replit/database");
-const db = new Database();
+const db = require('../../core/db');
 
-const settings = require('../../files/settings');
+const settings = require('../../core/settings');
 const isPrivate = settings.options.privateMode;
 const owners = settings.options.founders;
 

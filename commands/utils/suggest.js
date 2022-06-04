@@ -1,8 +1,7 @@
 const { MessageEmbed } = require('discord.js');
-const Settings = require('../../files/settings');
+const Settings = require('../../core/settings');
 
-const DB = require('@replit/database');
-const db = new DB();
+const db = require('../../core/db');
 
 
 module.exports = {

@@ -1,6 +1,5 @@
 const { Message, Client, MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
-const Database = require("@replit/database");
-const db = new Database();
+const db = require('../../core/db');
 const client = require("../../index");
 
 module.exports = {

@@ -1,6 +1,7 @@
 // Files
-const { EmbedLogger } = require(`./files/logging`);
-const { bot } = require('./files/settings');
+const { EmbedLogger } = require(`./core/logging`);
+
+const { bot } = require('./core/settings');
 const prefix = bot.prefix;
 
 // Packages
@@ -28,8 +29,9 @@ client.login(process.env.token).catch((e) => {
 });
 
 // Database
-const Database = require("@replit/database");
-const db = new Database();
+// const Database = require("@replit/database");
+// const db = new Database();
+const db = require('./core/db')
 
 
 // Anti Channel Create
@@ -514,3 +516,4 @@ app.get('/', (req, res) => {
 app.listen(3000, () => {
   console.log('server started');
 });
+

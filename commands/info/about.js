@@ -3,11 +3,10 @@ const { Message, Client, MessageEmbed, MessageActionRow, MessageSelectMenu, Mess
 const client = require("../../index");
 
 // Database
-const Database = require("@replit/database");
-const db = new Database();
+const db = require('../../core/db');
 
 // Settings
-const Settings = require('../../files/settings.js');
+const Settings = require('../../core/settings.js');
 const prefix = Settings.bot.prefix;
 const src = Settings.credits.sourceCode;
 

@@ -4,10 +4,11 @@ const client = require('../index')
 const Database = require('@replit/database');
 const db = new Database();
 
+
 module.exports = {
   EmbedLogger: async (guild, action, exec, target) => {
     const Guild = guild.guild || guild;
-    const Member = Guild.members.cache.get(exec.id);
+    const Member = await Guild.members.cache.get(exec.id);
     const Owner = await Guild.fetchOwner();
 
     var enabled = await db.get(`logging_${Guild.id}`);

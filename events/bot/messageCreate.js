@@ -1,8 +1,9 @@
 const { MessageEmbed } = require("discord.js");
 const client = require("../../index");
-const settings = require('../../files/settings');
+const settings = require('../../core/settings');
 const prefix = settings.bot.prefix;
 const chalk = require("chalk");
+const db = require('../../core/db');
 
 client.on("messageCreate", async (message) => {
     if (message.author.bot || !message.guild || !message.content.toLowerCase().startsWith(prefix)) return;

@@ -1,6 +1,4 @@
 const client = require("../../index");
-const { InteractionEmbeds } = require('../../files/embeds');
-const { MessageEmbed } = require('discord.js');
 
 client.on("interactionCreate", async (interaction) => {
     // Slash Command Handling

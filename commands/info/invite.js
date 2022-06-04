@@ -2,7 +2,7 @@
 const { Message, Client, MessageActionRow, MessageButton } = require("discord.js");
 const client = require("../../index");
 
-const Settings = require("../../files/settings");
+const Settings = require("../../core/settings");
 
 // Command
 module.exports = {

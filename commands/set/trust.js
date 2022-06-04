@@ -1,8 +1,7 @@
 const { Message, MessageEmbed, Client } = require("discord.js");
-const Database = require("@replit/database");
-const db = new Database();
+const db = require('../../core/db');
 
-const settings = require('../../files/settings');
+//const settings = require('../../files/settings');
 
 module.exports = {
   name: "trust",

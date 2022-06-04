@@ -1,9 +1,8 @@
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 const client = require('../../index');
-const Database = require("@replit/database");
-const db = new Database();
+const db = require('../../core/db');
 
-const { onServerJoin } = require('../../files/settings');
+const { onServerJoin } = require('../../core/settings');
 
 
 

@@ -1,7 +1,7 @@
 const client = require("../../index");
 const chalk = require("chalk");
 const gradient = require("gradient-string");
-const Settings = require('../../files/settings.js');
+const Settings = require('../../core/settings.js');
 const isPrivate = Settings.options.privateMode;
 
 const activity = {

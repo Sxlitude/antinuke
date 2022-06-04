@@ -1,6 +1,5 @@
 const { MessageEmbed, Client } = require("discord.js");
-const Database = require("@replit/database");
-const db = new Database();
+const db = require('../../core/db');
 
 module.exports = {
   name: "untrust",

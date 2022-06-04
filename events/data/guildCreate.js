@@ -1,12 +1,11 @@
 const { MessageEmbed } = require("discord.js");
 const client = require('../../index');
 const chalk = require("chalk");
-const Database = require("@replit/database");
-const db = new Database();
-const { bot } = require('../../files/settings.js');
+const db = require('../../core/db');
+const { bot } = require('../../core/settings.js');
 const prefix = bot.prefix;
 
-const Settings = require('../../files/settings');
+const Settings = require('../../core/settings');
 const isPrivate = Settings.options.privateMode;
 const minCount = Settings.onServerJoin.minMemberCount;
 

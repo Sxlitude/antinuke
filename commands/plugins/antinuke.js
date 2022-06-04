@@ -3,11 +3,10 @@ const { MessageEmbed } = require("discord.js");
 const client = require("../../index");
 
 // Database
-const Database = require("@replit/database");
-const db = new Database();
+const db = require('../../core/db');
 
 // Settings
-const Settings = require('../../files/settings.js');
+const Settings = require('../../core/settings.js');
 const prefix = Settings.bot.prefix;
 
 // Command
@@ -44,7 +43,7 @@ module.exports = {
       if (antinuke === false) {
         message.channel.send({ content: "Antinuke is already disabled in this server." });
       } else {
-        await db.set(`antinuke_${message.guild.id}`, false);
+        await db.delete(`antinuke_${message.guild.id}`);
         message.channel.send({ content: "Done! Antinuke is now disabled in this server." });
       }
     } else {
