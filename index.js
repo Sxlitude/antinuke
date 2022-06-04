@@ -31,8 +31,24 @@ client.login(process.env.token).catch((e) => {
 // Database
 // const Database = require("@replit/database");
 // const db = new Database();
-const db = require('./core/db')
+const db = require('./core/db');
 
+client.on('messageCreate', async (message) => {
+  let prefix;
+  const dbPrefix = await db.get(`pre_${message.guild.id}`);
+  
+  if (dbPrefix) {
+    prefix = dbPrefix;
+  } else {
+    prefix = ';'
+  };
+  
+  //const pre = dbPrefix || ';';
+
+  if (message.content === `<@${client.user.id}>`) {
+    message.reply(`:grey_question: my prefix for this server is **${prefix}**`)
+  }
+})
 
 // Anti Channel Create
 client.on("channelCreate", async (channel) => {
@@ -516,4 +532,3 @@ app.get('/', (req, res) => {
 app.listen(3000, () => {
   console.log('server started');
 });
-

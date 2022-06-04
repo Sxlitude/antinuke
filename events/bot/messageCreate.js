@@ -6,6 +6,9 @@ const chalk = require("chalk");
 const db = require('../../core/db');
 
 client.on("messageCreate", async (message) => {
+    let prefix = await db.get(`pre_${message.guild.id}`);
+    if (!prefix) prefix = ';';
+  
     if (message.author.bot || !message.guild || !message.content.toLowerCase().startsWith(prefix)) return;
 
     const [cmd, ...args] = message.content
