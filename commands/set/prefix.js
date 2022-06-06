@@ -19,6 +19,8 @@ module.exports = {
         message.reply(`:thumbsup: The new prefix is now set to **${args[0]}**. Ping me if you ever forget it.`)
         }
       }
+    } else {
+      message.reply(`You need **Administrator** or **Manage Members** permission to do this.`)
     }
   }
 }

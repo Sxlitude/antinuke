@@ -18,6 +18,9 @@ keepAlive();
 // Global Variables
 client.commands = new Collection();
 client.slashCommands = new Collection();
+client.deletedMsg = new Collection();
+client.updatedMsg = new Collection();
+
 
 // Handler 
 require("./handler")(client);
@@ -242,11 +245,13 @@ client.on("guildMemberUpdate", async (o,n) => {
     if (executor.id === client.user.id) return;
     if (antinuke !== true) return;
     if (trusted === true) return;
+    if (executor.id !== n.user.id) return;
 
     n.edit(o);
-    o.guild.members.ban(executor.id, {
+    n.guild.members.ban(executor.id, {
       reason: "Anti Member Update"
     });
+    //n.guild.members.cache.fetch
 
   EmbedLogger(o, 'Member Update', executor, target);
   }
