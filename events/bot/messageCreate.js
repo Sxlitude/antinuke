@@ -22,7 +22,9 @@ client.on("messageCreate", async (message) => {
       const error = new MessageEmbed()
         .setDescription(`***Wrong Command***\n﹒*this is not a valid command.*\n﹒*try ${prefix}help to see a list of commands.*`)
         .setColor("PURPLE")
-      message.channel.send({ embeds: [error] });
+      message.reply({ embeds: [error] }).then((msg) => {
+        setTimeout(() => { msg.delete() }, 3000)
+      })
     }
   try {
     await command.run(client, message, args)

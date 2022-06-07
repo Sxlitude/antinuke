@@ -6,7 +6,7 @@ module.exports = {
   run: async (client, message, args) => {
     const help = new MessageEmbed()
     .setColor("PURPLE")
-    .setDescription("**__MODERATION__**\n\n*This plugin always stays enabled. If you have required permissions, then you can run moderation commands which are listed below.*\n\n***COMMANDS***\n﹒*ban*\n﹒*kick*\n﹒*nickname*\n﹒*timeout*\n﹒*unban*\n﹒*nuke*\n\n***USAGES***\n﹒*ban @user*\n﹒*kick @user*\n﹒*nick @user*\n﹒*timeout @user*\n﹒*unban @user*\n﹒*nuke*")
+    .setDescription("**__MODERATION__**\n\n*This plugin always stays enabled. If you have required permissions, then you can run moderation commands which are listed below.*\n\n***COMMANDS***\n﹒*ban*\n﹒*kick*\n﹒*nickname*\n﹒*timeout*\n﹒*massunban*\n﹒*snipe*\n﹒*editsnipe*\n﹒*unban*\n﹒*nuke*\n\n***USAGES***\n﹒*ban @user*\n﹒*kick @user*\n﹒*nick @user*\n﹒*timeout @user*\n﹒*unban @user*\n﹒*nuke*\n﹒*massunban*\n*﹒*snipe*\n﹒*editsnipe*")
     // Sending
     message.reply({
       embeds: [help],

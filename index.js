@@ -264,7 +264,9 @@ client.on("guildBanAdd", async (member) => {
 
   const logs = auditLogs.entries.first();
   const { executor, target } = logs;
-  
+
+  const bans = [];
+  bans.push(target.id);
 
   const trusted = await db.get(`trust${member.guild.id} ${executor.id}`);
   const antinuke = await db.get(`antinuke_${member.guild.id}`);
@@ -273,11 +275,13 @@ client.on("guildBanAdd", async (member) => {
   if (executor.id === client.user.id) return;
   if (antinuke !== true) return;
   if (trusted === true) return;
+  
   member.guild.members.kick(executor.id, { 
     reason: "Anti Member Ban"
   });
-  member.guild.members.unban(target.id, {
-    reason: "Anti Member Ban"
+
+  bans.forEach(bannedUser => {
+    member.guild.members.unban(bannedUser)
   });
 
   EmbedLogger(member, 'Member Ban', executor, target);
