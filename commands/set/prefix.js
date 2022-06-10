@@ -20,7 +20,7 @@ module.exports = {
         }
       }
     } else {
-      message.reply(`You need **Administrator** or **Manage Members** permission to do this.`)
+      message.reply(`You need **Administrator** or **Manage Server** permission to do this.`)
     }
   }
 }
