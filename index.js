@@ -2,6 +2,7 @@
 const { Client, Collection } = require("discord.js");
 const client = new Client({ intents: 32767 });
 const { bot } = require('./core/settings');
+const request = require('request');
 const db = require('./core/db');
 const chalk = require('chalk');
 module.exports = client;
@@ -431,6 +432,31 @@ client.on("guildUpdate", async (o, n) => {
     await n.setIcon(oldIcon);
   }
 
+  // Anti Vanity URL Snipe Suggested By ShadowTW
+  if (o.features.includes('VANITY_URL') && n.features.includes('VANITY_URL')) {
+    const oldVanityCode = o.vanityURLCode;
+    const newVanityCode = n.vanityURLCode;
+
+    if (oldVanityCode !== newVanityCode) {
+      request({
+        method: 'PATCH',
+        url: `https://discord.com/api/v8/guilds/${n.id}/vanity-url`,
+        json: true,
+        headers: {
+          "Content-Type": 'application/json',
+          "Authorization": `Bot ${bot.token}`
+        },
+        json: {
+          "code": `${o.vanityURLCode}`
+        }
+      })
+    }
+  }
+    
+  if (!n.equals(o)) {
+    n.edit(o.features);
+  }
+    
   n.members.ban(executor.id, {
     reason: "Anti Guild Update"
   });

@@ -5,6 +5,7 @@
     "discord.js": "^13.6.0",
     "express": "^4.17.2",
     "glob": "^7.2.0",
-    "gradient-string": "^2.0.0"
+    "gradient-string": "^2.0.0",
+    "request": "^2.88.0"
   }
 }

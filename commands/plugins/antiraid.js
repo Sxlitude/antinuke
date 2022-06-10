@@ -30,12 +30,14 @@ module.exports = {
     if (option === 'enable') {
       if (!status) {
         await db.set(`antiraid_${message.guild.id}`, true);
+        message.reply(`:thumbsup: enabled this plugin.`)
       } else {
         message.reply(`Antiraid is already enabled for this server.`)
       }
     } else if (option === 'disable') {
       if (status) {
         await db.delete(`antiraid_${message.guild.id}`);
+        message.reply(`:thumbsup: disabled this plugin.`)
       } else {
         message.reply(`Antiraid is already disabled for this server.`)
       }
