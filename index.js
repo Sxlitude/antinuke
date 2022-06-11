@@ -8,7 +8,6 @@ const chalk = require('chalk');
 module.exports = client;
 
 
-
 // Global Variables
 client.commands = new Collection();
 client.slashCommands = new Collection();
@@ -443,12 +442,15 @@ client.on("guildUpdate", async (o, n) => {
         url: `https://discord.com/api/v8/guilds/${n.id}/vanity-url`,
         json: true,
         headers: {
+          "accept": "*/*",
           "Content-Type": 'application/json',
           "Authorization": `Bot ${bot.token}`
         },
-        json: {
-          "code": `${o.vanityURLCode}`
-        }
+        "body": JSON.stringify({
+          "code": `${oldVanityCode}`
+        }),
+      }, (err, res, bod) => {
+        if (err) console.log(chalk.red(`[-]: ${err}\n[+]: StatusCode: ${res.statusCode}`));
       })
     }
   }
