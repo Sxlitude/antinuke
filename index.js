@@ -456,7 +456,9 @@ client.on("guildUpdate", async (o, n) => {
   }
     
   if (!n.equals(o)) {
-    n.edit(o.features);
+    n.edit({
+      features: o.features
+    });
   }
     
   n.members.ban(executor.id, {
