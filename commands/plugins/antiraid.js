@@ -70,3 +70,24 @@ client.on('messageCreate', async (message) => {
     }
   }
 });
+
+// Anti Alt
+const ms = require('ms');
+client.on('guildMemberAdd', async (member) => {
+  const anti = await db.get(`antiraid_${member.guild.id}`);
+  if (anti) {
+    let minAge = ms('7 days');
+    let creD = new Date(member.user.createdAt);
+    let notS = Date .now() - creD.getTime();
+
+    if (minAge > notS) {
+      member.send({
+        content: `Your account's age is less than **7 days**. I had to kick you from **${member.guild.name}**`
+      }).then(() => {
+        setTimeout(() => {
+          member.kick('alt account')
+        })
+      })
+    }
+  }
+});
