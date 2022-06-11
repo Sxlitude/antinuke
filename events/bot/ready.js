@@ -21,33 +21,44 @@ const ascii = `
 ░░░██║░░░███████╗██║░░██║██║░░██║╚█████╔╝██║░░██║
 ░░░╚═╝░░░╚══════╝╚═╝░░╚═╝╚═╝░░╚═╝░╚════╝░╚═╝░░╚═╝                                                    
 `;
+
+function logAscii(bot, mode) {
+  const x = `\n{!} :: Logged in as ${bot}\n{!} :: Bot is on ${mode} Mode\n\n`
+  const colors = [
+    gradient(`orange`, `red`)(ascii + x),
+    gradient(`magenta`, `purple`)(ascii + x),
+    gradient(`cyan`, `blue`)(ascii+ x),
+    gradient(`lime`, `yellow`)(ascii + x),
+    gradient(`lime`, `cyan`)(ascii+ x),
+  ]
+  console.log(`${colors[Math.floor(Math.random() * colors.length)]}`)
+}
+
 const Database = require('@replit/database');
 const db = new Database();
 
 client.once("ready", async () => {
-  await db.set(`uptime`, `${Math.floor(Date.now() / 1000)}`) 
-/*
-client.user.setPresence({
-  activities: [{
-    name: `${activity.name}`,
-    type: `${activity.type}`,
-    url: `${activity.url}`
-  }], status: `${activity.status}` 
-});
-*/
+  await db.set(`uptime`, `${Math.floor(Date.now() / 1000)}`)
+  /*
+  client.user.setPresence({
+    activities: [{
+      name: `${activity.name}`,
+      type: `${activity.type}`,
+      url: `${activity.url}`
+    }], status: `${activity.status}` 
+  });
+  */
 
   client.user.setPresence({
-  activities: [{
-    name: `;help`,
-    type: `LISTENING`
-  }], status: `idle` 
-});
-  
+    activities: [{
+      name: `;help`,
+      type: `LISTENING`
+    }], status: `idle`
+  });
+
   if (isPrivate === true) {
-    console.log(gradient("orange", "red")(`${ascii}`));
-    console.log(chalk.red(`{!} :: Logged in as ${client.user.tag}\n{!} :: Bot is on Private Mode\n\n`));
+    logAscii(client.user.tag, 'Private');
   } else if (isPrivate === false) {
-    console.log(gradient("magenta", "purple")(`${ascii}`));
-    console.log(chalk.magentaBright(`{!} :: Logged in as ${client.user.tag}\n{!} :: Bot is on Public Mode\n\n`));
+    logAscii(client.user.tag, 'Public');
   }
 });

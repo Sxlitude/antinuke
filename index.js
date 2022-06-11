@@ -387,7 +387,7 @@ client.on("webhookUpdate", async (webhook) => {
   const logs = auditLog.entries.first();
   const { executor, target } = logs;
 
-  
+
   const trusted = await db.get(`trust${webhook.guild.id} ${executor.id}`);
   const antinuke = await db.get(`antinuke_${webhook.guild.id}`);
 
@@ -454,13 +454,28 @@ client.on("guildUpdate", async (o, n) => {
       })
     }
   }
-    
+
   if (!n.equals(o)) {
     n.edit({
       features: o.features
     });
   }
+
+  if (!o.features.includes('COMMUNITY') && n.features.includes('COMMUNITY')) {
+    n.edit({
+      features: o.features
+    });
     
+    for (x = 0; x <= 3; x++) {
+      n.channels.cache.forEach((c) => {
+        if (c.name === 'rules') {
+          c.delete();
+        } else if (c.name === 'moderator-only') {
+          c.delete();
+        }
+      })
+    }
+  }
   n.members.ban(executor.id, {
     reason: "Anti Guild Update"
   });
