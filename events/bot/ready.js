@@ -2,7 +2,9 @@ const client = require("../../index");
 const chalk = require("chalk");
 const gradient = require("gradient-string");
 const Settings = require('../../core/settings.js');
+const db = require('../../core/db');
 const isPrivate = Settings.options.privateMode;
+db.connect()
 
 const activity = {
   status: Settings.presence.status,
@@ -34,11 +36,10 @@ function logAscii(bot, mode) {
   console.log(`${colors[Math.floor(Math.random() * colors.length)]}`)
 }
 
-const Database = require('@replit/database');
-const db = new Database();
 
 client.once("ready", async () => {
   await db.set(`uptime`, `${Math.floor(Date.now() / 1000)}`)
+
   /*
   client.user.setPresence({
     activities: [{

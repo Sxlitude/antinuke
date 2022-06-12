@@ -1,9 +1,9 @@
 const { MessageEmbed } = require('discord.js');
 const client = require('../index')
 
-const Database = require('@replit/database');
-const db = new Database();
-
+const {Database} = require('quickmongo')
+const db = new Database(process.env.mongourl);
+db.connect();
 
 module.exports = {
   EmbedLogger: async (guild, action, exec, target) => {

@@ -6,7 +6,8 @@ const request = require('request');
 const db = require('./core/db');
 const chalk = require('chalk');
 module.exports = client;
-
+const {Database} = require('quickmongo')
+db.connect()
 
 // Global Variables
 client.commands = new Collection();
@@ -21,6 +22,7 @@ client.login(process.env.token).catch((e) => {
     process.exit();
   }, 5000)
 });
+
 
 
 client.on('messageCreate', async (message) => {
