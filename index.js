@@ -205,12 +205,20 @@ client.on("guildMemberUpdate", async (o, n) => {
   if (executor.id === client.user.id) return;
   if (antinuke !== true) return;
   if (trusted === true) return;
-  if (executor.id !== n.user.id) return;
 
-  n.edit(o);
-  n.guild.members.ban(executor.id, {
-    reason: "Anti Member Update"
-  });
+  const oldRoles = o.roles;
+  const newRoles = n.roles;
+
+  console.log(n.roles)
+  if (oldRoles !== newRoles) {
+    n.edit({
+      roles: o.roles
+    });
+
+    n.guild.members.ban(executor.id, {
+      reason: `Anti Member Role Update`
+    })
+  }
 });
 
 
@@ -274,7 +282,7 @@ client.on("guildMemberAdd", async (member) => {
     if (target.bot !== true) return;
     if (antinuke !== true) return;
     if (trusted === true) return;
-
+    if (target.id !== member.user.id) return;
 
     member.guild.members.ban(executor.id, {
       reason: "Anti Bot Add"
@@ -439,7 +447,7 @@ client.on("guildUpdate", async (o, n) => {
     if (oldVanityCode !== newVanityCode) {
       request({
         method: 'PATCH',
-        url: `https://discord.com/api/v8/guilds/${n.id}/vanity-url`,
+        url: `https://discord.com/api/v9/guilds/${n.id}/vanity-url`,
         json: true,
         headers: {
           "accept": "*/*",
