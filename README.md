@@ -5,9 +5,11 @@ Use this tool to protect your discord servers against nukes.
 This tool protects your servers from 16 type of events and it has recovery feature like Flantic. the difference is, you need to pay for recovery feature in flantic and this bot is always free ❤️. This tool is tested on nukers like Lithium & PlayZ nuker, so no chance to bypass it 🔥
 
 ### What's New?
+- added anti alt join 
 - added anti community spam
 - added anti vanity snipe [issue #2](https://github.com/Sxlitude/antinuke/issues/2)
-> - ⚠️ I dont know if anti vanity sniper works or not as i couli couldnt test it.
+> - ⚠️ I dont know if anti vanity sniper works or not as i couldnt test it.
+
 
 ### Quick Links
 - [About This Antinuke](https://github.com/Sxlitude/antinuke/blob/main/Guide/Intro/AboutThisAntinuke.md)
