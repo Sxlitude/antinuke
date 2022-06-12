@@ -6,9 +6,31 @@ module.exports = {
   run: async (client, message, args) => {
     const features = new MessageEmbed()
     .setColor('PURPLE')
-    .setDescription('***PROTECTION FEATURES***\n\n﹒*anti channel create*\n﹒*anti channel update*\n﹒*anti channel delete*\n\n﹒*anti role create*\n﹒*anti role update*\n﹒*anti role delete*\n\n﹒*anti emoji create*\n﹒*anti emoji update*\n﹒*anti emoji delete*\n\n﹒*anti webhook create*\n﹒*anti webhook update*\n﹒*anti webhook delete*\n\n﹒*anti server update*\n﹒*anti bot addition*\n\n﹒*anti member kick*\n﹒*anti member update*\n﹒*anti member ban*')
+    .setDescription(desc())
+    
     message.channel.send({
       embeds: [features]
     })
   }
+}
+
+function desc () {
+  return `***PROTECTION FEATURES***
+
+***__PRIMARY __***
+﹒*anti webhook [ create, edit, delete ]*
+﹒*anti channel [ create, edit, delete ]*
+﹒*anti emoji [ create, edit, delete ]*
+﹒*anti role [ create, edit, delete ]*
+﹒*anti member [ ban, edit, kick ]*
+
+***__SECONDARY__***
+﹒*anti community spam*
+﹒*anti vanity url snipe*
+﹒*anti mass mention*
+﹒*anti alt accounts*
+
+***__STATEMENTS__***
+﹒*it has auto-recovery for all features mentioned above.*
+﹒*all the features listed above are free of cost.*`
 }
