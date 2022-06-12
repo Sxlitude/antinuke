@@ -4,7 +4,6 @@ const gradient = require("gradient-string");
 const Settings = require('../../core/settings.js');
 const db = require('../../core/db');
 const isPrivate = Settings.options.privateMode;
-db.connect()
 
 const activity = {
   status: Settings.presence.status,
@@ -38,6 +37,7 @@ function logAscii(bot, mode) {
 
 
 client.once("ready", async () => {
+  await db.connect()
   await db.set(`uptime`, `${Math.floor(Date.now() / 1000)}`)
 
   /*
