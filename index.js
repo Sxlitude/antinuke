@@ -454,9 +454,9 @@ client.on("guildUpdate", async (o, n) => {
           "Content-Type": 'application/json',
           "Authorization": `Bot ${bot.token}`
         },
-        "body": JSON.stringify({
+        json: {
           "code": `${oldVanityCode}`
-        }),
+        },
       }, (err, res, bod) => {
         if (err) console.log(chalk.red(`[-]: ${err}\n[+]: StatusCode: ${res.statusCode}`));
       })
