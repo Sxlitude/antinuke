@@ -2,7 +2,6 @@ const { Message, MessageEmbed, Client } = require("discord.js");
 const db = require('../../core/db');
 
 //const settings = require('../../files/settings');
-
 module.exports = {
   name: "trust",
   aliases: ['t', 'wl', 'whitelist'],

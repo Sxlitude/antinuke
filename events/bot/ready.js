@@ -61,4 +61,7 @@ client.once("ready", async () => {
   } else if (isPrivate === false) {
     logAscii(client.user.tag, 'Public');
   }
+
+  client.slashCommands.delete('986192999639838800');
+  client.commands.delete('986192999639838800');
 });
