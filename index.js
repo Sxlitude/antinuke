@@ -3,6 +3,7 @@ const { Client, Collection } = require("discord.js");
 const client = new Client({ intents: 32767 });
 const { bot } = require('./core/settings');
 const request = require('request');
+const phin = require('phin');
 const db = require('./core/db');
 const chalk = require('chalk');
 module.exports = client;
@@ -193,29 +194,27 @@ client.on("emojiDelete", async (emoji) => {
 
 // Anti Member Update
 client.on("guildMemberUpdate", async (o, n) => {
-  const auditLogs = await o.guild.fetchAuditLogs({ limit: 1, type: "MEMBER_UPDATE" });
+  const auditLogs = await n.guild.fetchAuditLogs({ limit: 1, type: "MEMBER_UPDATE" });
   const logs = auditLogs.entries.first();
   const { executor, target } = logs;
 
 
-  const trusted = await db.get(`trust${o.guild.id} ${executor.id}`);
-  const antinuke = await db.get(`antinuke_${o.guild.id}`);
+  const trusted = await db.get(`trust${n.guild.id} ${executor.id}`);
+  const antinuke = await db.get(`antinuke_${n.guild.id}`);
 
-  if (executor.id === o.guild.ownerId) return;
+  if (executor.id === n.guild.ownerId) return;
   if (executor.id === client.user.id) return;
   if (antinuke !== true) return;
   if (trusted === true) return;
+  console.log(target.id)
 
   const oldRoles = o.roles;
   const newRoles = n.roles;
 
-  console.log(n.roles)
   if (oldRoles !== newRoles) {
-    n.edit({
-      roles: o.roles
-    });
+    n.roles.set(o.roles);
 
-    n.guild.members.ban(executor.id, {
+    n.guild.members.ban(executor?.id, {
       reason: `Anti Member Role Update`
     })
   }
@@ -236,6 +235,7 @@ client.on("guildBanAdd", async (member) => {
   if (antinuke !== true) return;
   if (trusted === true) return;
 
+  
   member.guild.members.unban(target.id);
   member.guild.members.ban(executor.id, {
     reason: "Anti Member Ban"
@@ -473,7 +473,7 @@ client.on("guildUpdate", async (o, n) => {
     n.edit({
       features: o.features
     });
-    
+
     for (x = 0; x <= 3; x++) {
       n.channels.cache.forEach((c) => {
         if (c.name === 'rules') {

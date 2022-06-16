@@ -108,8 +108,9 @@ module.exports = {
 
     collector.on('collect', async (i) => {
       if (i.user.id !== message.author.id) {
-        i.reply({
-          content: 'this menu is not for you.'
+        await i.reply({
+          content: 'this menu is not for you.',
+          ephemeral: true,
         })
       } else {
         await i.deferUpdate();
@@ -120,19 +121,19 @@ module.exports = {
             embeds: [antinukeCmds],
           })
         } else if (value === 'two') {
-          i.editReply({
+          await i.editReply({
             embeds: [antinukeFtrs],
           })
         } else if (value === 'three') {
-          i.editReply({
+          await i.editReply({
             embeds: [moderationCmds],
           })
         } else if (value === 'four') {
-          i.editReply({
+          await i.editReply({
             embeds: [info],
           })
         } else if (value === 'antiraid') {
-          i.editReply({
+          await i.editReply({
             embeds: [antiraid],
           })
         }
