@@ -14,7 +14,7 @@ module.exports = {
   name: "antinuke",
   aliases: ['an'],
   run: async (client, message, args) => {
-    if (message.author.id !== message.guild.ownerId || message.author.id != '891214041391988757') {
+    if (message.author.id !== message.guild.owner.id) {
       message.channel.send({
         content: "This command is for owner only."
         })
