@@ -35,37 +35,6 @@ module.exports = {
             )
             message.channel.send({
               embeds: [trustedUsers],
-              components: [btn]
-            }).then(msg => {
-              client.on('interactionCreate', async (interaction) => {
-                if (interaction.user.id !== interaction.guild.ownerId) {
-                  await interaction.followUp({
-                    content: `This button is not for you`,
-                    ephemeral: true
-                  })
-                } else {
-                  const newButton = new MessageActionRow().addComponents(
-                    new MessageButton()
-                      .setLabel("Clear List")
-                      .setStyle("DANGER")
-                      .setCustomId('cleared')
-                      .setDisabled(true)
-                  );
-                  msg.edit({
-                    embeds: [trustedUsers],
-                    components: [newButton]
-                  });
-
-                  await db.list(`${interaction.guild.id}_wl`).then(async (keys) => {
-                    keys.forEach(async key => {
-                      await db.delete(`${key}`)
-                    })
-                  })
-                  interaction.reply({
-                    content: `:thumbsup: unwhitelisted every admin from the list.`
-                  })
-                }
-              });
             });
           } else {
             message.reply({ content: 'there are no whitelisted users in this server.' })

@@ -14,18 +14,24 @@ module.exports = {
   ],
   type: 'CHAT_INPUT',
   run: async (client, interaction, args) => {
-    const [userId] = args;
-    const isWhitelisted = await db.get(`${interaction.guild.id}_wl_${userId}`);
-    if (isWhitelisted) {
-      await db.delete(`${interaction.guild.id}_wl_${userId}`);
-      await interaction.followUp({
-        content: `unwhitelisted that user successfully.`,
-        ephemeral: true
-      })
+    if (interaction.user.id === interaction.guild.ownerId) {
+      const [userId] = args;
+      const isWhitelisted = await db.get(`${interaction.guild.id}_wl_${userId}`);
+      if (isWhitelisted) {
+        await db.delete(`${interaction.guild.id}_wl_${userId}`);
+        await interaction.followUp({
+          content: `unwhitelisted that user successfully.`,
+          ephemeral: true
+        })
+      } else {
+        await interaction.followUp({
+          content: `that user is not whitelisted.`,
+          ephemeral: true
+        })
+      }
     } else {
-      await interaction.followUp({
-        content: `that user is not whitelisted.`,
-        ephemeral: true
+      await interaction.reply({
+        content: 'This command is for the server owner.'
       })
     }
   },
