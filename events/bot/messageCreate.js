@@ -1,33 +1,24 @@
-const { MessageEmbed } = require("discord.js");
-const client = require("../../index");
-const settings = require('../../core/settings');
-const chalk = require("chalk");
-const db = require('../../core/db');
+const client = require('../../index'),
+  st = require('../../core/settings').bot,
+  db = require('../../core/db');
 
-client.on("messageCreate", async (message) => {
-    let prefix = await db.get(`pre_${message.guild.id}`);
-    if (!prefix) prefix = settings.bot.prefix;
-  
-    if (message.author.bot || !message.guild || !message.content.toLowerCase().startsWith(prefix)) return;
+client.on('messageCreate', async (message) => {
+  let prefix = await db.get(`${message.guild.id}_prefix`);
+  if (!prefix) prefix = st.info.prefix;
 
-    const [cmd, ...args] = message.content
-        .slice(prefix.length)
-        .trim()
-        .split(/ +/g);
+  if (message.author.bot || !message.guild || !message.content.toLowerCase().startsWith(prefix)) return;
 
-    const command = client.commands.get(cmd.toLowerCase()) || client.commands.find(c => c.aliases?.includes(cmd.toLowerCase()));
+  const [cmd, ...args] = message.content
+    .slice(prefix.length)
+    .trim()
+    .split(/ +/g);
 
-    if (!command) {
-      const error = new MessageEmbed()
-        .setDescription(`***Wrong Command***\n﹒*this is not a valid command.*\n﹒*try ${prefix}help to see a list of commands.*`)
-        .setColor("PURPLE")
-      message.reply({ embeds: [error] }).then((msg) => {
-        setTimeout(() => { msg.delete() }, 3000)
-      })
-    }
-  try {
-    await command.run(client, message, args)
-  } catch (e) {
-      console.log(`${chalk.red(`{!} :: Invalid Command Ran! :: ${message.content.split(" ")[0]}\n${chalk.magentaBright(`{!} :: Ran By ${message.author.tag} in ${message.guild.name}\n${chalk.cyanBright(`{!} :: If It's Valid, Check For Errors.`)}\n{!} :: ${e}`)}`)}`)
-   }
+  const command = client.commands.get(cmd.toLowerCase()) || client.commands.find(c => c.aliases?.includes(cmd.toLowerCase()));
+
+  if (!command) {
+    message.reply({ content: `:warning: this command is invalid, try ${prefix}help` }).then((msg) => {
+      setTimeout(() => { msg.delete() }, 3000)
+    })
+  }
+  await command.run(client, message, args);
 });

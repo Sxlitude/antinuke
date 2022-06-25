@@ -1,18 +1,9 @@
-const client = require("../../index");
-const chalk = require("chalk");
-const gradient = require("gradient-string");
-const Settings = require('../../core/settings.js');
-const isPrivate = Settings.options.privateMode;
-
-const activity = {
-  status: Settings.presence.status,
-  type: Settings.presence.type,
-  prefix: Settings.bot.prefix,
-  url: Settings.bot.url,
-  name: Settings.presence.name,
-}
-
-const ascii = `
+const client = require('../../index'),
+  db = require('../../core/db.js'),
+  gradient = require('gradient-string'),
+  { bot } = require('../../core/settings.js'),
+  isPrivate = bot.options.privateMode,
+  ascii = `
 
 ████████╗███████╗██████╗░██████╗░░█████╗░██████╗░
 ╚══██╔══╝██╔════╝██╔══██╗██╔══██╗██╔══██╗██╔══██╗
@@ -27,41 +18,22 @@ function logAscii(bot, mode) {
   const colors = [
     gradient(`orange`, `red`)(ascii + x),
     gradient(`magenta`, `purple`)(ascii + x),
-    gradient(`cyan`, `blue`)(ascii+ x),
+    gradient(`cyan`, `blue`)(ascii + x),
     gradient(`lime`, `yellow`)(ascii + x),
-    gradient(`lime`, `cyan`)(ascii+ x),
+    gradient(`lime`, `cyan`)(ascii + x),
   ]
   console.log(`${colors[Math.floor(Math.random() * colors.length)]}`)
 }
 
-const Database = require('@replit/database');
-const db = new Database();
-
 client.once("ready", async () => {
   await db.set(`uptime`, `${Math.floor(Date.now() / 1000)}`)
-  /*
   client.user.setPresence({
     activities: [{
-      name: `${activity.name}`,
-      type: `${activity.type}`,
-      url: `${activity.url}`
-    }], status: `${activity.status}` 
+      name: `${bot.presence.name}`,
+      type: `${bot.presence.status}`
+    }]
   });
-  */
-
-  client.user.setPresence({
-    activities: [{
-      name: `;help`,
-      type: `LISTENING`
-    }], status: `idle`
-  });
-
-  if (isPrivate === true) {
-    logAscii(client.user.tag, 'Private');
-  } else if (isPrivate === false) {
-    logAscii(client.user.tag, 'Public');
-  }
-
-  client.slashCommands.delete('986192999639838800');
-  client.commands.delete('986192999639838800');
+  
+  if (isPrivate === true) logAscii(client.user.tag, 'Private')
+  else if (isPrivate === false) logAscii(client.user.tag, 'Public')
 });
