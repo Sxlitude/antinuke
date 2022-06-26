@@ -28,10 +28,7 @@ function logAscii(bot, mode) {
 client.once("ready", async () => {
   await db.set(`uptime`, `${Math.floor(Date.now() / 1000)}`)
   client.user.setPresence({
-    activities: [{
-      name: `${bot.presence.name}`,
-      type: `${bot.presence.status}`
-    }]
+    activities: [bot.presence]
   });
   
   if (isPrivate === true) logAscii(client.user.tag, 'Private')

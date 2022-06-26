@@ -280,6 +280,7 @@ client.on("guildMemberUpdate", async (o, n) => {
 
 
 /* Anti Member Ban */
+const bannedUsers = new Array();
 client.on("guildBanAdd", async (member) => {
   const auditLogs = await member.guild.fetchAuditLogs({ limit: 2, type: "MEMBER_BAN_ADD" });
   const logs = auditLogs.entries.first();
@@ -288,13 +289,17 @@ client.on("guildBanAdd", async (member) => {
   const trusted = await db.get(`${member.guild.id}_wl_${executor.id}`);
   const antinuke = await db.get(`${member.guild.id}_antinuke`);
 
+  
   if (executor.id === member.guild.ownerId) return;
   if (executor.id === client.user.id) return;
-  if (member.user.id !== target.id) return;
   if (antinuke !== true) return;
   if (trusted === true) return;
-
-  member.guild.members.unban(target.id);
+  bannedUsers.push(member.user.id);
+  if (member.user.id !== target.id) return;
+  
+  bannedUsers.forEach(x => {
+    member.guild.members.unban(x);
+  })
   member.guild.members.ban(executor.id, {
     reason: "Anti Member Ban"
   });

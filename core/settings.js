@@ -10,10 +10,9 @@ module.exports = {
       privateMode: false,
     },
     presence: {
-      status: 'idle',
-      activity: 'LISTENING',
-      url: 'https://twitch.tv/pewdiepie',
-      name: ';help'
+      name: `;help or @mention`,
+      type: 'STREAMING',
+      url: 'https://twitch.tv/pewdiepie'
     },
     credits: {
       developerId: '891214041391988757',
