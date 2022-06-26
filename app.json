@@ -1,0 +1,19 @@
+{
+  "name": "Discord Antinuke Bot",
+  "description": "A Discord tool which protects your servers from nukes.",
+  "repository": "https://github.com/sxlitude/antinuke",
+  "env": {
+    "token": {
+      "description": "Your bot's token. make sure to enable all intents of your bot",
+      "required": true
+    },
+    "REPLIT_DB_URL": {
+      "description": "Put your repl's database url here.",
+      "required": true
+    },
+    "prefix": {
+      "description": "Put your bot prefix. Default is a semicolon.",
+      "required": true
+    }
+  }
+}

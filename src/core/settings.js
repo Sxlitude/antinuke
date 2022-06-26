@@ -1,7 +1,7 @@
 module.exports = {
   bot: {
     info: {
-      prefix: ';',
+      prefix: process.env.prefix || ';',
       token: process.env.token,
       invLink: 'https://dsc.gg/antiwizz',
     },

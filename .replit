@@ -1,4 +1,4 @@
-entrypoint = "index.js"
+entrypoint = "src/index.js"
 
 [interpreter]
 command = [
