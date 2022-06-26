@@ -12,7 +12,7 @@
   "name": "antinuke-bot",
   "description": "Use this tool to protect your discord servers against nukes.",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./src/index.js",
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
