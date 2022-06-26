@@ -2,6 +2,7 @@
   "name": "Discord Antinuke Bot",
   "description": "A Discord tool which protects your servers from nukes.",
   "repository": "https://github.com/sxlitude/antinuke",
+  "logo": "https://cdn.discordapp.com/avatars/931559960779825242/f16a6b25bcc543c09eed864662b7aed6.webp?size=80",
   "env": {
     "token": {
       "description": "Your bot's token. make sure to enable all intents of your bot",
