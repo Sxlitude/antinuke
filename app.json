@@ -14,7 +14,7 @@
     },
     "prefix": {
       "description": "Put your bot prefix. Default is a semicolon.",
-      "required": true
+      "required": false
     }
   }
 }
