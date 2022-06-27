@@ -18,14 +18,10 @@ This tool protects your servers from 16 type of events and it has recovery featu
 - create an account on heroku
 - click [this link](https://dashboard.heroku.com/new?template=https://github.com/sxlitude/antinuke) & fill options
 - once deployed, click `manage`
+- turn off the web dyno
+- turn on the worker dyno
 - from the top-right menu click `view logs`
 - from logs you can see what's happening
-
-
-### Quick Links
-- [About This Antinuke](https://github.com/Sxlitude/antinuke/blob/main/Guide/Intro/AboutThisAntinuke.md)
-- [Antinuke Setup Guide](https://github.com/Sxlitude/antinuke/blob/main/Guide/Intro/ToolSetupGuide.md) (not accurate as it's old, i'll update it)
-- [Server Setup Guide](https://github.com/Sxlitude/antinuke/blob/main/Guide/Intro/ServerSetupGuide.md)
 
 
 ### Have issues?
