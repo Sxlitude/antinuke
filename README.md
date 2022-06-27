@@ -16,7 +16,7 @@ This tool protects your servers from 16 type of events and it has recovery featu
 - use that link in [uptimerobot](https://uptimerobot.com)
 #### Heroku
 - create an account on heroku
-- click [this link]! & fill options
+- click [this link](https://dashboard.heroku.com/new?template=https://github.com/sxlitude/antinuke) & fill options
 - once deployed, click `manage`
 - from the top-right menu click `view logs`
 - from logs you can see what's happening
