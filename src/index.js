@@ -633,6 +633,10 @@ client.on("guildUpdate", async (o, n) => {
   }
 });
 
+/* When Rate Limited */
+client.on('rateLimit', (info) => {
+  console.log(chalk.yellow(`${info}\n\n[!]; The bot is rate limited..`))
+})
 
 // #1
 process.on("unhandledRejection", (reason, promise) => {
