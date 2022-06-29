@@ -15,6 +15,10 @@
     "prefix": {
       "description": "Put your bot prefix. Default is a semicolon.",
       "required": false
+    },
+    "statusText": {
+      "description": "what the streaming status text should be?"
+      "required": false
     }
   }
 }
