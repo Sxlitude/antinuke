@@ -7,6 +7,8 @@ module.exports = {
   name: 'dmlogs',
   aliases: ['dm', 'logging'],
   run: async (client, message, args) => {
+    const antinuke = await db.get(`${message.guild.id}_antinuke`);
+    if (antinuke) {
     let prefix = await db.get(`${message.guild.id}_prefix`);
     if (!prefix) prefix = st.info.prefix;
     
@@ -38,13 +40,16 @@ module.exports = {
       } else if (option === 'disable') {
         if (!isActivatedAlready) {
           message.reply(`:warning: the dmlogs are already disabled.`)
+          } else {
+              await db.delete(`${message.guild.id}_dmlogs`);
+              message.reply(`:thumbsup: disabled the dmlogs for this server.`);
+            }
+          }
         } else {
-          await db.delete(`${message.guild.id}_dmlogs`);
-          message.reply(`:thumbsup: disabled the dmlogs for this server.`);
+          message.reply({ embeds: [guide] });
         }
-      }
-    } else {
-      message.reply({ embeds: [guide] });
+      } else {
+      message.reply('to use this command, you need to enable the antinuke.')
     }
   }
 }
