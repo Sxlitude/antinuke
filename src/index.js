@@ -2,7 +2,7 @@
 const { Client, Collection, MessageEmbed } = require("discord.js");
 const client = new Client({ intents: 32767 });
 const { bot } = require('./core/settings');
-const phin = require('phin');
+const phin = require('phin').unpromisified;
 const db = require('./core/db');
 const chalk = require('chalk');
 module.exports = client;
