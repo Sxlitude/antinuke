@@ -49,11 +49,11 @@ client.on("channelCreate", async (channel) => {
   if (antinuke !== true) return;
   if (trusted === true) return;
 
-  channel.delete();
   channel.guild.members.ban(executor.id, {
     reason: "Anti Channel Create"
-  });
-
+  }); 
+  channel.delete();
+  
   const dmLoggingEnabled = await db.get(`${channel.guild.id}_dmlogs`);
   if (dmLoggingEnabled) {
     const owner = await channel.guild.fetchOwner();
