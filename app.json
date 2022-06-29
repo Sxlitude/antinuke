@@ -17,7 +17,7 @@
       "required": false
     },
     "statusText": {
-      "description": "what the streaming status text should be?"
+      "description": "what the streaming status text should be?",
       "required": false
     }
   }
