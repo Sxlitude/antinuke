@@ -1,3 +1,7 @@
+const prefix = process.env.prefix || ';'
+const status = `${prefix}help`;
+
+/* Exporting Settings */
 module.exports = {
   bot: {
     info: {
@@ -10,7 +14,7 @@ module.exports = {
       privateMode: false,
     },
     presence: {
-      name: `;help or @mention`,
+      name: `${process.env.statusText}` || status,
       type: 'STREAMING',
       url: 'https://twitch.tv/pewdiepie'
     },
