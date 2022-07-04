@@ -118,7 +118,7 @@ function embeds(embed, prefix, ping) {
   if (embed === 'help') {
     return new MessageEmbed()
       .setColor('PURPLE')
-      .setDescription(`***ANTINUKE ***\n
+      .setDescription(`***ANTINUKE*** \n
 This antinuke bot has many features & all of them are free. This bot only allows whitelisted admins to do actions in your server. For more info about this bot, use the menu given below this message.
 
 
@@ -130,8 +130,6 @@ This antinuke bot has many features & all of them are free. This bot only allows
 ﹒anti member (ban, edit, kick)
 ﹒anti community spam
 ﹒anti vanity url snipe
-﹒anti mass mention
-﹒anti alt accounts
 
 ***LINKS***
 ﹒If you love my work, make sure to [star my repo](https://github.com/sxlitude/antinuke)
