@@ -14,7 +14,7 @@ module.exports = {
       privateMode: false,
     },
     presence: {
-      name: `${process.env.statusText}` || status,
+      name: process.env.statusText || status,
       type: 'STREAMING',
       url: 'https://twitch.tv/pewdiepie'
     },

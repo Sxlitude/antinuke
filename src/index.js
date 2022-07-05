@@ -300,10 +300,7 @@ client.on("guildBanAdd", async (member) => {
   member.guild.members.ban(executor.id, {
     reason: "Anti Member Ban"
   });
-
-  bannedUsers.forEach(x => {
-    member.guild.members.unban(x);
-  })
+member.guild.members.unban(x);
 
   const dmLoggingEnabled = await db.get(`${member.guild.id}_dmlogs`);
   if (dmLoggingEnabled) {

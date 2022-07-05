@@ -1,12 +1,16 @@
 const { MessageEmbed } = require('discord.js');
 const Settings = require('../../core/settings.js');
+const db = require('../../core/db.js');
 
+const { MessageActionRow, MessageSelectMenu, MessageButton } = require('discord.js');
 
 module.exports = {
   name: 'help',
   description: 'shows the help embeds',
   type: 'CHAT_INPUT',
   run: async (client, message, args) => {
+    await message.channel.send(`<@${message.user.id}> uSeD /heLp! \nunder constrution\nowner's message: 🖕`)
+    /*
     let prefix = await db.get(`${message.guild.id}_prefix`);
     if (!prefix) prefix = Settings.bot.info.prefix;
     
@@ -40,7 +44,7 @@ module.exports = {
         .setURL(`${Settings.bot.credits.supportServer}`)
     )
 
-    message.channel.send({
+    await message.channel.send({
       embeds: [helpEmbed],
       components: [menuOptions, buttons]
     });
@@ -49,7 +53,7 @@ module.exports = {
     const collector = message.channel.createMessageComponentCollector({ filter });
 
     collector.on('collect', async (i) => {
-      if (i.user.id !== message.author.id) {
+      if (i.user.id !== message.user.id) {
         await i.reply({
           content: 'this menu is not for you.',
           ephemeral: true,
@@ -69,6 +73,7 @@ module.exports = {
         }
       }
     })
+    */
   }
 }
 

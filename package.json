@@ -6,14 +6,12 @@
     "express": "^4.17.2",
     "glob": "^7.2.0",
     "gradient-string": "^2.0.0",
-    "ms": "^2.1.3",
     "phin": "^3.6.1"
   },
   "name": "antinuke-bot",
   "description": "Use this tool to protect your discord servers against nukes.",
   "version": "1.0.0",
   "main": "./src/index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cd src && node index.js"
