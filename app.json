@@ -1,24 +1,17 @@
 {
   "name": "Discord Antinuke Bot",
   "description": "A Discord tool which protects your servers from nukes.",
-  "repository": "https://github.com/sxlitude/antinuke",
+  "repository": "https://github.com/Sxlitude/antinuke/tree/heroku",
   "logo": "https://cdn.discordapp.com/avatars/931559960779825242/f16a6b25bcc543c09eed864662b7aed6.webp?size=80",
   "env": {
-    "token": {
-      "description": "Your bot's token. make sure to enable all intents of your bot",
-      "required": true
+    "mongoDB": {
+      "required": true,
+      "description": "Put your mongoose connection string here"
     },
-    "REPLIT_DB_URL": {
-      "description": "Put your repl's database url here.",
-      "required": true
-    },
-    "prefix": {
-      "description": "Put your bot prefix. Default is a semicolon.",
-      "required": false
-    },
-    "statusText": {
-      "description": "what the streaming status text should be? it's optional",
-      "required": false
+    "settings": {
+      "required": true,
+      "description": "Edit the settings acording to your likings",
+      "value": "{\n\"bot\": {\n    \"info\": {\n      \"prefix\": \";\",\n      \"token\": \"tokenn\",\n      \"invLink\": \"https://dsc.gg/antiwizz\"\n    },\n    \"presence\": {\n      \"name\": \"terror on top\",\n      \"type\": \"STREAMING\",\n      \"url\": \"https://twitch.tv/pewdiepie\"\n    }\n  }\n}"
     }
   }
 }
