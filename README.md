@@ -6,17 +6,10 @@ This tool protects your servers from 16 type of events and it has recovery featu
 
 ### Setup
 #### Replit
-- create an account on replit
-- click on `new repl` button
-- click `import from github` button
-- paste this repo url in the option
-- once the repl is created, edit `src/core/settings.js`
-- put your bot token only in secrets*
-- run the repl and copy the `repl.co` link
-- use that link in [uptimerobot](https://uptimerobot.com)
+- click [this](https://github.com/Sxlitude/antinuke/tree/main) for replit version.
 #### Heroku
 - create an account on heroku
-- click [this link](https://dashboard.heroku.com/new?template=https://github.com/sxlitude/antinuke) & fill options
+- click [this link](https://dashboard.heroku.com/new?template=https://github.com/Sxlitude/antinuke/tree/heroku) & fill options
 - once deployed, click `manage`
 - from the top-right menu click `view logs`
 - from logs you can see what's happening
