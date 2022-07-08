@@ -3,35 +3,36 @@ const { MessageEmbed } = require("discord.js"),
 
 module.exports = {
   name: 'untrust',
-  aliases: ['unwhitelist', 'uwl'],
+  aliases: ['uwl', 'unwhitelist'],
   run: async (client, message, args) => {
     if (message.author.id !== message.guild.ownerId) {
-      message.channel.send({ content: `*This command is only for the server owner` });
+      message.reply({ content: ':warning: you are not allowed to run this command.' });
     } else {
-      const enabled = await db.get(`${message.guild.id}_antinuke`);
-      if (enabled === true) {
-        const user = message.mentions.users.first();
-        if (!user) {
-          const guide = new MessageEmbed()
-            .setColor("PURPLE")
-            .setDescription("***Untrust Command***\n*You can untrust your admins by this command. If you do so, they can get banned for doing actions in your server.*\n\n﹒*Usage* :: untrust @user\n﹒*Requires Server Ownership*");
-
-          message.reply({ embeds: [guide] })
-
-        } else {
-          const ID = user.id;
-          const whitelisted = await db.get(`${message.guild.id}_wl_${user.id}`);
-
-          if (!whitelisted) {
-            message.reply({ content: `That user is not whitelisted` });
-          } else {
-            await db.delete(`${message.guild.id}_wl_${ID}`)
-            await message.reply({ content: `**${user.username}** is now unwhitelisted` })
-          }
-        }
+      const antinuke = await db.get(`${message.guild.id}_antinuke`);
+      if (!antinuke) {
+        message.reply({ content: ':warning: you need to enable antinuke to run this command.' });
       } else {
-        message.reply({ content: `To run this command, enable antinuke first.` });
+        await db.get(`${message.guild.id}_wl`).then(async (data) => {
+          if (!data) {
+            await db.set(`${message.guild.id}_wl`, { whitelisted: [] });
+            message.reply({ content: ':warning: an error has occured to run this command. please run it again or re-add the bot.' });
+          } else {
+            const user = message.mentions.users.first();
+            if (!user) {
+              message.reply({ content: ':warning: mention someone first.' });
+            } else {
+              const userId = user.id;
+              
+              if (!data.whitelisted.includes(userId)) {
+                message.reply({ content: 'that user is not whitelisted.' });
+              } else {
+                await db.pull(`${message.guild.id}_wl.whitelisted`, userId);
+                message.reply({ content: ':thumbsup: that user is now unwhitelisted.' });
+              }
+            }
+          }
+        })
       }
     }
-  },
+  }
 }

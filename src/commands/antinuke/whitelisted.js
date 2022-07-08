@@ -7,41 +7,31 @@ module.exports = {
   aliases: ['l', 'trusted', 'whitelisted'],
   run: async (client, message, args) => {
     if (message.author.id !== message.guild.ownerId) {
-      message.reply({ content: `:warning: this command is only for the server owner.` });
+      message.reply({ content: ':warning: you are not allowed to run this command.' });
     } else {
-      var enabled = await db.get(`${message.guild.id}_antinuke`);
-      if (enabled === true) {
-        const users = [];
-        const Guild = message.guild.id;
-        // Get all trusted users from a guild
-        await db.list(`${message.guild.id}_wl_`).then(async array => {
-          if (array.length > 0) {
-            for (x in array) {
-              const mentions = array[x],
-                userId = mentions.split('_')[2],
-                user = `<@${userId}> (${userId})`;
-              users.push(user);
-            }
-
-            const trustedUsers = new MessageEmbed()
-              .setDescription(`**__Whitelisted admins for this server__**\n\n${users.join('\n')}`)
-              .setColor("PURPLE")
-
-            const btn = new MessageActionRow().addComponents(
-              new MessageButton()
-                .setLabel("Clear List")
-                .setStyle("DANGER")
-                .setCustomId('clear')
-            )
-            message.channel.send({
-              embeds: [trustedUsers],
-            });
+      const antinuke = await db.get(`${message.guild.id}_antinuke`);
+      if (!antinuke) {
+        message.reply({ content: ':warning: you need to enable antinuke to run this command.' });
+      } else {
+        await db.get(`${message.guild.id}_wl`).then(async (data) => {
+          if (!data) {
+            await db.set(`${message.guild.id}_wl`, { whitelisted: [] });
+            message.reply(':warning: there are no whitelisted users.')
           } else {
-            message.reply({ content: 'there are no whitelisted users in this server.' })
+            const users = data.whitelisted;
+            const mentions = [];
+            
+            if (users.length !== 0) {
+              users.forEach(userId => mentions.push(`<@${userId}> (${userId})`));
+              const whitelisted = new MessageEmbed()
+                .setColor('PURPLE')
+                .setDescription(`__**Whitelisted Users in ${message.guild.name}**__\n\n${mentions.join('\n')}`);
+              message.channel.send({ embeds: [whitelisted] });
+            } else {
+              message.reply(':grey_question: there are no whitelisted users in this server.')
+            }
           }
         });
-      } else {
-        message.reply({ content: `:grey_question: you need to enable antinuke to run this command.` });
       }
     }
   },

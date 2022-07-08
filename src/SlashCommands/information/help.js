@@ -99,7 +99,7 @@ This antinuke bot has many features & all of them are free. This bot only allows
   } else if (embed === 'x') {
     return new MessageEmbed()
       .setColor("PURPLE")
-      .setDescription("**__MODERATION__**\n\n*This plugin always stays enabled. If you have required permissions, then you can run moderation commands which are listed below.*\n\n***COMMANDS***\n﹒*ban*\n﹒*kick*\n﹒*nickname*\n﹒*timeout*\n﹒*snipe*\n﹒*editsnipe*\n﹒*unban*\n﹒*nuke*\n\n***USAGES***\n﹒*ban @user*\n﹒*kick @user*\n﹒*nick @user*\n﹒*timeout @user*\n﹒*unban @user*\n﹒*nuke*\n*﹒*snipe*\n﹒*editsnipe*")
+      .setDescription("**__MODERATION__**\n\nHere are some basi moderation commands you can use if you have required permissions.\n\n***COMMANDS***\n﹒*ban*\n﹒*kick*\n﹒*nickname*\n﹒*timeout*\n﹒*unban*\n﹒*nuke*\n\n***USAGES***\n﹒*ban @user*\n﹒*kick @user*\n﹒*nick @user*\n﹒*timeout @user*\n﹒*unban @user*\n﹒*nuke*")
   } else if (embed === 'y') {
     return new MessageEmbed()
     .setColor('PURPLE')
@@ -128,6 +128,6 @@ _**Whitelisting Guide**_
 ﹒cannot whitelist other admins
 
 
-*want help or wanna ask some questions about the bot? or if you want to suggest something, feel free to join the [support server](${Settings.bot.credits.supportServer})*`);
+*want help or wanna ask some questions about the bot? or if you want to suggest something, feel free to join the [support server](https://discord.gg/KMw8stwEuN)*`);
   }
 };

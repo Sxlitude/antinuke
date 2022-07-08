@@ -7,8 +7,7 @@ module.exports = {
   name: 'antinuke',
   aliases: ['antiwizz', 'an'],
   run: async (client, message, args) => {
-    let prefix = await db.get(`${message.guild.id}_prefix`);
-    if (!prefix) prefix = st.info.prefix;
+    const prefix = st.info.prefix;
     
     const guide = new MessageEmbed()
       .setColor('PURPLE')
@@ -36,7 +35,7 @@ This page shows the commands related to turning antinuke module on or off. The s
         if (!isActivatedAlready) {
           message.reply(`:warning: the antinuke is already disabled.`)
         } else {
-          await db.delete(`${message.guild.id}_antinuke`);
+          await db.set(`${message.guild.id}_antinuke`, null);
           message.reply(`:thumbsup: disabled the antinuke for this server.`);
         }
       }

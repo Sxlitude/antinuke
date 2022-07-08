@@ -27,11 +27,6 @@ module.exports = {
             description: 'The whitelisting guide'
           },
           {
-            label: 'Antinuke DM Notifications',
-            value: 'dmNotifs',
-            description: 'Guide to set a DM Logger'
-          },
-          {
             label: 'Moderation Commands',
             value: 'modCmds',
             description: 'Some basic moderation commands'
@@ -52,7 +47,7 @@ module.exports = {
       new MessageButton()
         .setLabel('Support Server')
         .setStyle('LINK')
-        .setURL(`${Settings.bot.credits.supportServer}`)
+        .setURL(`https://discord.gg/KMw8stwEuN`)
     )
 
     message.channel.send({
@@ -81,11 +76,6 @@ module.exports = {
         } else if (value === 'wlCmds') {
           await i.editReply({
             embeds: [embeds('whitelist', prefix)]
-          })
-          
-        } else if (value === 'dmNotifs') {
-          await i.editReply({
-            embeds: [embeds('logger', prefix)]
           })
           
         } else if (value === 'modCmds') {
@@ -133,7 +123,7 @@ This antinuke bot has many features & all of them are free. This bot only allows
 
 ***LINKS***
 ﹒If you love my work, make sure to [star my repo](https://github.com/sxlitude/antinuke)
-﹒Join the [support server](${Settings.bot.credits.supportServer}) if you need help`);
+﹒Join the [support server](https://discord.gg/KMw8stwEuN) if you need help`);
     
   } else if (embed === 'x') {
     return new MessageEmbed()

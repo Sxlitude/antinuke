@@ -4,15 +4,10 @@ const client = require('../../index'),
 
 /* On guild join */
 client.on('guildCreate', async (guild) => {
-  const isAllowed = st.bot.options.privateMode;
-  if (isAllowed !== false) guild.leave();
+  await db.set(`${guild.id}_wl`, { whitelisted: [] });
 });
 
 /* On guild leave */
 client.on('guildDelete', async (guild) => {
-  db.list(`${guild.id}`).then((keys) => {
-    keys.forEach(async (key) => {
-      await db.delete(`${key}`)
-    })
-  });
+  await db.set(`${guild.id}_wl`, null);
 });

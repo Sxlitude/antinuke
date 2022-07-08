@@ -3,9 +3,7 @@ const client = require('../../index'),
   db = require('../../core/db');
 
 client.on('messageCreate', async (message) => {
-  let prefix = await db.get(`${message.guild.id}_prefix`);
-  if (!prefix) prefix = st.info.prefix;
-
+  const prefix = st.info.prefix;
   if (message.author.bot || !message.guild || !message.content.toLowerCase().startsWith(prefix)) return;
 
   const [cmd, ...args] = message.content

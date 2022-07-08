@@ -13,7 +13,7 @@ module.exports = {
       new MessageButton()
         .setLabel("Invite Me")
         .setStyle("LINK")
-        .setURL(`${Settings.bot.invLink}`)
+        .setURL(`${Settings.bot.info.invLink}`)
     )
     
     // Sending

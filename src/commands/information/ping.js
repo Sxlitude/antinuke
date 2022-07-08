@@ -6,8 +6,8 @@ module.exports = {
   run: async (client, message, args) => {;
     const ping = new MessageEmbed()
       .setColor("PURPLE")
-      .setDescription(`***PING***\n﹒*latency* :: ${client.ws.ping}ms`)
+      .setDescription(`***PING***\n﹒latency :: ${client.ws.ping}ms`)
     // Sending
-    message.channel.send({ embeds: [ping]});
+    message.channel.send({ embeds: [ping] });
   },
 };
