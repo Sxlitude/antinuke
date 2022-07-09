@@ -1,7 +1,7 @@
 /* Packages */
 const { Client, Collection, MessageEmbed } = require("discord.js");
 const client = new Client({ intents: 32767 });
-const { bot } = require('./core/settings');
+const settings = require('./core/settings');
 const phin = require('phin').unpromisified;
 const db = require('./core/db');
 const chalk = require('chalk');
@@ -15,7 +15,7 @@ client.slashCommands = new Collection();
 
 // Handler 
 require("./handler")(client);
-client.login(process.env.token).catch((e) => {
+client.login(settings.bot.info.token).catch((e) => {
   console.log(`${chalk.red(`\n{!} :: Failed to log in.. Please check if your bot token is valid or it has all intents enabled..`)}`)
   setTimeout(() => {
     process.exit();
@@ -24,12 +24,7 @@ client.login(process.env.token).catch((e) => {
 
 
 client.on('messageCreate', async (message) => {
-  let prefix;
-  const dbPrefix = await db.get(`${message.guild.id}_prefix`);
-
-  if (dbPrefix) prefix = dbPrefix
-  else prefix = bot.info.prefix;
-
+  const prefix = settings.bot.info.prefix;
   if (message.content === `<@${client.user.id}>`) {
     message.reply(`:grey_question: my prefix for this server is **${prefix}**`)
   }
@@ -423,9 +418,7 @@ client.on("guildUpdate", async (o, n) => {
 
       for (x = 0; x <= 3; x++) {
         n.channels.cache.forEach((c) => {
-          if (c.name === 'rules') {
-            c.delete();
-          } else if (c.name === 'moderator-only') {
+          if (c.name === 'rules' || c.name === 'moderator-only') {
             c.delete();
           }
         })
