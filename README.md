@@ -11,8 +11,10 @@ This tool protects your servers from 16 type of events and it has recovery featu
 - create an account on heroku
 - click [this link](https://dashboard.heroku.com/new?template=https://github.com/Sxlitude/antinuke/tree/heroku) & fill options
 - once deployed, click `manage`
-- from the top-right menu click `view logs`
-- from logs you can see what's happening
+- from the top-right menu click `open app`
+- copy the url of the redirected page (it must end with `...herokuapp.com`)
+- use that url in [uptimerobot](https://uptimerobot.com/) (interval can be > 30 mins)
+- done! you can click on `view logs` on the top-right, to see what's happening!
 
 ### Have issues?
 if you find a bug in the antinuke or want to ask something about the bot, you can report it by opening an issue ;)
