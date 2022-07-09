@@ -1,12 +1,11 @@
 {
   "dependencies": {
-    "@replit/database": "^2.0.2",
     "chalk": "^4.0.0",
     "discord.js": "^13.6.0",
     "express": "^4.17.2",
     "glob": "^7.2.0",
-    "gradient-string": "^2.0.0",
-    "phin": "^3.6.1"
+    "phin": "^3.6.1",
+    "quickmongo": "^5.1.2"
   },
   "name": "antinuke-bot",
   "description": "Use this tool to protect your discord servers against nukes.",
