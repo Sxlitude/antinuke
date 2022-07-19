@@ -35,6 +35,7 @@ This page shows the commands related to turning antinuke module on or off. The s
             if (!data) {
               await db.set(`${message.guild.id}_wl`, { whitelisted: [] });
             }
+          })
          }
       } else if (option === 'disable') {
         if (!isActivatedAlready) {
