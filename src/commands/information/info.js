@@ -21,8 +21,8 @@ module.exports = {
 ﹒Owner :: Sxlitude
 ﹒Library :: discord.js
 ﹒Latency :: ${client.ws.ping}ms
-﹒Guilds :: ${client.guilds.cache.size.toLocaleString()}
-﹒Users :: ${userCount.toLocaleString()}`)]
+﹒Guilds :: ${client.guilds.cache.size.}
+﹒Users :: ${userCount}`)]
     })
   }
 }
