@@ -1,7 +1,6 @@
-// Button Pagination and Discord.js
+// Constants
 const { Message, Client, MessageActionRow, MessageButton } = require("discord.js");
 const client = require("../../index");
-
 const Settings = require("../../core/settings");
 
 // Command
@@ -18,7 +17,7 @@ module.exports = {
     
     // Sending
     message.reply({
-      content: "Click the button below.", 
+      content: "Click the button below:", 
       components: [button] });
   },
 };
