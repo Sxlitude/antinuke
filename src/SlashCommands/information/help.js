@@ -9,7 +9,7 @@ module.exports = {
   description: 'shows the help embeds',
   type: 'CHAT_INPUT',
   run: async (client, message, args) => {
-    await message.channel.send(`<@${message.user.id}> uSeD /heLp! \nunder constrution\nowner's message: 🖕`)
+    await message.channel.send(`<@${message.user.id}> uSeD /heLp! \nunder constrution`)
     /*
     let prefix = await db.get(`${message.guild.id}_prefix`);
     if (!prefix) prefix = Settings.bot.info.prefix;

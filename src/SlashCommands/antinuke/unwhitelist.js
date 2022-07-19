@@ -16,22 +16,28 @@ module.exports = {
   run: async (client, interaction, args) => {
     if (interaction.user.id === interaction.guild.ownerId) {
       const [userId] = args;
-      const isWhitelisted = await db.get(`${interaction.guild.id}_wl_${userId}`);
-      if (isWhitelisted) {
-        await db.delete(`${interaction.guild.id}_wl_${userId}`);
-        await interaction.followUp({
-          content: `unwhitelisted that user successfully.`,
-          ephemeral: true
-        })
+      const antinuke = await db.get(`${interaction.guild.id}_antinuke`);
+
+      if (!antinuke) {
+        interaction.reply({ content: ':warning: you need to enable antinuke to run this command.', ephemeral: true });
       } else {
-        await interaction.followUp({
-          content: `that user is not whitelisted.`,
-          ephemeral: true
+        await db.get(`${interaction.guild.id}_wl`).then(async (data) => {
+          if (!data) {
+            await db.set(`${interaction.guild.id}_wl`, { whitelisted: [] });
+            await interaction.reply({ content: ':warning: an error has occured to run this command. please run it again or re-add the bot.' });
+          } else {
+            if (!data.whitelisted.includes(userId)) {
+              await interaction.reply({ content: 'that user is not whitelisted.' });
+            } else {
+              await db.pull(`${interaction.guild.id}_wl.whitelisted`, userId);
+              await interaction.reply({ content: ':thumbsup: that user is now unwhitelisted.' });
+            }
+          }
         })
       }
     } else {
       await interaction.reply({
-        content: 'This command is for the server owner.'
+        content: 'This command is for the server owner'
       })
     }
   },

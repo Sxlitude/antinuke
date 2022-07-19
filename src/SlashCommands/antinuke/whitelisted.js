@@ -7,29 +7,30 @@ module.exports = {
   type: 'CHAT_INPUT',
   run: async (client, interaction, args) => {
     if (interaction.user.id === interaction.guild.ownerId) {
-      await db.list(`${interaction.guild.id}_wl`).then(async (keys) => {
-        if (!keys.length) {
-          await interaction.followUp({
-            content: 'there are no trusted users for this server',
-            ephemeral: true,
-          })
-        } else {
-          const users = [];
-          for (x in keys) {
-            const mentions = keys[x],
-              userId = mentions.split('_')[2],
-              user = `<@${userId}> (${userId})`;
-            users.push(user);
+      const antinuke = await db.get(`${interaction.guild.id}_antinuke`);
+      if (!antinuke) {
+        await interaction.reply({ content: ':warning: you need to enable antinuke to run this command.' });
+      } else {
+        await db.get(`${interaction.guild.id}_wl`).then(async (data) => {
+          if (!data) {
+            await db.set(`${interaction.guild.id}_wl`, { whitelisted: [] });
+            await interaction.reply(':warning: there are no whitelisted users.')
+          } else {
+            const users = data.whitelisted;
+            const mentions = [];
+            
+            if (users.length !== 0) {
+              users.forEach(userId => mentions.push(`<@${userId}> (${userId})`));
+              const whitelisted = new MessageEmbed()
+                .setColor('PURPLE')
+                .setDescription(`__**Whitelisted Users in ${interaction.guild.name}**__\n\n${mentions.join('\n')}`);
+              await interaction.reply({ embeds: [whitelisted], ephemeral: true });
+            } else {
+              await interaction.reply(':grey_question: there are no whitelisted users in this server.')
+            }
           }
-          const list = new MessageEmbed()
-            .setColor('PURPLE')
-            .setDescription(`**__Whitelisted admins for this server__**\n\n${users.join('\n')}`);
-          await interaction.reply({
-            embeds: [list],
-            ephemeral: true
-          })
-        }
-      })
+        });
+      }
     } else {
       await interaction.reply({
         content: 'This command is for the server owner.'

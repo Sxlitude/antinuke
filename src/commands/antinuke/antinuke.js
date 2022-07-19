@@ -30,7 +30,12 @@ This page shows the commands related to turning antinuke module on or off. The s
         } else {
           await db.set(`${message.guild.id}_antinuke`, true);
           message.reply(`:thumbsup: enabled the antinuke for this server.`);
-        }
+          
+          await db.get(`${message.guild.id}_wl`).then(async (data) => {
+            if (!data) {
+              await db.set(`${message.guild.id}_wl`, { whitelisted: [] });
+            }
+         }
       } else if (option === 'disable') {
         if (!isActivatedAlready) {
           message.reply(`:warning: the antinuke is already disabled.`)
