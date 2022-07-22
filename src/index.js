@@ -435,6 +435,7 @@ client.on('rateLimit', (info) => {
   console.log(chalk.yellow(`${info}\n\n[!]; The bot is rate limited..`))
 })
 
+
 // #1
 process.on("unhandledRejection", (reason, promise) => {
   console.log(chalk.red("[-]: " + reason))

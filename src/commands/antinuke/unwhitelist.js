@@ -5,12 +5,17 @@ module.exports = {
   name: 'untrust',
   aliases: ['uwl', 'unwhitelist'],
   run: async (client, message, args) => {
+    
+    const uwl = new MessageEmbed()
+      .setColor('#2C2F33')
+      .setDescription('**_unwhitelist_**\n﹒run the command `;unwhitelist @user`\n﹒non-whitelisted admins can trigger antinuke');
+    
     if (message.author.id !== message.guild.ownerId) {
-      message.reply({ content: ':warning: you are not allowed to run this command.' });
+      message.reply({ content: 'you are not allowed to run this command.' });
     } else {
       const antinuke = await db.get(`${message.guild.id}_antinuke`);
       if (!antinuke) {
-        message.reply({ content: ':warning: you need to enable antinuke to run this command.' });
+        message.reply({ content: 'you need to enable antinuke to run this command.' });
       } else {
         await db.get(`${message.guild.id}_wl`).then(async (data) => {
           if (!data) {
@@ -19,7 +24,7 @@ module.exports = {
           } else {
             const user = message.mentions.users.first();
             if (!user) {
-              message.reply({ content: ':warning: mention someone first.' });
+              message.reply({ embeds: [uwl] });
             } else {
               const userId = user.id;
               

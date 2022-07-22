@@ -5,8 +5,12 @@ module.exports = {
   name: 'trust',
   aliases: ['wl', 'whitelist'],
   run: async (client, message, args) => {
+    const wl = new MessageEmbed()
+      .setColor('#2C2F33')
+      .setDescription('**_whitelist_**\n﹒run the command `;whitelist @user`\n﹒whitelisted admins __can__ bypass antinuke')
+    
     if (message.author.id !== message.guild.ownerId) {
-      message.reply({ content: ':warning: you are not allowed to run this command.' });
+      message.reply({ content: 'this command is for the server owner.' });
     } else {
       const antinuke = await db.get(`${message.guild.id}_antinuke`);
       if (!antinuke) {
@@ -19,7 +23,7 @@ module.exports = {
           } else {
             const user = message.mentions.users.first();
             if (!user) {
-              message.reply({ content: ':warning: mention someone first.' });
+              message.reply({ embeds: [wl] });
             } else {
               const userId = user.id;
               
@@ -27,7 +31,7 @@ module.exports = {
                 message.reply({ content: 'that user is already whitelisted.' });
               } else {
                 await db.push(`${message.guild.id}_wl.whitelisted`, userId);
-                message.reply({ content: ':thumbsup: that user is now whitelisted.' });
+                message.reply({ content: 'that user is now whitelisted.' });
               }
             }
           }

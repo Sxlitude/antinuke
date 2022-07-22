@@ -24,7 +24,7 @@ module.exports = {
             if (users.length !== 0) {
               users.forEach(userId => mentions.push(`<@${userId}> (${userId})`));
               const whitelisted = new MessageEmbed()
-                .setColor('PURPLE')
+                .setColor('#2C2F33')
                 .setDescription(`__**Whitelisted Users in ${message.guild.name}**__\n\n${mentions.join('\n')}`);
               message.channel.send({ embeds: [whitelisted] });
             } else {

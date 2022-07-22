@@ -1,59 +1,74 @@
 const { MessageEmbed, MessageActionRow, MessageSelectMenu, MessageButton } = require('discord.js');
-const Settings = require('../../core/settings.js');
-const client = require('../../index');
-const db = require('../../core/db');
 
 module.exports = {
   name: 'help',
   aliases: ['h'],
   run: async (client, message, args) => {
-    let prefix = await db.get(`${message.guild.id}_prefix`);
-    if (!prefix) prefix = Settings.bot.info.prefix;
-    
-    const helpEmbed = embeds('help');
+    const help = new MessageEmbed()
+      .setThumbnail(`${client.user.avatarURL({ dynamic: true })}`)
+      .setColor('#2C2F33')
+      .setDescription('__**terror**__\n﹒a powerful antinuke bot\n﹒includes admin whitelisting\n﹒has recovery feature\n\n__**features**__\n﹒anti channels, roles, webhooks\n﹒anti member update, kick, ban\n﹒anti community feature spam\n﹒anti guild vanity url snipe\n\n**;** *use the menu below to know how the bot works*');
+
     const menuOptions = new MessageActionRow().addComponents(
       new MessageSelectMenu()
         .setCustomId('helpOption')
-        .setPlaceholder('Choose something...')
+        .setPlaceholder('click me')
         .addOptions([
           {
-            label: 'Antinuke Toggle Commands',
-            value: 'toggleCmds',
-            description: 'Commands to enable/disable antinuke'
+            label: 'antinuke commands',
+            value: 'cmds',
+            description: 'the toggling guide'
           },
           {
-            label: 'Antinuke Whitelist Commands',
-            value: 'wlCmds',
-            description: 'The whitelisting guide'
+            label: 'whitelist commands',
+            value: 'wl',
+            description: 'the whitelisting guide'
           },
           {
-            label: 'Moderation Commands',
-            value: 'modCmds',
-            description: 'Some basic moderation commands'
-          },
-          {
-            label: 'Antinuke Credits',
+            label: 'bot information',
             value: 'credits',
-            description: 'who created this bot?'
+            description: 'who made this bot?'
           },
         ])
     )
 
-    const buttons = new MessageActionRow().addComponents(
-      new MessageButton()
-        .setLabel('Invite Me')
-        .setStyle('LINK')
-        .setURL('https://dsc.gg/antiwizz'),
-      new MessageButton()
-        .setLabel('Support Server')
-        .setStyle('LINK')
-        .setURL(`https://discord.gg/KMw8stwEuN`)
+    const disabled = new MessageActionRow().addComponents(
+      new MessageSelectMenu()
+        .setCustomId('uh')
+        .setPlaceholder('click me')
+        .setDisabled(true)
+        .addOptions([
+          {
+            label: 'test',
+            value: 'x',
+            description: '?'
+          }
+          ])
     )
 
-    message.channel.send({
-      embeds: [helpEmbed],
-      components: [menuOptions, buttons]
-    });
+    message.channel.send({ embeds: [help], components: [menuOptions] }).then((msg) => {
+      setTimeout(() => {
+        msg.edit({ components: [disabled] });
+      }, 5000)
+    })
+
+    const cmds = new MessageEmbed()
+      .setThumbnail(`${client.user.avatarURL({ dynamic: true })}`)
+      .setColor('#2C2F33')
+      .setDescription('**__antinuke__**\n﹒it bans admins for doing actions in the server\n﹒it ignores whatever whitelisted admins do\n﹒antinuke should be enabled to trigger the bot\n\n>>> **enable**\n﹒run this command `;antinuke enable`\n﹒admins can get banned unless they\'re whitelisted\n\n**disable**\n﹒run this command `;antinuke disable`\n﹒admins can do anything without getting banned')
+
+    const wl = new MessageEmbed()
+      .setThumbnail(`${client.user.avatarURL({ dynamic: true })}`)
+      .setColor('#2C2F33')
+      .setDescription('__**whitelisting**__\n﹒the bot doesn\'t trigger on whitelisted admins\n﹒whitelisted admins can do anything in the server\n﹒whitelisted admins __cannot__ whitelist others\n\n> **_whitelist_**\n> ﹒run the command `;whitelist @user`\n> ﹒whitelisted admins __can__ bypass antinuke\n> \n> **_unwhitelist_**\n> ﹒run the command `;unwhitelist @user`\n> ﹒non-whitelisted admins can trigger antinuke\n> \n> **_whitelisted_**\n> ﹒run the command `;whitelisted`\n> ﹒it shows the list of whitelisted users')
+
+    const everyGuild = client.guilds.cache.map((guild) => guild.memberCount);
+    const users = everyGuild.reduce((x, y) => x + y);
+    
+    const credits = new MessageEmbed()
+      .setThumbnail(`${client.user.avatarURL({ dynamic: true })}`)
+      .setColor('#2C2F33')
+      .setDescription(`**__credits__**\n﹒shows some bot information\n﹒also tells about the developer\n\n>>> **bot info**\n﹒developer: Sxlitude#8885\n﹒language: node.js\n﹒library: discord.js\n﹒host: heroku\n\n**bot stats**\n﹒users: ${users}\n﹒servers: ${client.guilds.cache.size}\n﹒ping: ${client.ws.ping}ms`)
 
     const filter = (i) => i.isSelectMenu();
     const collector = message.channel.createMessageComponentCollector({ filter, limit: 10 });
@@ -61,117 +76,21 @@ module.exports = {
     collector.on('collect', async (i) => {
       if (i.user.id !== message.author.id) {
         await i.reply({
-          content: 'this menu is not for you.',
+          content: 'this menu is not for you',
           ephemeral: true,
         })
       } else {
         await i.deferUpdate();
         const value = i.values[0];
 
-        if (value === 'toggleCmds') {
-          await i.editReply({
-            embeds: [embeds('toggle', prefix)],
-          })
-          
-        } else if (value === 'wlCmds') {
-          await i.editReply({
-            embeds: [embeds('whitelist', prefix)]
-          })
-          
-        } else if (value === 'modCmds') {
-          await i.editReply({
-            embeds: [embeds('x')],
-          })
+        if (value === 'cmds') {
+          await i.editReply({ embeds: [cmds] });
+        } else if (value === 'wl') {
+            await i.editReply({ embeds: [wl] });
         } else if (value === 'credits') {
-          await i.editReply({
-            embeds: [new MessageEmbed()
-      .setColor('PURPLE')
-      .setDescription(`This discord bot is an open-source project. You an star my GitHub repo if you love my work. 
-
-**CREDITS**
-﹒This bot is coded by Sxlitude#8885
-﹒[Click Here](https://discord.gg/KMw8stwEuN) for official server of this bot.
-﹒To invite this bot, [click me](https://dsc.gg/antiwizz)!
-
-**BOT INFO**
-﹒Owner :: Sxlitude
-﹒Library :: discord.js
-﹒Latency :: ${client.ws.ping}ms`)]
-          })
+            await i.editReply({ embeds: [credits] });
         }
       }
     })
   }
 }
-
-function embeds(embed, prefix, ping) {
-  if (embed === 'help') {
-    return new MessageEmbed()
-      .setColor('PURPLE')
-      .setDescription(`***ANTINUKE*** \n
-This antinuke bot has many features & all of them are free. This bot only allows whitelisted admins to do actions in your server. For more info about this bot, use the menu given below this message.
-
-
-***PROTECTION FEATURES***
-﹒anti webhook (create, edit, delete)
-﹒anti channel (create, edit, delete)
-﹒anti emoji (create, edit, delete)
-﹒anti role (create, edit, delete)
-﹒anti member (ban, edit, kick)
-﹒anti community spam
-﹒anti vanity url snipe
-
-***LINKS***
-﹒If you love my work, make sure to [star my repo](https://github.com/sxlitude/antinuke)
-﹒Join the [support server](https://discord.gg/KMw8stwEuN) if you need help`);
-    
-  } else if (embed === 'x') {
-    return new MessageEmbed()
-      .setColor("PURPLE")
-      .setDescription("**__MODERATION__**\n\nHere are some simple moderation-related commands. If you have required permissions, you can use them.\n\n***COMMANDS***\n﹒*ban*\n﹒*kick*\n﹒*nickname*\n﹒*timeout*\n﹒*unban*\n﹒*nuke*\n\n***USAGES***\n﹒*ban @user*\n﹒*kick @user*\n﹒*nick @user*\n﹒*timeout @user*\n﹒*unban @user*\n﹒*nuke*")
-  } else if (embed === 'toggle') {
-    return new MessageEmbed()
-    .setColor('PURPLE')
-    .setDescription(`_**Antinuke Toggling**_\n
-If you enable antinuke, or already did it, make sure to whitelist your server admins & bots so they won't get banned for doing actions.
-
-**Commands:**
-﹒To enable antinuke: *${prefix}antinuke enable*
-﹒To disable antinuke: *${prefix}antinuke disable*
-
-**If enabled, the bot will:**
-﹒ban executor of unauthorized actions
-﹒ignore whitelisted admins' actions
-﹒recover unauthorized actions`);
-
-  } else if (embed === 'whitelist') {
-    return new MessageEmbed()
-      .setColor('PURPLE')
-      .setDescription(`_**Whitelisting Guide**_\n
-The whitelist commands can only be used if the antinuke is enabled in the server. All the antinuke commands can be ran by the server owner.
-
-**Commands:**
-﹒To whitelist a user: *${prefix}whitelist @user*
-﹒To unwhitelist a user: *${prefix}unwhitelist @user*
-﹒To see all whitelisted users: *${prefix}whitelisted*
-
-**Whitelisted Admins:**
-﹒will be ignored by the antinuke
-﹒cannot whitelist other admins`);
-
-    
-  } else if (embed === 'logger') {
-    return new MessageEmbed()
-      .setColor('PURPLE')
-      .setDescription(`_**DM Logging**_\n
-The logs are sent privately to the server owner. The bot fires logs when it bans someone who was not whitelisted & did an action in your server.
-
-**Commands**
-﹒To enable DM Logging: *${prefix}dmlogs enable*
-﹒To disable DM Logging: *${prefix}dmlogs disable*
-
-**If Logging is Enabled:**
-﹒info of unauthorized actions will be sent in dms.
-﹒this info will be sent to the server owner only.`);
-  }
-};
