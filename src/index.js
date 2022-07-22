@@ -354,15 +354,15 @@ client.on("webhookUpdate", async (webhook) => {
 
 /* Anti Guild Update */
 client.on("guildUpdate", async (o, n) => {
-  const auditLogs = await n.fetchAuditLogs({ limit: 3, type: "GUILD_UPDATE" });
+  const auditLogs = await o.fetchAuditLogs({ limit: 1, type: 'GUILD_UPDATE' });
   const logs = auditLogs.entries.first();
   const { executor, target } = logs;
 
-  await db.get(`${n.guild.id}_wl`).then(async (data) => {
+  await db.get(`${n.id}_wl`).then(async (data) => {
     const antinuke = await db.get(`${n.id}_antinuke`);
     const trusted = data.whitelisted.includes(executor.id);
 
-    if (executor.id === o.ownerId) return;
+    if (executor.id === n.ownerId) return;
     if (executor.id === client.user.id) return;
     if (antinuke !== true) return;
     if (trusted === true) return;
@@ -381,7 +381,7 @@ client.on("guildUpdate", async (o, n) => {
       await n.setIcon(oldIcon);
     }
 
-    // Anti Vanity URL Snipe Suggested By ShadowTW
+    /* Anti Vanity URL Snipe Suggested By ShadowTW */
     if (o.features.includes('VANITY_URL') && n.features.includes('VANITY_URL')) {
       const oldVanityCode = o.vanityURLCode;
       const newVanityCode = n.vanityURLCode;
@@ -412,20 +412,20 @@ client.on("guildUpdate", async (o, n) => {
     }
 
     if (!o.features.includes('COMMUNITY') && n.features.includes('COMMUNITY')) {
+      const oldFeatures = n.features.filter(f => f !== 'COMMUNITY')
       n.edit({
-        features: o.features
+        features: oldFeatures
       });
 
-      for (x = 0; x <= 3; x++) {
-        n.channels.cache.forEach((c) => {
-          if (c.name === 'rules' || c.name === 'moderator-only') {
-            c.delete();
-          }
-        })
-      }
+      const toDelete = ['rules', 'moderator-only'];
+      const x = n.channels.cache.forEach(c => {
+        if (toDelete.includes(c.name)) {
+          c.delete();
+        }
+      });
     }
     n.members.ban(executor.id, {
-      reason: "Anti Guild Update"
+      reason: 'Anti Guild Update'
     });
   });
 });
