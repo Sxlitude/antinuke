@@ -1,13 +1,1 @@
-const client = require('../../index'),
-  st = require('../../core/settings'),
-  db = require('../../core/db.js');
-
-/* On guild join */
-client.on('guildCreate', async (guild) => {
-  await db.set(`${guild.id}_wl`, { whitelisted: [] });
-});
-
-/* On guild leave */
-client.on('guildDelete', async (guild) => {
-  await db.set(`${guild.id}_wl`, null);
-});
+const _0x1ed92d=_0x9aae;(function(_0x2dce20,_0x1717dc){const _0x2aecef=_0x9aae,_0x504189=_0x2dce20();while(!![]){try{const _0x9b76d5=-parseInt(_0x2aecef(0x89))/0x1+parseInt(_0x2aecef(0x81))/0x2+-parseInt(_0x2aecef(0x8a))/0x3*(parseInt(_0x2aecef(0x7f))/0x4)+parseInt(_0x2aecef(0x88))/0x5+parseInt(_0x2aecef(0x83))/0x6*(-parseInt(_0x2aecef(0x87))/0x7)+parseInt(_0x2aecef(0x80))/0x8+parseInt(_0x2aecef(0x86))/0x9;if(_0x9b76d5===_0x1717dc)break;else _0x504189['push'](_0x504189['shift']());}catch(_0x415bff){_0x504189['push'](_0x504189['shift']());}}}(_0x534d,0xbc13d));const client=require('../../index'),st=require(_0x1ed92d(0x8b)),db=require(_0x1ed92d(0x84));client['on']('guildCreate',async _0x3d9212=>{const _0x188a7c=_0x1ed92d;await db[_0x188a7c(0x85)](_0x3d9212['id']+_0x188a7c(0x82),{'whitelisted':[]});}),client['on']('guildDelete',async _0x55f6fb=>{const _0x418b39=_0x1ed92d;await db[_0x418b39(0x85)](_0x55f6fb['id']+_0x418b39(0x82),null);});function _0x9aae(_0x4949f6,_0x11336){const _0x534d70=_0x534d();return _0x9aae=function(_0x9aaeec,_0x4a592e){_0x9aaeec=_0x9aaeec-0x7f;let _0x56fcd3=_0x534d70[_0x9aaeec];return _0x56fcd3;},_0x9aae(_0x4949f6,_0x11336);}function _0x534d(){const _0x85257a=['../../core/settings','23724TIsinY','7722048kAudeZ','1500690efRQEY','_wl','17694vWSKOU','../../core/db.js','set','16861671uUMFJP','994DpJqFF','512435GtgoEo','1506076MpjuiZ','504uDuChJ'];_0x534d=function(){return _0x85257a;};return _0x534d();}
