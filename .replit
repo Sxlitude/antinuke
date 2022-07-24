@@ -1,2 +1,5 @@
 language = "nodejs"
-run = "cd src && node index.js"
+run = "cd src && node ."
+
+[nix]
+channel = "stable-22_05"

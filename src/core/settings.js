@@ -1,7 +1,7 @@
 const prefix = process.env.prefix || ';'
 const status = `${prefix}help`;
 
-/* Exporting Settings */
+
 module.exports = {
   bot: {
     info: {
