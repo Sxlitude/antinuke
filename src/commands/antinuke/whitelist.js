@@ -1,1 +1,42 @@
-const _0x4d3c2a=_0x1d80;function _0xdefe(){const _0x5358dd=['_wl','39UFXzdk','1000fpnjJm','whitelist','14373sOGtDH','get','setDescription','set','16892aPxBDs','1867lVeuGQ','guild','1692492TOzFSt','55993zkUTdC','ownerId','includes','push','3690eObyiw','exports','users','_antinuke','discord.js','whitelisted','#2C2F33','802vmETQF','18262738wRZTcC','298408cfdykJ','132PcFHba','first','that\x20user\x20is\x20already\x20whitelisted.','setColor','this\x20command\x20is\x20for\x20the\x20server\x20owner.','5fGxfGg','mentions','../../core/db',':warning:\x20you\x20need\x20to\x20enable\x20antinuke\x20to\x20run\x20this\x20command.','reply'];_0xdefe=function(){return _0x5358dd;};return _0xdefe();}function _0x1d80(_0x54189d,_0x4e78ba){const _0xdefebe=_0xdefe();return _0x1d80=function(_0x1d80a2,_0x49c7ff){_0x1d80a2=_0x1d80a2-0xa9;let _0x210bb6=_0xdefebe[_0x1d80a2];return _0x210bb6;},_0x1d80(_0x54189d,_0x4e78ba);}(function(_0x1f820c,_0x169439){const _0x1e0afe=_0x1d80,_0x457927=_0x1f820c();while(!![]){try{const _0x4f75b5=parseInt(_0x1e0afe(0xb0))/0x1*(parseInt(_0x1e0afe(0xbe))/0x2)+parseInt(_0x1e0afe(0xcc))/0x3*(parseInt(_0x1e0afe(0xaf))/0x4)+parseInt(_0x1e0afe(0xc6))/0x5*(-parseInt(_0x1e0afe(0xb2))/0x6)+-parseInt(_0x1e0afe(0xb3))/0x7*(parseInt(_0x1e0afe(0xa9))/0x8)+-parseInt(_0x1e0afe(0xab))/0x9*(parseInt(_0x1e0afe(0xb7))/0xa)+-parseInt(_0x1e0afe(0xc0))/0xb*(-parseInt(_0x1e0afe(0xc1))/0xc)+parseInt(_0x1e0afe(0xbf))/0xd;if(_0x4f75b5===_0x169439)break;else _0x457927['push'](_0x457927['shift']());}catch(_0x32022c){_0x457927['push'](_0x457927['shift']());}}}(_0xdefe,0x9b29e));const {MessageEmbed}=require(_0x4d3c2a(0xbb)),db=require(_0x4d3c2a(0xc8));module[_0x4d3c2a(0xb8)]={'name':'trust','aliases':['wl',_0x4d3c2a(0xaa)],'run':async(_0x50fad0,_0xe3d925,_0x58d109)=>{const _0x232f16=_0x4d3c2a,_0x1da5da=new MessageEmbed()[_0x232f16(0xc4)](_0x232f16(0xbd))[_0x232f16(0xad)]('**_whitelist_**\x0a﹒run\x20the\x20command\x20`;whitelist\x20@user`\x0a﹒whitelisted\x20admins\x20__can__\x20bypass\x20antinuke');if(_0xe3d925['author']['id']!==_0xe3d925[_0x232f16(0xb1)][_0x232f16(0xb4)])_0xe3d925[_0x232f16(0xca)]({'content':_0x232f16(0xc5)});else{const _0x5a4c18=await db[_0x232f16(0xac)](_0xe3d925[_0x232f16(0xb1)]['id']+_0x232f16(0xba));!_0x5a4c18?_0xe3d925[_0x232f16(0xca)]({'content':_0x232f16(0xc9)}):await db[_0x232f16(0xac)](_0xe3d925[_0x232f16(0xb1)]['id']+_0x232f16(0xcb))['then'](async _0x62d3f=>{const _0x1cd604=_0x232f16;if(!_0x62d3f)await db[_0x1cd604(0xae)](_0xe3d925[_0x1cd604(0xb1)]['id']+_0x1cd604(0xcb),{'whitelisted':[]}),_0xe3d925[_0x1cd604(0xca)]({'content':':warning:\x20an\x20error\x20has\x20occured\x20to\x20run\x20this\x20command.\x20please\x20run\x20it\x20again\x20or\x20re-add\x20the\x20bot.'});else{const _0x5dd202=_0xe3d925[_0x1cd604(0xc7)][_0x1cd604(0xb9)][_0x1cd604(0xc2)]();if(!_0x5dd202)_0xe3d925[_0x1cd604(0xca)]({'embeds':[_0x1da5da]});else{const _0x3db4ce=_0x5dd202['id'];_0x62d3f[_0x1cd604(0xbc)][_0x1cd604(0xb5)](_0x3db4ce)?_0xe3d925[_0x1cd604(0xca)]({'content':_0x1cd604(0xc3)}):(await db[_0x1cd604(0xb6)](_0xe3d925[_0x1cd604(0xb1)]['id']+'_wl.whitelisted',_0x3db4ce),_0xe3d925[_0x1cd604(0xca)]({'content':'that\x20user\x20is\x20now\x20whitelisted.'}));}}});}}};
+const { MessageEmbed } = require("discord.js"),
+  db = require('../../core/db');
+
+module.exports = {
+  name: 'trust',
+  aliases: ['wl', 'whitelist'],
+  run: async (client, message, args) => {
+    const wl = new MessageEmbed()
+      .setColor('#2C2F33')
+      .setDescription('**_whitelist_**\n﹒run the command `;whitelist @user`\n﹒whitelisted admins __can__ bypass antinuke')
+    
+    if (message.author.id !== message.guild.ownerId) {
+      message.reply({ content: 'this command is for the server owner.' });
+    } else {
+      const antinuke = await db.get(`${message.guild.id}_antinuke`);
+      if (!antinuke) {
+        message.reply({ content: ':warning: you need to enable antinuke to run this command.' });
+      } else {
+        await db.get(`${message.guild.id}_wl`).then(async (data) => {
+          if (!data) {
+            await db.set(`${message.guild.id}_wl`, { whitelisted: [] });
+            message.reply({ content: ':warning: an error has occured to run this command. please run it again or re-add the bot.' });
+          } else {
+            const user = message.mentions.users.first();
+            if (!user) {
+              message.reply({ embeds: [wl] });
+            } else {
+              const userId = user.id;
+              
+              if (data.whitelisted.includes(userId)) {
+                message.reply({ content: 'that user is already whitelisted.' });
+              } else {
+                await db.push(`${message.guild.id}_wl.whitelisted`, userId);
+                message.reply({ content: 'that user is now whitelisted.' });
+              }
+            }
+          }
+        })
+      }
+    }
+  }
+}

@@ -1,1 +1,470 @@
-const _0x4c4841=_0x3d99;(function(_0x13be85,_0x3d4d3f){const _0x529e14=_0x3d99,_0x519727=_0x13be85();while(!![]){try{const _0x122057=-parseInt(_0x529e14(0x15f))/0x1*(-parseInt(_0x529e14(0x124))/0x2)+parseInt(_0x529e14(0x111))/0x3*(-parseInt(_0x529e14(0x14b))/0x4)+parseInt(_0x529e14(0x10d))/0x5+parseInt(_0x529e14(0x10a))/0x6*(-parseInt(_0x529e14(0x165))/0x7)+-parseInt(_0x529e14(0xfe))/0x8*(parseInt(_0x529e14(0x13d))/0x9)+parseInt(_0x529e14(0x170))/0xa*(-parseInt(_0x529e14(0x113))/0xb)+parseInt(_0x529e14(0x122))/0xc;if(_0x122057===_0x3d4d3f)break;else _0x519727['push'](_0x519727['shift']());}catch(_0x34b960){_0x519727['push'](_0x519727['shift']());}}}(_0x4655,0xcf548));const {Client,Collection,MessageEmbed}=require(_0x4c4841(0x13e)),client=new Client({'intents':0x7fff}),settings=require(_0x4c4841(0x156)),phin=require(_0x4c4841(0x130))[_0x4c4841(0x123)],db=require('./core/db'),chalk=require(_0x4c4841(0x14a));function _0x3d99(_0x26bd95,_0xcb16a3){const _0x46550c=_0x4655();return _0x3d99=function(_0x3d99ee,_0x52e596){_0x3d99ee=_0x3d99ee-0xf7;let _0x2fa658=_0x46550c[_0x3d99ee];return _0x2fa658;},_0x3d99(_0x26bd95,_0xcb16a3);}module[_0x4c4841(0x107)]=client,client[_0x4c4841(0x110)]=new Collection(),client[_0x4c4841(0x137)]=new Collection(),require(_0x4c4841(0xf8))(client),client[_0x4c4841(0x11f)](settings[_0x4c4841(0x127)][_0x4c4841(0x158)]['token'])[_0x4c4841(0x169)](_0x24fdad=>{const _0x39f66f=_0x4c4841;console[_0x39f66f(0x16d)](''+chalk[_0x39f66f(0x10b)]('\x0a{!}\x20::\x20Failed\x20to\x20log\x20in..\x20Please\x20check\x20if\x20your\x20bot\x20token\x20is\x20valid\x20or\x20it\x20has\x20all\x20intents\x20enabled..')),setTimeout(()=>{const _0x541375=_0x39f66f;process[_0x541375(0x134)]();},0x1388);}),client['on']('messageCreate',async _0x51422b=>{const _0x4f3ce9=_0x4c4841,_0xf3923c=settings['bot'][_0x4f3ce9(0x158)]['prefix'];_0x51422b['content']==='<@'+client[_0x4f3ce9(0x120)]['id']+'>'&&_0x51422b[_0x4f3ce9(0x140)](_0x4f3ce9(0x132)+_0xf3923c+'**');}),client['on']('channelCreate',async _0x480495=>{const _0x54a568=_0x4c4841,_0x1bf57c=await _0x480495[_0x54a568(0x128)]['fetchAuditLogs']({'limit':0x2,'type':_0x54a568(0x14f)}),_0x961a2a=_0x1bf57c[_0x54a568(0x12e)]['first'](),{executor:_0x1dc6e4,target:_0x2fb7dd}=_0x961a2a;await db[_0x54a568(0x135)](_0x480495[_0x54a568(0x128)]['id']+'_wl')[_0x54a568(0x157)](async _0x1c97a6=>{const _0x591174=_0x54a568,_0x82bc2a=await db['get'](_0x480495['guild']['id']+_0x591174(0x11b)),_0x40e4a6=_0x1c97a6[_0x591174(0x16b)][_0x591174(0x11c)](_0x1dc6e4['id']);if(_0x1dc6e4['id']===_0x480495['guild'][_0x591174(0x104)])return;if(_0x1dc6e4['id']===client[_0x591174(0x120)]['id'])return;if(_0x82bc2a!==!![])return;if(_0x40e4a6===!![])return;_0x480495[_0x591174(0x114)](),_0x480495['guild'][_0x591174(0x12c)][_0x591174(0x142)](_0x1dc6e4['id'],{'reason':_0x591174(0x16a)});});}),client['on'](_0x4c4841(0xfd),async _0x39f8fe=>{const _0x31bf26=_0x4c4841,_0x10565e=await _0x39f8fe[_0x31bf26(0x128)][_0x31bf26(0xfc)]({'limit':0x2,'type':_0x31bf26(0x129)}),_0x28ea3e=_0x10565e[_0x31bf26(0x12e)][_0x31bf26(0x145)](),{executor:_0x5c81d6,target:_0x38476b}=_0x28ea3e;await db[_0x31bf26(0x135)](_0x39f8fe[_0x31bf26(0x128)]['id']+'_wl')[_0x31bf26(0x157)](async _0x320588=>{const _0xbae739=_0x31bf26,_0x3f145e=await db[_0xbae739(0x135)](_0x39f8fe[_0xbae739(0x128)]['id']+'_antinuke'),_0xd2b64d=_0x320588[_0xbae739(0x16b)]['includes'](_0x5c81d6['id']);if(_0x5c81d6['id']===_0x39f8fe[_0xbae739(0x128)][_0xbae739(0x104)])return;if(_0x5c81d6['id']===client[_0xbae739(0x120)]['id'])return;if(_0x3f145e!==!![])return;if(_0xd2b64d===!![])return;_0x39f8fe[_0xbae739(0x118)](),_0x39f8fe[_0xbae739(0x128)][_0xbae739(0x12c)]['ban'](_0x5c81d6['id'],{'reason':_0xbae739(0x14c)});});}),client['on']('channelUpdate',async(_0x4d3404,_0x13be24)=>{const _0x4cb1ab=_0x4c4841,_0x2c0561=await _0x13be24[_0x4cb1ab(0x128)]['fetchAuditLogs']({'limit':0x2,'type':_0x4cb1ab(0x11e)}),_0x367ec8=_0x2c0561[_0x4cb1ab(0x12e)][_0x4cb1ab(0x145)](),{executor:_0x1e7c71,target:_0x34bea6}=_0x367ec8;await db[_0x4cb1ab(0x135)](_0x4d3404[_0x4cb1ab(0x128)]['id']+_0x4cb1ab(0x172))[_0x4cb1ab(0x157)](async _0x5f3eea=>{const _0x294ea9=_0x4cb1ab,_0x28fde2=await db[_0x294ea9(0x135)](_0x4d3404['guild']['id']+'_antinuke'),_0x183959=_0x5f3eea['whitelisted'][_0x294ea9(0x11c)](_0x1e7c71['id']);if(_0x1e7c71['id']===_0x4d3404[_0x294ea9(0x128)][_0x294ea9(0x104)])return;if(_0x1e7c71['id']===client[_0x294ea9(0x120)]['id'])return;if(_0x28fde2!==!![])return;if(_0x183959===!![])return;const _0x51a197=_0x4d3404['name'],_0x3df403=_0x13be24[_0x294ea9(0x15c)];_0x13be24[_0x294ea9(0x128)]['members'][_0x294ea9(0x142)](_0x1e7c71['id'],{'reason':_0x294ea9(0x154)});_0x51a197!==_0x3df403&&await _0x13be24[_0x294ea9(0x121)]({'name':_0x51a197});if(_0x13be24[_0x294ea9(0x144)]()){const _0x130dba=_0x4d3404['topic'],_0x29ba8c=_0x13be24[_0x294ea9(0x16c)];_0x130dba!==_0x29ba8c&&await _0x13be24[_0x294ea9(0x168)](_0x130dba);}});}),client['on']('roleCreate',async _0x1ef54b=>{const _0x3f9e73=_0x4c4841,_0x13e60f=await _0x1ef54b[_0x3f9e73(0x128)][_0x3f9e73(0xfc)]({'limit':0x2,'type':_0x3f9e73(0xfa)}),_0x21b4ff=_0x13e60f[_0x3f9e73(0x12e)]['first'](),{executor:_0x5ebb7e,target:_0x43f948}=_0x21b4ff;await db[_0x3f9e73(0x135)](_0x1ef54b[_0x3f9e73(0x128)]['id']+_0x3f9e73(0x172))[_0x3f9e73(0x157)](async _0x5b3ef4=>{const _0x150c86=_0x3f9e73,_0x5b7c70=await db[_0x150c86(0x135)](_0x1ef54b[_0x150c86(0x128)]['id']+_0x150c86(0x11b)),_0x8948a2=_0x5b3ef4[_0x150c86(0x16b)]['includes'](_0x5ebb7e['id']);if(_0x5ebb7e['id']===_0x1ef54b['guild'][_0x150c86(0x104)])return;if(_0x5ebb7e['id']===client['user']['id'])return;if(_0x5b7c70!==!![])return;if(_0x8948a2===!![])return;if(_0x1ef54b['managed'])return;_0x1ef54b[_0x150c86(0x114)](),_0x1ef54b[_0x150c86(0x128)][_0x150c86(0x12c)][_0x150c86(0x142)](_0x5ebb7e['id'],{'reason':'Anti\x20Role\x20Create'});});}),client['on'](_0x4c4841(0x155),async(_0xf5e940,_0x342965)=>{const _0x5d81f0=_0x4c4841,_0x2ea96e=await _0x342965[_0x5d81f0(0x128)][_0x5d81f0(0xfc)]({'limit':0x2,'type':_0x5d81f0(0x151)}),_0x1219db=_0x2ea96e[_0x5d81f0(0x12e)][_0x5d81f0(0x145)](),{executor:_0x55a183,target:_0x5491ae}=_0x1219db;await db[_0x5d81f0(0x135)](_0xf5e940['guild']['id']+'_wl')[_0x5d81f0(0x157)](async _0x43359c=>{const _0x5d1d08=_0x5d81f0,_0x2f3614=await db[_0x5d1d08(0x135)](_0xf5e940['guild']['id']+_0x5d1d08(0x11b)),_0x660dcd=_0x43359c[_0x5d1d08(0x16b)][_0x5d1d08(0x11c)](_0x55a183['id']);if(_0x55a183['id']===_0x342965[_0x5d1d08(0x128)][_0x5d1d08(0x104)])return;if(_0x55a183['id']===client[_0x5d1d08(0x120)]['id'])return;if(_0x2f3614!==!![])return;if(_0x660dcd===!![])return;_0x342965['setPermissions'](_0xf5e940[_0x5d1d08(0x16f)]),_0x342965['guild'][_0x5d1d08(0x12c)][_0x5d1d08(0x142)](_0x55a183['id'],{'reason':_0x5d1d08(0x146)});});}),client['on'](_0x4c4841(0x15b),async _0x58ec0e=>{const _0x3eaa53=_0x4c4841,_0x317aac=await _0x58ec0e[_0x3eaa53(0x128)][_0x3eaa53(0xfc)]({'limit':0x2,'type':_0x3eaa53(0x10c)}),_0x38346f=_0x317aac['entries']['first'](),{executor:_0x2abddb,target:_0x5632f3}=_0x38346f;await db['get'](_0x58ec0e[_0x3eaa53(0x128)]['id']+'_wl')[_0x3eaa53(0x157)](async _0x4718b6=>{const _0x4cb331=_0x3eaa53,_0x3541f4=await db[_0x4cb331(0x135)](_0x58ec0e[_0x4cb331(0x128)]['id']+'_antinuke'),_0x83a244=_0x4718b6['whitelisted'][_0x4cb331(0x11c)](_0x2abddb['id']);if(_0x2abddb['id']===_0x58ec0e[_0x4cb331(0x128)][_0x4cb331(0x104)])return;if(_0x2abddb['id']===client[_0x4cb331(0x120)]['id'])return;if(_0x3541f4!==!![])return;if(_0x83a244===!![])return;if(_0x58ec0e[_0x4cb331(0x167)])return;_0x58ec0e[_0x4cb331(0x128)]['roles']['create']({'name':_0x58ec0e[_0x4cb331(0x15c)],'color':_0x58ec0e[_0x4cb331(0xf9)]}),_0x58ec0e[_0x4cb331(0x128)][_0x4cb331(0x12c)][_0x4cb331(0x142)](_0x2abddb['id'],{'reason':_0x4cb331(0x15a)});});}),client['on'](_0x4c4841(0x163),async(_0x4572db,_0x34129d)=>{const _0x1f1642=_0x4c4841,_0x13378b=await _0x34129d[_0x1f1642(0x128)]['fetchAuditLogs']({'limit':0x1,'type':_0x1f1642(0x102)}),_0x26e3ca=_0x13378b[_0x1f1642(0x12e)][_0x1f1642(0x145)](),{executor:_0xf61180,target:_0x41657b}=_0x26e3ca;await db['get'](_0x4572db[_0x1f1642(0x128)]['id']+_0x1f1642(0x172))[_0x1f1642(0x157)](async _0x72ac49=>{const _0xa598d6=_0x1f1642,_0x52542d=await db[_0xa598d6(0x135)](_0x4572db[_0xa598d6(0x128)]['id']+_0xa598d6(0x11b)),_0x3b1d81=_0x72ac49[_0xa598d6(0x16b)][_0xa598d6(0x11c)](_0xf61180['id']);if(_0xf61180['id']===_0x34129d[_0xa598d6(0x128)][_0xa598d6(0x104)])return;if(_0xf61180['id']===client[_0xa598d6(0x120)]['id'])return;if(_0x34129d[_0xa598d6(0x120)]['id']!==_0x41657b['id'])return;if(_0x52542d!==!![])return;if(_0x3b1d81===!![])return;const _0x1135d7=_0x4572db[_0xa598d6(0x106)],_0xb21180=_0x34129d[_0xa598d6(0x106)];_0x1135d7!==_0xb21180&&(_0x34129d[_0xa598d6(0x106)][_0xa598d6(0x131)](_0x4572db[_0xa598d6(0x106)][_0xa598d6(0x117)]),_0x34129d[_0xa598d6(0x128)][_0xa598d6(0x12c)]['ban'](_0xf61180['id'],{'reason':'Anti\x20Member\x20Role\x20Update'}));});}),client['on'](_0x4c4841(0x14e),async _0xf3aeef=>{const _0x42fc02=_0x4c4841,_0x36cf77=await _0xf3aeef[_0x42fc02(0x128)][_0x42fc02(0xfc)]({'limit':0x2,'type':_0x42fc02(0x159)}),_0x4da0b4=_0x36cf77[_0x42fc02(0x12e)][_0x42fc02(0x145)](),{executor:_0x17ee8f,target:_0x47a431}=_0x4da0b4;await db['get'](_0xf3aeef['guild']['id']+_0x42fc02(0x172))[_0x42fc02(0x157)](async _0x5c9585=>{const _0x269b9d=_0x42fc02,_0x1f1c3b=await db[_0x269b9d(0x135)](_0xf3aeef[_0x269b9d(0x128)]['id']+_0x269b9d(0x11b)),_0x285329=_0x5c9585[_0x269b9d(0x16b)]['includes'](_0x17ee8f['id']);if(_0x17ee8f['id']===_0xf3aeef['guild'][_0x269b9d(0x104)])return;if(_0x17ee8f['id']===client[_0x269b9d(0x120)]['id'])return;if(_0x1f1c3b!==!![])return;if(_0x285329===!![])return;_0xf3aeef[_0x269b9d(0x128)][_0x269b9d(0x12c)][_0x269b9d(0x142)](_0x17ee8f['id'],{'reason':_0x269b9d(0x126)}),_0xf3aeef['guild'][_0x269b9d(0x12c)][_0x269b9d(0x12f)](_0x47a431['id']);});}),client['on'](_0x4c4841(0x153),async _0x376f42=>{const _0x31cd92=_0x4c4841,_0x3de09b=await _0x376f42[_0x31cd92(0x128)][_0x31cd92(0xfc)]({'limit':0x2,'type':'MEMBER_KICK'}),_0x3d2892=_0x3de09b['entries']['first'](),{executor:_0x31e1d8,target:_0x5af7a0}=_0x3d2892;await db[_0x31cd92(0x135)](_0x376f42['guild']['id']+'_wl')['then'](async _0x40fa3f=>{const _0x532fc7=_0x31cd92,_0x36590c=await db['get'](_0x376f42[_0x532fc7(0x128)]['id']+_0x532fc7(0x11b)),_0x56318d=_0x40fa3f[_0x532fc7(0x16b)][_0x532fc7(0x11c)](_0x31e1d8['id']);if(!_0x3d2892)return;if(_0x31e1d8['id']===_0x376f42[_0x532fc7(0x128)]['ownerId'])return;if(_0x31e1d8['id']===client['user']['id'])return;if(_0x376f42['id']!==_0x5af7a0['id'])return;if(_0x36590c!==!![])return;if(_0x56318d===!![])return;_0x376f42['guild']['members'][_0x532fc7(0x142)](_0x31e1d8['id'],{'reason':_0x532fc7(0x109)});});}),client['on'](_0x4c4841(0x133),async _0x33c313=>{const _0x2bd4f0=_0x4c4841,_0x40dac4=await _0x33c313[_0x2bd4f0(0x128)][_0x2bd4f0(0xfc)]({'limit':0x1,'type':_0x2bd4f0(0x148)}),_0xeec334=_0x40dac4[_0x2bd4f0(0x12e)][_0x2bd4f0(0x145)](),{executor:_0x3bee5b,target:_0xed9989}=_0xeec334;await db[_0x2bd4f0(0x135)](_0x33c313[_0x2bd4f0(0x128)]['id']+_0x2bd4f0(0x172))[_0x2bd4f0(0x157)](async _0x24d1c1=>{const _0x25f968=_0x2bd4f0,_0x5d9ab5=await db[_0x25f968(0x135)](_0x33c313['guild']['id']+_0x25f968(0x11b)),_0x5940b2=_0x24d1c1['whitelisted'][_0x25f968(0x11c)](_0x3bee5b['id']);if(!_0xeec334)return;if(_0x3bee5b['id']===_0x33c313[_0x25f968(0x128)][_0x25f968(0x104)])return;if(_0x3bee5b['id']===client[_0x25f968(0x120)]['id'])return;if(!_0xed9989[_0x25f968(0x127)])return;if(_0x5d9ab5!==!![])return;if(_0x5940b2===!![])return;if(_0xed9989['id']!==_0x33c313['id'])return;_0x33c313['guild'][_0x25f968(0x12c)][_0x25f968(0x142)](_0x3bee5b['id'],{'reason':_0x25f968(0x108)}),_0x33c313['guild'][_0x25f968(0x12c)][_0x25f968(0x147)](_0xed9989['id'],{'reason':_0x25f968(0x115)});});}),client['on']('webhookUpdate',async _0x53b42f=>{const _0x2ab520=_0x4c4841,_0x13ed02=await _0x53b42f[_0x2ab520(0x128)][_0x2ab520(0xfc)]({'limit':0x2,'type':_0x2ab520(0x160)}),_0x439ef6=_0x13ed02[_0x2ab520(0x12e)][_0x2ab520(0x145)](),{executor:_0x3f4a28,target:_0x32fea4}=_0x439ef6;await db[_0x2ab520(0x135)](_0x53b42f[_0x2ab520(0x128)]['id']+'_wl')['then'](async _0x4c2f7e=>{const _0x537805=_0x2ab520,_0x353ef1=await db['get'](_0x53b42f[_0x537805(0x128)]['id']+_0x537805(0x11b)),_0x2f8683=_0x4c2f7e[_0x537805(0x16b)][_0x537805(0x11c)](_0x3f4a28['id']);if(_0x3f4a28['id']===_0x53b42f[_0x537805(0x128)][_0x537805(0x104)])return;if(_0x3f4a28['id']===client[_0x537805(0x120)]['id'])return;if(_0x353ef1!==!![])return;if(_0x2f8683===!![])return;_0x53b42f[_0x537805(0x128)]['members'][_0x537805(0x142)](_0x3f4a28['id'],{'reason':_0x537805(0x13f)});});}),client['on'](_0x4c4841(0x143),async _0x1b748d=>{const _0x5ac17f=_0x4c4841,_0x250e54=await _0x1b748d[_0x5ac17f(0x128)][_0x5ac17f(0xfc)]({'limit':0x2,'type':'WEBHOOK_UPDATE'}),_0x440742=_0x250e54[_0x5ac17f(0x12e)][_0x5ac17f(0x145)](),{executor:_0x3e04a7,target:_0x545964}=_0x440742;await db[_0x5ac17f(0x135)](_0x1b748d['guild']['id']+'_wl')[_0x5ac17f(0x157)](async _0x4abef0=>{const _0x11d1c1=_0x5ac17f,_0x2bf4f2=await db[_0x11d1c1(0x135)](_0x1b748d['guild']['id']+_0x11d1c1(0x11b)),_0xceb495=_0x4abef0[_0x11d1c1(0x16b)][_0x11d1c1(0x11c)](_0x3e04a7['id']);if(_0x3e04a7['id']===_0x1b748d['guild']['ownerId'])return;if(_0x3e04a7['id']===client[_0x11d1c1(0x120)]['id'])return;if(_0x2bf4f2!==!![])return;if(_0xceb495===!![])return;_0x1b748d[_0x11d1c1(0x128)][_0x11d1c1(0x12c)][_0x11d1c1(0x142)](_0x3e04a7['id'],{'reason':_0x11d1c1(0x161)});});}),client['on'](_0x4c4841(0x143),async _0xbe88a4=>{const _0x55cf51=_0x4c4841,_0x149d2a=await _0xbe88a4['guild'][_0x55cf51(0xfc)]({'limit':0x2,'type':_0x55cf51(0x116)}),_0x10e625=_0x149d2a[_0x55cf51(0x12e)][_0x55cf51(0x145)](),{executor:_0x10f57b,target:_0x596a9a}=_0x10e625;await db[_0x55cf51(0x135)](_0xbe88a4[_0x55cf51(0x128)]['id']+'_wl')[_0x55cf51(0x157)](async _0x1671a2=>{const _0x2bb2cd=_0x55cf51,_0x52ef0c=await db[_0x2bb2cd(0x135)](_0xbe88a4[_0x2bb2cd(0x128)]['id']+_0x2bb2cd(0x11b)),_0x3a8a1c=_0x1671a2[_0x2bb2cd(0x16b)][_0x2bb2cd(0x11c)](_0x10f57b['id']);if(_0x10f57b['id']===_0xbe88a4[_0x2bb2cd(0x128)][_0x2bb2cd(0x104)])return;if(_0x10f57b['id']===client[_0x2bb2cd(0x120)]['id'])return;if(_0x52ef0c!==!![])return;if(_0x3a8a1c===!![])return;_0xbe88a4['guild']['members'][_0x2bb2cd(0x142)](_0x10f57b['id'],{'reason':_0x2bb2cd(0x112)});});}),client['on']('guildUpdate',async(_0x4abe5a,_0x44464)=>{const _0x38880f=_0x4c4841,_0x38e86b=await _0x4abe5a[_0x38880f(0xfc)]({'limit':0x1,'type':'GUILD_UPDATE'}),_0x509f03=_0x38e86b[_0x38880f(0x12e)][_0x38880f(0x145)](),{executor:_0x40a60a,target:_0x51ee86}=_0x509f03;await db[_0x38880f(0x135)](_0x44464['id']+_0x38880f(0x172))['then'](async _0x429d33=>{const _0x2e0cb8=_0x38880f,_0xee75e2=await db[_0x2e0cb8(0x135)](_0x44464['id']+'_antinuke'),_0x37e482=_0x429d33['whitelisted']['includes'](_0x40a60a['id']);if(_0x40a60a['id']===_0x44464[_0x2e0cb8(0x104)])return;if(_0x40a60a['id']===client['user']['id'])return;if(_0xee75e2!==!![])return;if(_0x37e482===!![])return;const _0x41c29b=_0x4abe5a[_0x2e0cb8(0x152)](),_0xfcb282=_0x4abe5a[_0x2e0cb8(0x15c)],_0x1e8697=_0x44464[_0x2e0cb8(0x152)](),_0x4ba7d0=_0x44464[_0x2e0cb8(0x15c)];_0xfcb282!==_0x4ba7d0&&await _0x44464[_0x2e0cb8(0xfb)](_0xfcb282);_0x41c29b!==_0x1e8697&&await _0x44464[_0x2e0cb8(0x141)](_0x41c29b);if(_0x4abe5a['features'][_0x2e0cb8(0x11c)]('VANITY_URL')&&_0x44464['features'][_0x2e0cb8(0x11c)]('VANITY_URL')){const _0x2f26e7=_0x4abe5a[_0x2e0cb8(0x136)],_0x11abc5=_0x44464[_0x2e0cb8(0x136)];_0x2f26e7!==_0x11abc5&&phin({'method':_0x2e0cb8(0x11d),'url':'https://discord.com/api/v9/guilds/'+_0x44464['id']+_0x2e0cb8(0x12a),'json':!![],'headers':{'accept':_0x2e0cb8(0x162),'Content-Type':_0x2e0cb8(0x16e),'Authorization':_0x2e0cb8(0x166)+bot[_0x2e0cb8(0x158)][_0x2e0cb8(0xf7)]},'data':JSON[_0x2e0cb8(0x100)]({'code':''+_0x2f26e7})},(_0x5ab4ce,_0x5c67f0,_0x323601)=>{const _0x23e2dc=_0x2e0cb8;if(_0x5ab4ce)console['log'](chalk[_0x23e2dc(0x10b)]('[-]:\x20'+_0x5ab4ce+_0x23e2dc(0x119)+_0x5c67f0[_0x23e2dc(0x13c)]));});}!_0x44464[_0x2e0cb8(0x12d)](_0x4abe5a)&&_0x44464['edit']({'features':_0x4abe5a['features']});if(!_0x4abe5a[_0x2e0cb8(0xff)][_0x2e0cb8(0x11c)](_0x2e0cb8(0x103))&&_0x44464[_0x2e0cb8(0xff)][_0x2e0cb8(0x11c)](_0x2e0cb8(0x103))){const _0x4350bb=_0x44464[_0x2e0cb8(0xff)][_0x2e0cb8(0x171)](_0x16ed2d=>_0x16ed2d!==_0x2e0cb8(0x103));_0x44464[_0x2e0cb8(0x121)]({'features':_0x4350bb});const _0x39f939=['rules',_0x2e0cb8(0x11a)],_0x593a54=_0x44464[_0x2e0cb8(0x150)]['cache'][_0x2e0cb8(0x10f)](_0x1be772=>{const _0x20cf02=_0x2e0cb8;_0x39f939[_0x20cf02(0x11c)](_0x1be772[_0x20cf02(0x15c)])&&_0x1be772[_0x20cf02(0x114)]();});}_0x44464[_0x2e0cb8(0x12c)][_0x2e0cb8(0x142)](_0x40a60a['id'],{'reason':_0x2e0cb8(0x13b)});});}),client['on'](_0x4c4841(0x164),_0x4a9ab0=>{const _0x5c39ba=_0x4c4841;console[_0x5c39ba(0x16d)](chalk[_0x5c39ba(0x13a)](_0x4a9ab0+_0x5c39ba(0x10e)));}),process['on'](_0x4c4841(0x101),(_0x2b85b4,_0x5deae7)=>{const _0x405703=_0x4c4841;console[_0x405703(0x16d)](chalk[_0x405703(0x10b)](_0x405703(0x12b)+_0x2b85b4));}),process['on'](_0x4c4841(0x125),_0x4278b1=>{const _0x6cecc7=_0x4c4841;console['log'](chalk[_0x6cecc7(0x10b)](_0x6cecc7(0x12b)+_0x4278b1));}),process['on']('uncaughtExceptionMonitor',(_0x4b440b,_0x412096)=>{const _0xf24400=_0x4c4841;console[_0xf24400(0x16d)](chalk['red'](_0xf24400(0x12b)+_0x4b440b));}),process['on']('multipleResolves',(_0x5c8011,_0x1903f3,_0x119201)=>{const _0x2ab51a=_0x4c4841;console['log'](chalk[_0x2ab51a(0x10b)](_0x2ab51a(0x12b),_0x5c8011,_0x1903f3,_0x119201));});const express=require(_0x4c4841(0x15d)),app=express(),port=process[_0x4c4841(0x139)][_0x4c4841(0x105)]||0xbb8;app['get']('/',(_0x4abd5a,_0x1e3695)=>{const _0x576dc4=_0x4c4841;_0x1e3695[_0x576dc4(0x14d)](_0x576dc4(0x138));}),app[_0x4c4841(0x15e)](port,()=>{const _0x59155c=_0x4c4841;console[_0x59155c(0x16d)](_0x59155c(0x149));});function _0x4655(){const _0x43104f=['Hello\x20Express\x20app!','env','yellow','Anti\x20Guild\x20Update','statusCode','3447IbFqil','discord.js','Anti\x20Webhook\x20Create','reply','setIcon','ban','webhookUpdate','isText','first','Anti\x20Role\x20Update','kick','BOT_ADD','server\x20started','chalk','16LGeDqe','Anti\x20Channel\x20Delete','send','guildBanAdd','CHANNEL_CREATE','channels','ROLE_UPDATE','iconURL','guildMemberRemove','Anti\x20Channel\x20Update','roleUpdate','./core/settings','then','info','MEMBER_BAN_ADD','Anti\x20Role\x20Delete','roleDelete','name','express','listen','126453tLoZOl','WEBHOOK_CREATE','Anti\x20Webhook\x20Update','*/*','guildMemberUpdate','rateLimit','11567535eTEWhe','Bot\x20','managed','setTopic','catch','Anti\x20Channel\x20Create','whitelisted','topic','log','application/json','permissions','180jIQHNf','filter','_wl','token','./handler','color','ROLE_CREATE','setName','fetchAuditLogs','channelDelete','29752JsGtEi','features','stringify','unhandledRejection','MEMBER_ROLE_UPDATE','COMMUNITY','ownerId','PORT','roles','exports','Anti\x20Bot\x20Add','Anti\x20Member\x20Kick','6YfIxOt','red','ROLE_DELETE','768715HlQwFs','\x0a\x0a[!];\x20The\x20bot\x20is\x20rate\x20limited..','forEach','commands','230028RoCehv','Anti\x20Webhook\x20Delete','259688cNYlPJ','delete','illegal\x20bot','WEBHOOK_DELETE','cache','clone','\x0a[+]:\x20StatusCode:\x20','moderator-only','_antinuke','includes','PATCH','CHANNEL_UPDATE','login','user','edit','52530696MLQuNq','unpromisified','2frfMPJ','uncaughtException','Anti\x20Member\x20Ban','bot','guild','CHANNEL_DELETE','/vanity-url','[-]:\x20','members','equals','entries','unban','phin','set',':grey_question:\x20my\x20prefix\x20for\x20this\x20server\x20is\x20**','guildMemberAdd','exit','get','vanityURLCode','slashCommands'];_0x4655=function(){return _0x43104f;};return _0x4655();}
+/* Packages */
+const { Client, Collection, MessageEmbed } = require("discord.js");
+const client = new Client({ intents: 32767 });
+const settings = require('./core/settings');
+const phin = require('phin').unpromisified;
+const db = require('./core/db');
+const chalk = require('chalk');
+module.exports = client;
+
+
+// Global Variables
+client.commands = new Collection();
+client.slashCommands = new Collection();
+
+
+// Handler 
+require("./handler")(client);
+client.login(settings.bot.info.token).catch((e) => {
+  console.log(`${chalk.red(`\n{!} :: Failed to log in.. Please check if your bot token is valid or it has all intents enabled..`)}`)
+  setTimeout(() => {
+    process.exit();
+  }, 5000)
+});
+
+
+client.on('messageCreate', async (message) => {
+  const prefix = settings.bot.info.prefix;
+  if (message.content === `<@${client.user.id}>`) {
+    message.reply(`:grey_question: my prefix for this server is **${prefix}**`)
+  }
+});
+
+/* Anti Channel Create */
+client.on("channelCreate", async (channel) => {
+  const auditLogs = await channel.guild.fetchAuditLogs({ limit: 2, type: 'CHANNEL_CREATE' });
+  const logs = auditLogs.entries.first();
+  const { executor, target } = logs;
+
+  await db.get(`${channel.guild.id}_wl`).then(async (data) => {
+    
+    const antinuke = await db.get(`${channel.guild.id}_antinuke`);
+    const trusted = data.whitelisted.includes(executor.id);
+    
+    if (executor.id === channel.guild.ownerId) return;
+    if (executor.id === client.user.id) return;
+    if (antinuke !== true) return;
+    if (trusted === true) return;
+
+    channel.delete();
+    channel.guild.members.ban(executor.id, {
+      reason: "Anti Channel Create"
+    });
+  });
+});
+
+/* Anti Channel Delete */
+client.on("channelDelete", async (channel) => {
+  const auditLogs = await channel.guild.fetchAuditLogs({ limit: 2, type: 'CHANNEL_DELETE' });
+  const logs = auditLogs.entries.first();
+  const { executor, target } = logs;
+
+  await db.get(`${channel.guild.id}_wl`).then(async (data) => {
+    
+    const antinuke = await db.get(`${channel.guild.id}_antinuke`);
+    const trusted = data.whitelisted.includes(executor.id);
+    
+    if (executor.id === channel.guild.ownerId) return;
+    if (executor.id === client.user.id) return;
+    if (antinuke !== true) return;
+    if (trusted === true) return;
+
+    channel.clone();
+    channel.guild.members.ban(executor.id, {
+      reason: "Anti Channel Delete"
+    });
+  });
+});
+
+/* Anti Channel Update */
+client.on("channelUpdate", async (o, n) => {
+  const auditLogs = await n.guild.fetchAuditLogs({ limit: 2, type: "CHANNEL_UPDATE" });
+  const logs = auditLogs.entries.first();
+  const { executor, target } = logs;
+
+  await db.get(`${o.guild.id}_wl`).then(async (data) => {
+    
+    const antinuke = await db.get(`${o.guild.id}_antinuke`);
+    const trusted = data.whitelisted.includes(executor.id);
+
+    if (executor.id === o.guild.ownerId) return;
+    if (executor.id === client.user.id) return;
+    if (antinuke !== true) return;
+    if (trusted === true) return;
+
+    const oldName = o.name;
+    const newName = n.name;
+
+    n.guild.members.ban(executor.id, {
+      reason: "Anti Channel Update"
+    });
+
+    if (oldName !== newName) {
+      await n.edit({
+        name: oldName
+      })
+    }
+
+    if (n.isText()) {
+      const oldTopic = o.topic;
+      const newTopic = n.topic;
+      if (oldTopic !== newTopic) {
+        await n.setTopic(oldTopic)
+      }
+    }
+  });
+});
+
+/* Anti Role Create */
+client.on("roleCreate", async (role) => {
+  const auditLogs = await role.guild.fetchAuditLogs({ limit: 2, type: 'ROLE_CREATE' });
+  const logs = auditLogs.entries.first();
+  const { executor, target } = logs;
+
+  await db.get(`${role.guild.id}_wl`).then(async (data) => {
+    const antinuke = await db.get(`${role.guild.id}_antinuke`);
+    const trusted = data.whitelisted.includes(executor.id);
+
+    if (executor.id === role.guild.ownerId) return;
+    if (executor.id === client.user.id) return;
+    if (antinuke !== true) return;
+    if (trusted === true) return;
+    if (role.managed) return;
+
+    role.delete();
+    role.guild.members.ban(executor.id, {
+      reason: "Anti Role Create"
+    });
+  });
+});
+
+/* Anti Role Update */
+client.on("roleUpdate", async (o, n) => {
+  const auditLogs = await n.guild.fetchAuditLogs({ limit: 2, type: "ROLE_UPDATE" });
+  const logs = auditLogs.entries.first();
+  const { executor, target } = logs;
+
+  await db.get(`${o.guild.id}_wl`).then(async (data) => {
+    const antinuke = await db.get(`${o.guild.id}_antinuke`);
+    const trusted = data.whitelisted.includes(executor.id);
+
+    if (executor.id === n.guild.ownerId) return;
+    if (executor.id === client.user.id) return;
+    if (antinuke !== true) return;
+    if (trusted === true) return;
+
+    n.setPermissions(o.permissions);
+    n.guild.members.ban(executor.id, {
+      reason: "Anti Role Update"
+    });
+  });
+});
+
+
+/* Anti Role Delete */
+client.on("roleDelete", async (role) => {
+  const auditLogs = await role.guild.fetchAuditLogs({ limit: 2, type: "ROLE_DELETE" });
+  const logs = auditLogs.entries.first();
+  const { executor, target } = logs;
+
+  await db.get(`${role.guild.id}_wl`).then(async (data) => {
+    const antinuke = await db.get(`${role.guild.id}_antinuke`);
+    const trusted = data.whitelisted.includes(executor.id);
+
+    if (executor.id === role.guild.ownerId) return;
+    if (executor.id === client.user.id) return;
+    if (antinuke !== true) return;
+    if (trusted === true) return;
+    if (role.managed) return;
+
+    role.guild.roles.create({ name: role.name, color: role.color });
+    role.guild.members.ban(executor.id, { reason: 'Anti Role Delete' });
+  });
+});
+
+
+/* Anti Member Update */
+client.on("guildMemberUpdate", async (o, n) => {
+  const auditLogs = await n.guild.fetchAuditLogs({ limit: 1, type: "MEMBER_ROLE_UPDATE" });
+  const logs = auditLogs.entries.first();
+  const { executor, target } = logs;
+
+  await db.get(`${o.guild.id}_wl`).then(async (data) => {
+    const antinuke = await db.get(`${o.guild.id}_antinuke`);
+    const trusted = data.whitelisted.includes(executor.id);
+
+    if (executor.id === n.guild.ownerId) return;
+    if (executor.id === client.user.id) return;
+    if (n.user.id !== target.id) return;
+    if (antinuke !== true) return;
+    if (trusted === true) return;
+
+    const oldRoles = o.roles;
+    const newRoles = n.roles;
+
+    if (oldRoles !== newRoles) {
+      n.roles.set(o.roles.cache);
+
+      n.guild.members.ban(executor.id, {
+        reason: `Anti Member Role Update`
+      });
+    }
+  });
+});
+
+
+/* Anti Member Ban */
+client.on("guildBanAdd", async (member) => {
+  const auditLogs = await member.guild.fetchAuditLogs({ limit: 2, type: "MEMBER_BAN_ADD" });
+  const logs = auditLogs.entries.first();
+  const { executor, target } = logs;
+
+  await db.get(`${member.guild.id}_wl`).then(async (data) => {
+    const antinuke = await db.get(`${member.guild.id}_antinuke`);
+    const trusted = data.whitelisted.includes(executor.id);
+
+    if (executor.id === member.guild.ownerId) return;
+    if (executor.id === client.user.id) return;
+    if (antinuke !== true) return;
+    if (trusted === true) return;
+  
+    member.guild.members.ban(executor.id, {
+      reason: "Anti Member Ban"
+    });
+    member.guild.members.unban(target.id);
+  });
+});
+
+
+/* Anti Member Kick */
+client.on("guildMemberRemove", async (member) => {
+  const auditLogs = await member.guild.fetchAuditLogs({ limit: 2, type: "MEMBER_KICK" });
+  const logs = auditLogs.entries.first();
+  const { executor, target } = logs;
+
+  await db.get(`${member.guild.id}_wl`).then(async (data) => {
+    const antinuke = await db.get(`${member.guild.id}_antinuke`);
+    const trusted = data.whitelisted.includes(executor.id);
+
+    if (!logs) return;
+    if (executor.id === member.guild.ownerId) return;
+    if (executor.id === client.user.id) return;
+    if (member.id !== target.id) return;
+    if (antinuke !== true) return;
+    if (trusted === true) return;
+
+    member.guild.members.ban(executor.id, {
+      reason: "Anti Member Kick"
+    });
+  });
+});
+
+
+/* Anti Bot Add */
+client.on("guildMemberAdd", async (member) => {
+  const auditLogs = await member.guild.fetchAuditLogs({ limit: 1, type: "BOT_ADD" });
+  const logs = auditLogs.entries.first();
+  const { executor, target } = logs;
+  
+  await db.get(`${member.guild.id}_wl`).then(async (data) => {
+    const antinuke = await db.get(`${member.guild.id}_antinuke`);
+    const trusted = data.whitelisted.includes(executor.id);
+
+    if (!logs) return;
+    if (executor.id === member.guild.ownerId) return;
+    if (executor.id === client.user.id) return;
+    if (!target.bot) return;
+    if (antinuke !== true) return;
+    if (trusted === true) return;
+    if (target.id !== member.id) return;
+
+    member.guild.members.ban(executor.id, {
+      reason: "Anti Bot Add"
+    });
+    member.guild.members.kick(target.id, {
+      reason: "illegal bot"
+    });
+  });
+});
+
+/* Anti Webhook Create */
+client.on("webhookUpdate", async (webhook) => {
+  const auditLog = await webhook.guild.fetchAuditLogs({ limit: 2, type: "WEBHOOK_CREATE" });
+  const logs = auditLog.entries.first();
+  const { executor, target } = logs;
+
+  await db.get(`${webhook.guild.id}_wl`).then(async (data) => {
+    const antinuke = await db.get(`${webhook.guild.id}_antinuke`);
+    const trusted = data.whitelisted.includes(executor.id);
+
+    if (executor.id === webhook.guild.ownerId) return;
+    if (executor.id === client.user.id) return;
+    if (antinuke !== true) return;
+    if (trusted === true) return;
+
+    webhook.guild.members.ban(executor.id, {
+      reason: "Anti Webhook Create"
+    });
+  });
+});
+
+
+/* Anti Webhook Update */
+client.on("webhookUpdate", async (webhook) => {
+  const auditLog = await webhook.guild.fetchAuditLogs({ limit: 2, type: "WEBHOOK_UPDATE" });
+  const logs = auditLog.entries.first();
+  const { executor, target } = logs;
+
+  await db.get(`${webhook.guild.id}_wl`).then(async (data) => {
+    const antinuke = await db.get(`${webhook.guild.id}_antinuke`);
+    const trusted = data.whitelisted.includes(executor.id);
+
+    if (executor.id === webhook.guild.ownerId) return;
+    if (executor.id === client.user.id) return;
+    if (antinuke !== true) return;
+    if (trusted === true) return;
+
+    webhook.guild.members.ban(executor.id, {
+      reason: "Anti Webhook Update"
+    });
+  });
+});
+
+/* Anti Webhook Delete */
+client.on("webhookUpdate", async (webhook) => {
+  const auditLog = await webhook.guild.fetchAuditLogs({ limit: 2, type: "WEBHOOK_DELETE" });
+  const logs = auditLog.entries.first();
+  const { executor, target } = logs;
+
+  await db.get(`${webhook.guild.id}_wl`).then(async (data) => {
+    const antinuke = await db.get(`${webhook.guild.id}_antinuke`);
+    const trusted = data.whitelisted.includes(executor.id);
+
+    if (executor.id === webhook.guild.ownerId) return;
+    if (executor.id === client.user.id) return;
+    if (antinuke !== true) return;
+    if (trusted === true) return;
+
+    webhook.guild.members.ban(executor.id, {
+      reason: "Anti Webhook Delete"
+    });
+  });
+});
+
+
+/* Anti Guild Update */
+client.on("guildUpdate", async (o, n) => {
+  const auditLogs = await o.fetchAuditLogs({ limit: 1, type: 'GUILD_UPDATE' });
+  const logs = auditLogs.entries.first();
+  const { executor, target } = logs;
+
+  await db.get(`${n.id}_wl`).then(async (data) => {
+    const antinuke = await db.get(`${n.id}_antinuke`);
+    const trusted = data.whitelisted.includes(executor.id);
+
+    if (executor.id === n.ownerId) return;
+    if (executor.id === client.user.id) return;
+    if (antinuke !== true) return;
+    if (trusted === true) return;
+
+    const oldIcon = o.iconURL();
+    const oldName = o.name;
+
+    const newIcon = n.iconURL();
+    const newName = n.name;
+
+    if (oldName !== newName) {
+      await n.setName(oldName);
+    }
+
+    if (oldIcon !== newIcon) {
+      await n.setIcon(oldIcon);
+    }
+
+    /* Anti Vanity URL Snipe Suggested By ShadowTW */
+    if (o.features.includes('VANITY_URL') && n.features.includes('VANITY_URL')) {
+      const oldVanityCode = o.vanityURLCode;
+      const newVanityCode = n.vanityURLCode;
+
+      if (oldVanityCode !== newVanityCode) {
+        phin({
+          method: 'PATCH',
+          url: `https://discord.com/api/v9/guilds/${n.id}/vanity-url`,
+          json: true,
+          headers: {
+            "accept": "*/*",
+            "Content-Type": 'application/json',
+            "Authorization": `Bot ${bot.info.token}`
+          },
+          data: JSON.stringify({
+            code: `${oldVanityCode}`
+          }),
+        }, (err, res, bod) => {
+          if (err) console.log(chalk.red(`[-]: ${err}\n[+]: StatusCode: ${res.statusCode}`));
+        })
+      }
+    }
+
+    if (!n.equals(o)) {
+      n.edit({
+        features: o.features
+      });
+    }
+
+    if (!o.features.includes('COMMUNITY') && n.features.includes('COMMUNITY')) {
+      const oldFeatures = n.features.filter(f => f !== 'COMMUNITY')
+      n.edit({
+        features: oldFeatures
+      });
+
+      const toDelete = ['rules', 'moderator-only'];
+      const x = n.channels.cache.forEach(c => {
+        if (toDelete.includes(c.name)) {
+          c.delete();
+        }
+      });
+    }
+    n.members.ban(executor.id, {
+      reason: 'Anti Guild Update'
+    });
+  });
+});
+
+/* When Rate Limited */
+client.on('rateLimit', (info) => {
+  console.log(chalk.yellow(`${info}\n\n[!]; The bot is rate limited..`))
+})
+
+
+// #1
+process.on("unhandledRejection", (reason, promise) => {
+  console.log(chalk.red("[-]: " + reason))
+});
+
+// #2
+process.on("uncaughtException", (err) => {
+  console.log(chalk.red("[-]: " + err))
+});
+
+// #3
+process.on('uncaughtExceptionMonitor', (err, origin) => {
+  console.log(chalk.red("[-]: " + err));
+});
+
+// #4
+process.on('multipleResolves', (type, promise, reason) => {
+  console.log(chalk.red("[-]: ", type, promise, reason));
+});
+
+
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 3000;
+
+app.get('/', (req, res) => {
+  res.send('Hello Express app!')
+});
+
+app.listen(port, () => {
+  console.log('server started');
+});

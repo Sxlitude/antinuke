@@ -1,1 +1,96 @@
-function _0x4de6(_0x1bc43f,_0x347d6a){const _0x1aacd4=_0x1aac();return _0x4de6=function(_0x4de662,_0x129976){_0x4de662=_0x4de662-0x11c;let _0x39d978=_0x1aacd4[_0x4de662];return _0x39d978;},_0x4de6(_0x1bc43f,_0x347d6a);}const _0x2c9082=_0x4de6;(function(_0x1d1e9a,_0x3eedc6){const _0x76bd66=_0x4de6,_0x11ce8f=_0x1d1e9a();while(!![]){try{const _0x38eb62=-parseInt(_0x76bd66(0x135))/0x1+parseInt(_0x76bd66(0x14d))/0x2+parseInt(_0x76bd66(0x125))/0x3*(-parseInt(_0x76bd66(0x13c))/0x4)+-parseInt(_0x76bd66(0x11d))/0x5*(-parseInt(_0x76bd66(0x122))/0x6)+parseInt(_0x76bd66(0x11f))/0x7+parseInt(_0x76bd66(0x153))/0x8*(parseInt(_0x76bd66(0x133))/0x9)+parseInt(_0x76bd66(0x150))/0xa*(-parseInt(_0x76bd66(0x151))/0xb);if(_0x38eb62===_0x3eedc6)break;else _0x11ce8f['push'](_0x11ce8f['shift']());}catch(_0x1641ce){_0x11ce8f['push'](_0x11ce8f['shift']());}}}(_0x1aac,0x3bd37));const {MessageEmbed,MessageActionRow,MessageSelectMenu,MessageButton}=require('discord.js'),words=[_0x2c9082(0x132),_0x2c9082(0x120),_0x2c9082(0x12e),'by','is'],alphabets=_0x2c9082(0x137),numbers='1234567890',symbols='!@$%^&*()#',a=alphabets[0x12][_0x2c9082(0x12d)](),b=alphabets[0x17][_0x2c9082(0x14f)](),c=alphabets[0xb][_0x2c9082(0x14f)](),d=alphabets[0x8]['toLowerCase'](),e=alphabets[0x13][_0x2c9082(0x14f)](),f=alphabets[0x14][_0x2c9082(0x14f)](),g=alphabets[0x3]['toLowerCase'](),h=alphabets[0x4]['toLowerCase'](),i=symbols[symbols[_0x2c9082(0x14c)]('#')],j=numbers[0x8*0x8-0x3c+0x3],k=numbers[0xa*0x6-0x3c+0x7],l=numbers[0x14*0x5-0x63+0x6],m=numbers[0x1e*0x0-0xa+0xe],developer=''+a+b+c+d+e+f+g+h+i+j+k+l+m;module[_0x2c9082(0x124)]={'name':'help','aliases':['h'],'run':async(_0x514a92,_0x582fe0,_0x1c2312)=>{const _0x3c1d0b=_0x2c9082,_0x196a7e=new MessageEmbed()[_0x3c1d0b(0x127)](''+_0x514a92['user'][_0x3c1d0b(0x142)]({'dynamic':!![]}))[_0x3c1d0b(0x126)](_0x3c1d0b(0x13a))[_0x3c1d0b(0x14a)](_0x3c1d0b(0x140)),_0x419c79=new MessageActionRow()[_0x3c1d0b(0x145)](new MessageSelectMenu()['setCustomId']('helpOption')[_0x3c1d0b(0x14b)](_0x3c1d0b(0x148))['addOptions']([{'label':_0x3c1d0b(0x130),'value':'cmds','description':_0x3c1d0b(0x12b)},{'label':_0x3c1d0b(0x155),'value':'wl','description':'the\x20whitelisting\x20guide'},{'label':_0x3c1d0b(0x11e),'value':_0x3c1d0b(0x128),'description':_0x3c1d0b(0x146)}])),_0x3ec9f7=new MessageActionRow()[_0x3c1d0b(0x145)](new MessageSelectMenu()[_0x3c1d0b(0x144)]('uh')[_0x3c1d0b(0x14b)](_0x3c1d0b(0x148))[_0x3c1d0b(0x143)](!![])[_0x3c1d0b(0x13f)]([{'label':_0x3c1d0b(0x121),'value':'x','description':_0x3c1d0b(0x13d)}]));_0x582fe0[_0x3c1d0b(0x138)]['send']({'embeds':[_0x196a7e],'components':[_0x419c79]})[_0x3c1d0b(0x149)](_0x56873f=>{setTimeout(()=>{_0x56873f['edit']({'components':[_0x3ec9f7]});},0x2710);});const _0x303f34=new MessageEmbed()[_0x3c1d0b(0x127)](''+_0x514a92[_0x3c1d0b(0x154)][_0x3c1d0b(0x142)]({'dynamic':!![]}))[_0x3c1d0b(0x126)](_0x3c1d0b(0x13a))['setDescription'](_0x3c1d0b(0x13e)),_0x1cc4b9=new MessageEmbed()['setThumbnail'](''+_0x514a92[_0x3c1d0b(0x154)][_0x3c1d0b(0x142)]({'dynamic':!![]}))[_0x3c1d0b(0x126)]('#2C2F33')[_0x3c1d0b(0x14a)](_0x3c1d0b(0x12c)),_0x1b95ff=_0x514a92['guilds'][_0x3c1d0b(0x131)][_0x3c1d0b(0x13b)](_0x592f79=>_0x592f79['memberCount']),_0x50d1de=_0x1b95ff[_0x3c1d0b(0x139)]((_0x1fd30b,_0x296b51)=>_0x1fd30b+_0x296b51),_0x148f79=new MessageEmbed()[_0x3c1d0b(0x127)](''+_0x514a92[_0x3c1d0b(0x154)][_0x3c1d0b(0x142)]({'dynamic':!![]}))[_0x3c1d0b(0x126)](_0x3c1d0b(0x13a))[_0x3c1d0b(0x14a)](_0x3c1d0b(0x134)+developer+'\x0a﹒database:\x20mongo\x20DB\x0a﹒language:\x20node.js\x0a﹒library:\x20discord.js\x0a﹒host:\x20heroku\x0a\x0a**bot\x20stats**\x0a﹒users:\x20'+_0x50d1de+_0x3c1d0b(0x147)+_0x514a92[_0x3c1d0b(0x11c)]['cache'][_0x3c1d0b(0x152)]+_0x3c1d0b(0x14e)+_0x514a92['ws']['ping']+'ms\x0a\x0a**contributors**\x0a﹒~\x20Piyush#1972\x20\x0a﹒ⴽΛ\x20𝐉𝐚𝐧𝐞𝐭#6908\x0a﹒shadowTW#7100\x0a﹒comy#0001\x0a﹒troubled#1337\x0a﹒颢烨\x20hy#1000\x0a﹒S.mode#9723\x0a﹒!\x20𝐍σт𝐘συя𝓥𝞪η𝓢♄♔🥀†ʰ𝕔#9999\x0a﹒𝑺𝑻丶༒𝐃𝐄𝐑𝐄𝐊༒⸸ᴳᵀ#3081\x0a\x0a**;**\x20made\x20with\x20:heart:\x20by\x20Sxlitude\x20&\x20the\x20contributors.'),_0x528237=_0x5614c3=>_0x5614c3['isSelectMenu'](),_0x2c219b=_0x582fe0[_0x3c1d0b(0x138)][_0x3c1d0b(0x156)]({'filter':_0x528237,'limit':0xa});_0x2c219b['on'](_0x3c1d0b(0x123),async _0x28d885=>{const _0x1ad348=_0x3c1d0b;if(_0x28d885[_0x1ad348(0x154)]['id']!==_0x582fe0[_0x1ad348(0x136)]['id'])await _0x28d885['reply']({'content':_0x1ad348(0x12a),'ephemeral':!![]});else{await _0x28d885[_0x1ad348(0x141)]();const _0x237193=_0x28d885[_0x1ad348(0x12f)][0x0];if(_0x237193==='cmds')await _0x28d885[_0x1ad348(0x129)]({'embeds':[_0x303f34]});else{if(_0x237193==='wl')await _0x28d885[_0x1ad348(0x129)]({'embeds':[_0x1cc4b9]});else _0x237193===_0x1ad348(0x128)&&await _0x28d885[_0x1ad348(0x129)]({'embeds':[_0x148f79]});}}});}};function _0x1aac(){const _0x5823ed=['bot\x20information','3180506ihpPst','this','this\x20menu\x20is\x20disabled','24jttQLz','collect','exports','20172iInzIV','setColor','setThumbnail','credits','editReply','this\x20menu\x20is\x20not\x20for\x20you','the\x20toggling\x20guide','__**whitelisting**__\x0a﹒the\x20bot\x20doesn\x27t\x20trigger\x20on\x20whitelisted\x20admins\x0a﹒whitelisted\x20admins\x20can\x20do\x20anything\x20in\x20the\x20server\x0a﹒whitelisted\x20admins\x20__cannot__\x20whitelist\x20others\x0a\x0a>\x20**_whitelist_**\x0a>\x20﹒run\x20the\x20command\x20`;whitelist\x20@user`\x0a>\x20﹒whitelisted\x20admins\x20__can__\x20bypass\x20antinuke\x0a>\x20\x0a>\x20**_unwhitelist_**\x0a>\x20﹒run\x20the\x20command\x20`;unwhitelist\x20@user`\x0a>\x20﹒non-whitelisted\x20admins\x20can\x20trigger\x20antinuke\x0a>\x20\x0a>\x20**_whitelisted_**\x0a>\x20﹒run\x20the\x20command\x20`;whitelisted`\x0a>\x20﹒it\x20shows\x20the\x20list\x20of\x20whitelisted\x20users','toUpperCase','coded','values','antinuke\x20commands','cache','bot','13014XrFaeT','**__credits__**\x0a﹒shows\x20some\x20bot\x20information\x0a﹒also\x20tells\x20about\x20the\x20developer\x0a\x0a>>>\x20**bot\x20info**\x0a﹒developer:\x20','211432kqTphG','author','abcdefghijklmnopqrstuvwxyz','channel','reduce','#2C2F33','map','24UWpPGK','do\x20the\x20command\x20again','**__antinuke__**\x0a﹒it\x20bans\x20admins\x20for\x20doing\x20actions\x20in\x20the\x20server\x0a﹒it\x20ignores\x20whatever\x20whitelisted\x20admins\x20do\x0a﹒antinuke\x20should\x20be\x20enabled\x20to\x20trigger\x20the\x20bot\x0a\x0a>>>\x20**enable**\x0a﹒run\x20this\x20command\x20`;antinuke\x20enable`\x0a﹒admins\x20can\x20get\x20banned\x20unless\x20they\x27re\x20whitelisted\x0a\x0a**disable**\x0a﹒run\x20this\x20command\x20`;antinuke\x20disable`\x0a﹒admins\x20can\x20do\x20anything\x20without\x20getting\x20banned','addOptions','__**terror**__\x0a﹒a\x20powerful\x20antinuke\x20bot\x0a﹒includes\x20admin\x20whitelisting\x0a﹒has\x20recovery\x20feature\x0a\x0a__**features**__\x0a﹒anti\x20channels,\x20roles,\x20webhooks\x0a﹒anti\x20member\x20update,\x20kick,\x20ban\x0a﹒anti\x20community\x20feature\x20spam\x0a﹒anti\x20guild\x20vanity\x20url\x20snipe\x0a\x0a**;**\x20*use\x20the\x20menu\x20below\x20to\x20know\x20how\x20the\x20bot\x20works*','deferUpdate','avatarURL','setDisabled','setCustomId','addComponents','who\x20made\x20this\x20bot?','\x0a﹒servers:\x20','click\x20me','then','setDescription','setPlaceholder','indexOf','894806PBQPQD','\x0a﹒ping:\x20','toLowerCase','10371080EYTyKU','11VBzQeR','size','1688PPraEC','user','whitelist\x20commands','createMessageComponentCollector','guilds','408830XbZMzz'];_0x1aac=function(){return _0x5823ed;};return _0x1aac();}
+const { MessageEmbed, MessageActionRow, MessageSelectMenu, MessageButton } = require('discord.js');
+
+module.exports = {
+  name: 'help',
+  aliases: ['h'],
+  run: async (client, message, args) => {
+    const help = new MessageEmbed()
+      .setThumbnail(`${client.user.avatarURL({ dynamic: true })}`)
+      .setColor('#2C2F33')
+      .setDescription('__**terror**__\n﹒a powerful antinuke bot\n﹒includes admin whitelisting\n﹒has recovery feature\n\n__**features**__\n﹒anti channels, roles, webhooks\n﹒anti member update, kick, ban\n﹒anti community feature spam\n﹒anti guild vanity url snipe\n\n**;** *use the menu below to know how the bot works*');
+
+    const menuOptions = new MessageActionRow().addComponents(
+      new MessageSelectMenu()
+        .setCustomId('helpOption')
+        .setPlaceholder('click me')
+        .addOptions([
+          {
+            label: 'antinuke commands',
+            value: 'cmds',
+            description: 'the toggling guide'
+          },
+          {
+            label: 'whitelist commands',
+            value: 'wl',
+            description: 'the whitelisting guide'
+          },
+          {
+            label: 'bot information',
+            value: 'credits',
+            description: 'who made this bot?'
+          },
+        ])
+    )
+
+    const disabled = new MessageActionRow().addComponents(
+      new MessageSelectMenu()
+        .setCustomId('uh')
+        .setPlaceholder('click me')
+        .setDisabled(true)
+        .addOptions([
+          {
+            label: 'this menu is disabled',
+            value: 'x',
+            description: 'do the command again'
+          }
+          ])
+    )
+
+    message.channel.send({ embeds: [help], components: [menuOptions] }).then((msg) => {
+      setTimeout(() => {
+        msg.edit({ components: [disabled] });
+      }, 10000)
+    })
+
+    const cmds = new MessageEmbed()
+      .setThumbnail(`${client.user.avatarURL({ dynamic: true })}`)
+      .setColor('#2C2F33')
+      .setDescription('**__antinuke__**\n﹒it bans admins for doing actions in the server\n﹒it ignores whatever whitelisted admins do\n﹒antinuke should be enabled to trigger the bot\n\n>>> **enable**\n﹒run this command `;antinuke enable`\n﹒admins can get banned unless they\'re whitelisted\n\n**disable**\n﹒run this command `;antinuke disable`\n﹒admins can do anything without getting banned')
+
+    const wl = new MessageEmbed()
+      .setThumbnail(`${client.user.avatarURL({ dynamic: true })}`)
+      .setColor('#2C2F33')
+      .setDescription('__**whitelisting**__\n﹒the bot doesn\'t trigger on whitelisted admins\n﹒whitelisted admins can do anything in the server\n﹒whitelisted admins __cannot__ whitelist others\n\n> **_whitelist_**\n> ﹒run the command `;whitelist @user`\n> ﹒whitelisted admins __can__ bypass antinuke\n> \n> **_unwhitelist_**\n> ﹒run the command `;unwhitelist @user`\n> ﹒non-whitelisted admins can trigger antinuke\n> \n> **_whitelisted_**\n> ﹒run the command `;whitelisted`\n> ﹒it shows the list of whitelisted users')
+
+    const everyGuild = client.guilds.cache.map((guild) => guild.memberCount);
+    const users = everyGuild.reduce((x, y) => x + y);
+    
+    const credits = new MessageEmbed()
+      .setThumbnail(`${client.user.avatarURL({ dynamic: true })}`)
+      .setColor('#2C2F33')
+      .setDescription(`**__credits__**\n﹒shows some bot information\n﹒also tells about the developer\n\n>>> **bot info**\n﹒developer: Sxlitude#8885\n﹒database: mongo DB\n﹒language: node.js\n﹒library: discord.js\n﹒host: heroku\n\n**bot stats**\n﹒users: ${users}\n﹒servers: ${client.guilds.cache.size}\n﹒ping: ${client.ws.ping}ms\n\n**contributors**\n﹒~ Piyush#1972 \n﹒ⴽΛ 𝐉𝐚𝐧𝐞𝐭#6908\n﹒shadowTW#7100\n﹒comy#0001\n﹒troubled#1337\n﹒颢烨 hy#1000\n﹒S.mode#9723\n﹒! 𝐍σт𝐘συя𝓥𝞪η𝓢♄♔🥀†ʰ𝕔#9999\n﹒𝑺𝑻丶༒𝐃𝐄𝐑𝐄𝐊༒⸸ᴳᵀ#3081\n\n**;** made with :heart: by Sxlitude & the contributors.`)
+
+    const filter = (i) => i.isSelectMenu();
+    const collector = message.channel.createMessageComponentCollector({ filter });
+
+    collector.on('collect', async (i) => {
+      if (i.user.id !== message.author.id) {
+        await i.reply({
+          content: 'this menu is not for you',
+          ephemeral: true,
+        })
+      } else {
+        await i.deferUpdate();
+        const value = i.values[0];
+
+        if (value === 'cmds') {
+          await i.editReply({ embeds: [cmds] });
+        } else if (value === 'wl') {
+            await i.editReply({ embeds: [wl] });
+        } else if (value === 'credits') {
+            await i.editReply({ embeds: [credits] });
+        }
+      }
+    })
+  }
+}

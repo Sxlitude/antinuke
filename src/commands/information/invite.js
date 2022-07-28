@@ -1,1 +1,23 @@
-function _0x5375(_0x598895,_0x22e9b4){const _0x385ace=_0x385a();return _0x5375=function(_0x537599,_0x405a6f){_0x537599=_0x537599-0x7b;let _0x597b30=_0x385ace[_0x537599];return _0x597b30;},_0x5375(_0x598895,_0x22e9b4);}const _0x149dac=_0x5375;(function(_0x4ae408,_0x2cf7ba){const _0x36a95d=_0x5375,_0x20b614=_0x4ae408();while(!![]){try{const _0x4ac0b4=parseInt(_0x36a95d(0x87))/0x1*(parseInt(_0x36a95d(0x90))/0x2)+parseInt(_0x36a95d(0x8e))/0x3+-parseInt(_0x36a95d(0x7b))/0x4*(parseInt(_0x36a95d(0x95))/0x5)+-parseInt(_0x36a95d(0x86))/0x6*(parseInt(_0x36a95d(0x94))/0x7)+parseInt(_0x36a95d(0x7c))/0x8*(-parseInt(_0x36a95d(0x80))/0x9)+-parseInt(_0x36a95d(0x84))/0xa+parseInt(_0x36a95d(0x8d))/0xb;if(_0x4ac0b4===_0x2cf7ba)break;else _0x20b614['push'](_0x20b614['shift']());}catch(_0x20af90){_0x20b614['push'](_0x20b614['shift']());}}}(_0x385a,0xc8f34));function _0x385a(){const _0x242d13=['discord.js','33710644GjEkyv','4477584RDoZTR','exports','4yjlqfF','invite','addComponents','Click\x20the\x20button\x20below:','7770SQkNAr','170YwHkJR','188276LRZZQm','400kpgkcN','../../index','setLabel','reply','63693LZfauc','../../core/settings','bot','setStyle','11497700vsDiYz','setURL','4374xXBBLz','89558EcpuXo','invLink','Invite\x20Me','info','LINK'];_0x385a=function(){return _0x242d13;};return _0x385a();}const {Message,Client,MessageActionRow,MessageButton}=require(_0x149dac(0x8c)),client=require(_0x149dac(0x7d)),Settings=require(_0x149dac(0x81));module[_0x149dac(0x8f)]={'name':_0x149dac(0x91),'aliases':['i'],'run':async(_0x141564,_0x4c7e97,_0x1f9750)=>{const _0x51be80=_0x149dac,_0x5d9fbe=new MessageActionRow()[_0x51be80(0x92)](new MessageButton()[_0x51be80(0x7e)](_0x51be80(0x89))[_0x51be80(0x83)](_0x51be80(0x8b))[_0x51be80(0x85)](''+Settings[_0x51be80(0x82)][_0x51be80(0x8a)][_0x51be80(0x88)]));_0x4c7e97[_0x51be80(0x7f)]({'content':_0x51be80(0x93),'components':[_0x5d9fbe]});}};
+// Constants
+const { Message, Client, MessageActionRow, MessageButton } = require("discord.js");
+const client = require("../../index");
+const Settings = require("../../core/settings");
+
+// Command
+module.exports = {
+  name: "invite",
+  aliases: ['i'],
+  run: async (client, message, args) => {
+    const button = new MessageActionRow().addComponents(
+      new MessageButton()
+        .setLabel("Invite Me")
+        .setStyle("LINK")
+        .setURL(`${Settings.bot.info.invLink}`)
+    )
+    
+    // Sending
+    message.reply({
+      content: "Click the button below:", 
+      components: [button] });
+  },
+};

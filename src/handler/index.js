@@ -1,1 +1,43 @@
-function _0x5bd9(){const _0x4042f1=['6349161uadZHr','discord.js','cwd','20WRqwib','2452794YnVSha','841256DGdpAp','25UZUNMn','2009504kcXRnd','map','MESSAGE','commands','slashCommands','length','exports','/events/**/*.js','application','includes','description','split','type','1474280HWAqsK','name','glob','99mIegfx','/slashcmds/*/*.js','31617047tuBAbs','util','4ztqkWL','1237866ntSKWy','set'];_0x5bd9=function(){return _0x4042f1;};return _0x5bd9();}const _0x583861=_0x343c;(function(_0x35aa08,_0x5257bf){const _0x8c332=_0x343c,_0xc2bc42=_0x35aa08();while(!![]){try{const _0x145930=-parseInt(_0x8c332(0xa7))/0x1+-parseInt(_0x8c332(0xae))/0x2*(parseInt(_0x8c332(0xb5))/0x3)+-parseInt(_0x8c332(0xb8))/0x4+-parseInt(_0x8c332(0xb7))/0x5*(parseInt(_0x8c332(0xaf))/0x6)+parseInt(_0x8c332(0xb1))/0x7+-parseInt(_0x8c332(0xb6))/0x8*(parseInt(_0x8c332(0xaa))/0x9)+-parseInt(_0x8c332(0xb4))/0xa*(-parseInt(_0x8c332(0xac))/0xb);if(_0x145930===_0x5257bf)break;else _0xc2bc42['push'](_0xc2bc42['shift']());}catch(_0x4cef91){_0xc2bc42['push'](_0xc2bc42['shift']());}}}(_0x5bd9,0xd0d93));function _0x343c(_0x5a75a9,_0x4f109d){const _0x5bd97f=_0x5bd9();return _0x343c=function(_0x343cb1,_0xdeb115){_0x343cb1=_0x343cb1-0xa5;let _0x205c17=_0x5bd97f[_0x343cb1];return _0x205c17;},_0x343c(_0x5a75a9,_0x4f109d);}const {glob}=require(_0x583861(0xa9)),{promisify}=require(_0x583861(0xad)),{Client}=require(_0x583861(0xb2)),globPromise=promisify(glob);module[_0x583861(0xbe)]=async _0x22d058=>{const _0x15ede4=_0x583861,_0x55ddfd=await globPromise(process['cwd']()+'/commands/**/*.js');_0x55ddfd['map'](_0x5198ed=>{const _0x502ddb=_0x343c,_0x58a3af=require(_0x5198ed),_0x57465f=_0x5198ed[_0x502ddb(0xa5)]('/'),_0x564540=_0x57465f[_0x57465f[_0x502ddb(0xbd)]-0x2];if(_0x58a3af[_0x502ddb(0xa8)]){const _0x24fa9e={'directory':_0x564540,..._0x58a3af};_0x22d058[_0x502ddb(0xbb)][_0x502ddb(0xb0)](_0x58a3af[_0x502ddb(0xa8)],_0x24fa9e);}});const _0xccf439=await globPromise(process[_0x15ede4(0xb3)]()+_0x15ede4(0xbf));_0xccf439['map'](_0x3e446f=>require(_0x3e446f));const _0x4a8688=await globPromise(process[_0x15ede4(0xb3)]()+_0x15ede4(0xab)),_0x405ef9=[];_0x4a8688[_0x15ede4(0xb9)](_0x1a0c1d=>{const _0x125ed6=_0x15ede4,_0x27ef01=require(_0x1a0c1d);if(!_0x27ef01?.['name'])return;_0x22d058[_0x125ed6(0xbc)][_0x125ed6(0xb0)](_0x27ef01[_0x125ed6(0xa8)],_0x27ef01);if([_0x125ed6(0xba),'USER'][_0x125ed6(0xc1)](_0x27ef01[_0x125ed6(0xa6)]))delete _0x27ef01[_0x125ed6(0xc2)];_0x405ef9['push'](_0x27ef01);}),_0x22d058['on']('ready',async()=>{const _0x46220e=_0x15ede4;await _0x22d058[_0x46220e(0xc0)][_0x46220e(0xbb)]['set'](_0x405ef9);});};
+const { glob } = require("glob");
+const { promisify } = require("util");
+const { Client } = require("discord.js");
+
+const globPromise = promisify(glob);
+
+module.exports = async (client) => {
+    // Commands 
+    const commandFiles = await globPromise(`${process.cwd()}/commands/**/*.js`);
+    commandFiles.map((value) => {
+        const file = require(value);
+        const splitted = value.split("/");
+        const directory = splitted[splitted.length - 2];
+
+        if (file.name) {
+            const properties = { directory, ...file };
+            client.commands.set(file.name, properties);
+        }
+    });
+
+    // Events
+    const eventFiles = await globPromise(`${process.cwd()}/events/**/*.js`);
+    eventFiles.map((value) => require(value));
+
+    // Slash Commands
+    const slashCommands = await globPromise(
+        `${process.cwd()}/SlashCommands/*/*.js`
+    );
+
+    const arrayOfSlashCommands = [];
+    slashCommands.map((value) => {
+        const file = require(value);
+        if (!file?.name) return;
+        client.slashCommands.set(file.name, file);
+
+        if (["MESSAGE", "USER"].includes(file.type)) delete file.description;
+        arrayOfSlashCommands.push(file);
+    });
+    client.on("ready", async () => {
+        // Register for all the guilds the bot is in
+        await client.application.commands.set(arrayOfSlashCommands);
+    });
+};

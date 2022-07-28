@@ -1,1 +1,25 @@
-function _0x3cd7(){const _0x3d44ce=['setPresence','../../index','presence','once','54804sJmScw','972224rZCPsb','chalk','6acNyst','1474317slFhoo','2271437PlEWzy','ready','tag','6166bhqylX','user','188288OSIcpT','365886fGYazh','../../core/settings.js','log','5zIiUdv','../../core/db.js','50VTwpgR'];_0x3cd7=function(){return _0x3d44ce;};return _0x3cd7();}const _0x20cd12=_0x578a;function _0x578a(_0x421d37,_0x47b8b3){const _0x3cd7c2=_0x3cd7();return _0x578a=function(_0x578ae7,_0x514cb8){_0x578ae7=_0x578ae7-0xc3;let _0x1fc408=_0x3cd7c2[_0x578ae7];return _0x1fc408;},_0x578a(_0x421d37,_0x47b8b3);}(function(_0xa4beec,_0x442296){const _0x2dbcbc=_0x578a,_0xb85ce6=_0xa4beec();while(!![]){try{const _0x15bbdc=parseInt(_0x2dbcbc(0xd1))/0x1*(parseInt(_0x2dbcbc(0xcc))/0x2)+-parseInt(_0x2dbcbc(0xd4))/0x3+-parseInt(_0x2dbcbc(0xd3))/0x4+parseInt(_0x2dbcbc(0xd7))/0x5*(-parseInt(_0x2dbcbc(0xc9))/0x6)+-parseInt(_0x2dbcbc(0xce))/0x7+-parseInt(_0x2dbcbc(0xca))/0x8+-parseInt(_0x2dbcbc(0xcd))/0x9*(-parseInt(_0x2dbcbc(0xc4))/0xa);if(_0x15bbdc===_0x442296)break;else _0xb85ce6['push'](_0xb85ce6['shift']());}catch(_0x5a19d6){_0xb85ce6['push'](_0xb85ce6['shift']());}}}(_0x3cd7,0x34180));const client=require(_0x20cd12(0xc6)),db=require(_0x20cd12(0xc3)),{bot}=require(_0x20cd12(0xd5)),chalk=require(_0x20cd12(0xcb)),ascii='\x0a\x0a████████╗███████╗██████╗░██████╗░░█████╗░██████╗░\x0a╚══██╔══╝██╔════╝██╔══██╗██╔══██╗██╔══██╗██╔══██╗\x0a░░░██║░░░█████╗░░██████╔╝██████╔╝██║░░██║██████╔╝\x0a░░░██║░░░██╔══╝░░██╔══██╗██╔══██╗██║░░██║██╔══██╗\x0a░░░██║░░░███████╗██║░░██║██║░░██║╚█████╔╝██║░░██║\x0a░░░╚═╝░░░╚══════╝╚═╝░░╚═╝╚═╝░░╚═╝░╚════╝░╚═╝░░╚═╝\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a';function logAscii(_0x5d0c69,_0x2d284f){const _0x5238f2=_0x20cd12,_0x2fb948='\x0a{!}\x20::\x20Logged\x20in\x20as\x20'+_0x5d0c69+'\x0a{!}\x20::\x20Made\x20by\x20Sxlitude#8885\x0a\x0a';console[_0x5238f2(0xd6)](''+(ascii+_0x2fb948));}client[_0x20cd12(0xc8)](_0x20cd12(0xcf),async()=>{const _0x38f856=_0x20cd12;logAscii(client[_0x38f856(0xd2)][_0x38f856(0xd0)]),client[_0x38f856(0xd2)][_0x38f856(0xc5)]({'activities':[bot[_0x38f856(0xc7)]]});});
+const client = require('../../index'),
+  db = require('../../core/db.js'),
+  { bot } = require('../../core/settings.js'),
+  chalk = require('chalk'),
+  ascii = `
+
+████████╗███████╗██████╗░██████╗░░█████╗░██████╗░
+╚══██╔══╝██╔════╝██╔══██╗██╔══██╗██╔══██╗██╔══██╗
+░░░██║░░░█████╗░░██████╔╝██████╔╝██║░░██║██████╔╝
+░░░██║░░░██╔══╝░░██╔══██╗██╔══██╗██║░░██║██╔══██╗
+░░░██║░░░███████╗██║░░██║██║░░██║╚█████╔╝██║░░██║
+░░░╚═╝░░░╚══════╝╚═╝░░╚═╝╚═╝░░╚═╝░╚════╝░╚═╝░░╚═╝                                                    
+`;
+
+function logAscii(bot, mode) {
+  const x = `\n{!} :: Logged in as ${bot}\n{!} :: Made by Sxlitude#8885\n\n`
+  console.log(`${ascii + x}`)
+}
+
+client.once("ready", async () => {
+  logAscii(client.user.tag);
+  client.user.setPresence({
+    activities: [bot.presence]
+  });
+});
