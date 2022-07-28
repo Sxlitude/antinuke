@@ -1,1 +1,37 @@
-const _0x412e14=_0x1cb5;(function(_0x3fa449,_0x44bc73){const _0x1519ef=_0x1cb5,_0x101041=_0x3fa449();while(!![]){try{const _0x210135=-parseInt(_0x1519ef(0xce))/0x1*(parseInt(_0x1519ef(0xca))/0x2)+parseInt(_0x1519ef(0xe1))/0x3+parseInt(_0x1519ef(0xe8))/0x4+parseInt(_0x1519ef(0xe6))/0x5*(-parseInt(_0x1519ef(0xd7))/0x6)+parseInt(_0x1519ef(0xd0))/0x7+-parseInt(_0x1519ef(0xd6))/0x8*(-parseInt(_0x1519ef(0xda))/0x9)+parseInt(_0x1519ef(0xdd))/0xa*(parseInt(_0x1519ef(0xd8))/0xb);if(_0x210135===_0x44bc73)break;else _0x101041['push'](_0x101041['shift']());}catch(_0x5bc994){_0x101041['push'](_0x101041['shift']());}}}(_0x228f,0x79e80));const {MessageEmbed}=require(_0x412e14(0xcf)),db=require(_0x412e14(0xd5));module['exports']={'name':_0x412e14(0xe3),'aliases':['wl',_0x412e14(0xd2)],'run':async(_0x28e5f2,_0x140a7a,_0x216dc5)=>{const _0x26856f=_0x412e14;if(_0x140a7a[_0x26856f(0xe5)]['id']!==_0x140a7a[_0x26856f(0xd9)][_0x26856f(0xdc)])_0x140a7a[_0x26856f(0xd3)][_0x26856f(0xd1)]({'content':_0x26856f(0xcc)});else{const _0x178d1e=await db['get'](_0x140a7a[_0x26856f(0xd9)]['id']+_0x26856f(0xcd));if(_0x178d1e===!![]){const _0x5590b2=_0x140a7a['mentions'][_0x26856f(0xe7)][_0x26856f(0xd4)]();if(!_0x5590b2){const _0x29afa3=new MessageEmbed()[_0x26856f(0xc9)](_0x26856f(0xe9))[_0x26856f(0xc8)](_0x26856f(0xe0));_0x140a7a[_0x26856f(0xd3)][_0x26856f(0xd1)]({'embeds':[_0x29afa3]});}else{const _0x3777cf=_0x5590b2['id'],_0x4142c3=await db[_0x26856f(0xdf)](_0x140a7a[_0x26856f(0xd9)]['id']+_0x26856f(0xe4)+_0x5590b2['id']);_0x4142c3?_0x140a7a['channel'][_0x26856f(0xd1)]({'content':_0x26856f(0xcb)}):(await db['set'](_0x140a7a[_0x26856f(0xd9)]['id']+_0x26856f(0xe4)+_0x3777cf,!![]),await _0x140a7a[_0x26856f(0xe2)]({'content':'**'+_0x5590b2['username']+_0x26856f(0xdb)}));}}else _0x140a7a['channel'][_0x26856f(0xd1)]({'content':_0x26856f(0xde)});}}};function _0x1cb5(_0x62ed36,_0x5c2060){const _0x228f83=_0x228f();return _0x1cb5=function(_0x1cb5e6,_0x29faaa){_0x1cb5e6=_0x1cb5e6-0xc8;let _0x3c59d9=_0x228f83[_0x1cb5e6];return _0x3c59d9;},_0x1cb5(_0x62ed36,_0x5c2060);}function _0x228f(){const _0x359d7b=['guild','9lYdnZX','**\x20is\x20now\x20whitelisted','ownerId','170GfKawm','To\x20run\x20this\x20command,\x20enable\x20antinuke\x20first.','get','***Trust\x20Command***\x0aIf\x20your\x20admins\x20are\x20trusted,\x20i\x20will\x20ignore\x20whatever\x20they\x20do\x20in\x20your\x20server.\x20They\x20won\x27t\x20get\x20punished\x20for\x20doing\x20actions.\x0a\x0a﹒Usage\x20::\x20trust\x20@user\x0a﹒Requires\x20Server\x20Ownership','586470LspEtP','reply','trust','_wl_','author','6175mGoVIf','users','1169364QyCMwW','PURPLE','setDescription','setColor','84RvCgul','That\x20user\x20is\x20already\x20whitelisted','*This\x20command\x20is\x20only\x20for\x20the\x20server\x20owner','_antinuke','9480iFDqkR','discord.js','1000531vYUEBJ','send','whitelist','channel','first','../../core/db','3864032Aetymy','4074kSVRRw','402655MXisqc'];_0x228f=function(){return _0x359d7b;};return _0x228f();}
+const { MessageEmbed } = require("discord.js"),
+  db = require('../../core/db');
+
+module.exports = {
+  name: 'trust',
+  aliases: ['wl', 'whitelist'],
+  run: async (client, message, args) => {
+    if (message.author.id !== message.guild.ownerId) {
+      message.channel.send({ content: `*This command is only for the server owner` });
+    } else {
+      const enabled = await db.get(`${message.guild.id}_antinuke`);
+      if (enabled === true) {
+        const user = message.mentions.users.first();
+        if (!user) {
+          const guide = new MessageEmbed()
+            .setColor("PURPLE")
+            .setDescription('***Trust Command***\nIf your admins are trusted, i will ignore whatever they do in your server. They won\'t get punished for doing actions.\n\n﹒Usage :: trust @user\n﹒Requires Server Ownership');
+          
+          message.channel.send({ embeds: [guide] });
+          
+        } else {
+          const ID = user.id;
+          const whitelisted = await db.get(`${message.guild.id}_wl_${user.id}`);
+
+          if (whitelisted) {
+            message.channel.send({ content: `That user is already whitelisted` });
+          } else {
+            await db.set(`${message.guild.id}_wl_${ID}`, true)
+            await message.reply({ content: `**${user.username}** is now whitelisted` })
+          }
+        }
+      } else {
+        message.channel.send({ content: `To run this command, enable antinuke first.` });
+      }
+    }
+  },
+}

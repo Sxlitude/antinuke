@@ -1,1 +1,39 @@
-const _0x4de966=_0x55f8;function _0x5a13(){const _0x12f7f3=['reply','175736nNtbLa','_wl','2680SRQvDP','3lBaVaA','**__Whitelisted\x20admins\x20for\x20this\x20server__**\x0a\x0a','883972mJmdQT','user','812qYRdQl','5487444vAkhQj','join','shows\x20the\x20list\x20of\x20whitelisted\x20admins','566748GYShdi','followUp','setColor','then','there\x20are\x20no\x20trusted\x20users\x20for\x20this\x20server','CHAT_INPUT','8426rkqJAh','push','exports','>\x20(','1883605fdSlbY','2loVHRZ','ownerId','discord.js','43352lAztUr'];_0x5a13=function(){return _0x12f7f3;};return _0x5a13();}(function(_0x235b82,_0x2df45b){const _0x5e3c32=_0x55f8,_0x24dd7f=_0x235b82();while(!![]){try{const _0x451d80=parseInt(_0x5e3c32(0x1f4))/0x1*(-parseInt(_0x5e3c32(0x1de))/0x2)+-parseInt(_0x5e3c32(0x1e1))/0x3*(-parseInt(_0x5e3c32(0x1e3))/0x4)+parseInt(_0x5e3c32(0x1f3))/0x5+parseInt(_0x5e3c32(0x1e9))/0x6+parseInt(_0x5e3c32(0x1e5))/0x7*(parseInt(_0x5e3c32(0x1f7))/0x8)+-parseInt(_0x5e3c32(0x1e6))/0x9+-parseInt(_0x5e3c32(0x1e0))/0xa*(parseInt(_0x5e3c32(0x1ef))/0xb);if(_0x451d80===_0x2df45b)break;else _0x24dd7f['push'](_0x24dd7f['shift']());}catch(_0x11aa32){_0x24dd7f['push'](_0x24dd7f['shift']());}}}(_0x5a13,0x50934));function _0x55f8(_0x4264ec,_0x46fa50){const _0x5a1303=_0x5a13();return _0x55f8=function(_0x55f8ff,_0x58d81b){_0x55f8ff=_0x55f8ff-0x1dd;let _0xcfe5a8=_0x5a1303[_0x55f8ff];return _0xcfe5a8;},_0x55f8(_0x4264ec,_0x46fa50);}const {MessageEmbed}=require(_0x4de966(0x1f6)),db=require('../../core/db.js');module[_0x4de966(0x1f1)]={'name':'whitelisted','description':_0x4de966(0x1e8),'type':_0x4de966(0x1ee),'run':async(_0x2aaeb4,_0x1629a5,_0x329099)=>{const _0x3cba56=_0x4de966;_0x1629a5[_0x3cba56(0x1e4)]['id']===_0x1629a5['guild'][_0x3cba56(0x1f5)]?await db['list'](_0x1629a5['guild']['id']+_0x3cba56(0x1df))[_0x3cba56(0x1ec)](async _0x53c73c=>{const _0x327d6e=_0x3cba56;if(!_0x53c73c['length'])await _0x1629a5[_0x327d6e(0x1ea)]({'content':_0x327d6e(0x1ed),'ephemeral':!![]});else{const _0x361ff2=[];for(x in _0x53c73c){const _0xc78625=_0x53c73c[x],_0x5709bb=_0xc78625['split']('_')[0x2],_0x5c72a2='<@'+_0x5709bb+_0x327d6e(0x1f2)+_0x5709bb+')';_0x361ff2[_0x327d6e(0x1f0)](_0x5c72a2);}const _0x55d959=new MessageEmbed()[_0x327d6e(0x1eb)]('PURPLE')['setDescription'](_0x327d6e(0x1e2)+_0x361ff2[_0x327d6e(0x1e7)]('\x0a'));await _0x1629a5[_0x327d6e(0x1dd)]({'embeds':[_0x55d959],'ephemeral':!![]});}}):await _0x1629a5[_0x3cba56(0x1dd)]({'content':'This\x20command\x20is\x20for\x20the\x20server\x20owner.'});}};
+const { MessageEmbed } = require("discord.js");
+const db = require('../../core/db.js');
+
+module.exports = {
+  name: "whitelisted",
+  description: "shows the list of whitelisted admins",
+  type: 'CHAT_INPUT',
+  run: async (client, interaction, args) => {
+    if (interaction.user.id === interaction.guild.ownerId) {
+      await db.list(`${interaction.guild.id}_wl`).then(async (keys) => {
+        if (!keys.length) {
+          await interaction.followUp({
+            content: 'there are no trusted users for this server',
+            ephemeral: true,
+          })
+        } else {
+          const users = [];
+          for (x in keys) {
+            const mentions = keys[x],
+              userId = mentions.split('_')[2],
+              user = `<@${userId}> (${userId})`;
+            users.push(user);
+          }
+          const list = new MessageEmbed()
+            .setColor('PURPLE')
+            .setDescription(`**__Whitelisted admins for this server__**\n\n${users.join('\n')}`);
+          await interaction.reply({
+            embeds: [list],
+            ephemeral: true
+          })
+        }
+      })
+    } else {
+      await interaction.reply({
+        content: 'This command is for the server owner.'
+      })
+    }
+  },
+};

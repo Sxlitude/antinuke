@@ -1,1 +1,37 @@
-const _0x19ef99=_0xf26a;(function(_0x126846,_0x4054e0){const _0x81a824=_0xf26a,_0x8541d4=_0x126846();while(!![]){try{const _0x2793e6=parseInt(_0x81a824(0xe5))/0x1*(parseInt(_0x81a824(0xe1))/0x2)+parseInt(_0x81a824(0xe7))/0x3*(parseInt(_0x81a824(0xd5))/0x4)+-parseInt(_0x81a824(0xed))/0x5+parseInt(_0x81a824(0xe2))/0x6+parseInt(_0x81a824(0xe6))/0x7*(-parseInt(_0x81a824(0xd8))/0x8)+parseInt(_0x81a824(0xd9))/0x9*(parseInt(_0x81a824(0xd7))/0xa)+parseInt(_0x81a824(0xd3))/0xb*(parseInt(_0x81a824(0xda))/0xc);if(_0x2793e6===_0x4054e0)break;else _0x8541d4['push'](_0x8541d4['shift']());}catch(_0x8ec3e5){_0x8541d4['push'](_0x8541d4['shift']());}}}(_0x36b9,0xdc33b));const {MessageEmbed}=require('discord.js'),db=require('../../core/db');function _0x36b9(){const _0x1b6d99=['33NIXCpv','first','35336iKVgyv','setDescription','7070MArdEx','1768dehgeM','8145xjrRuN','4861404xwxAZc','untrust','_wl_','That\x20user\x20is\x20not\x20whitelisted','exports','To\x20run\x20this\x20command,\x20enable\x20antinuke\x20first.','channel','26PpsgTu','994686BoiwRw','reply','send','11989lLVRro','45213hggwZw','204yfpxNr','author','ownerId','***Untrust\x20Command***\x0a*You\x20can\x20untrust\x20your\x20admins\x20by\x20this\x20command.\x20If\x20you\x20do\x20so,\x20they\x20can\x20get\x20banned\x20for\x20doing\x20actions\x20in\x20your\x20server.*\x0a\x0a﹒*Usage*\x20::\x20untrust\x20@user\x0a﹒*Requires\x20Server\x20Ownership*','get','**\x20is\x20now\x20unwhitelisted','2240750BxAPFe','uwl','PURPLE','unwhitelist','setColor','users','username','delete','guild'];_0x36b9=function(){return _0x1b6d99;};return _0x36b9();}function _0xf26a(_0xbb46e6,_0x977e9d){const _0x36b92c=_0x36b9();return _0xf26a=function(_0xf26a4,_0x2b487a){_0xf26a4=_0xf26a4-0xd1;let _0x12e0c2=_0x36b92c[_0xf26a4];return _0x12e0c2;},_0xf26a(_0xbb46e6,_0x977e9d);}module[_0x19ef99(0xde)]={'name':_0x19ef99(0xdb),'aliases':[_0x19ef99(0xf0),_0x19ef99(0xee)],'run':async(_0x20002c,_0x2141ab,_0x59bd0f)=>{const _0x24ac58=_0x19ef99;if(_0x2141ab[_0x24ac58(0xe8)]['id']!==_0x2141ab['guild'][_0x24ac58(0xe9)])_0x2141ab[_0x24ac58(0xe0)][_0x24ac58(0xe4)]({'content':'*This\x20command\x20is\x20only\x20for\x20the\x20server\x20owner'});else{const _0x5b19c9=await db[_0x24ac58(0xeb)](_0x2141ab['guild']['id']+'_antinuke');if(_0x5b19c9===!![]){const _0x4ae606=_0x2141ab['mentions'][_0x24ac58(0xf2)][_0x24ac58(0xd4)]();if(!_0x4ae606){const _0x20577b=new MessageEmbed()[_0x24ac58(0xf1)](_0x24ac58(0xef))[_0x24ac58(0xd6)](_0x24ac58(0xea));_0x2141ab[_0x24ac58(0xe3)]({'embeds':[_0x20577b]});}else{const _0xafa694=_0x4ae606['id'],_0x1b02e8=await db['get'](_0x2141ab[_0x24ac58(0xd2)]['id']+'_wl_'+_0x4ae606['id']);!_0x1b02e8?_0x2141ab[_0x24ac58(0xe3)]({'content':_0x24ac58(0xdd)}):(await db[_0x24ac58(0xd1)](_0x2141ab[_0x24ac58(0xd2)]['id']+_0x24ac58(0xdc)+_0xafa694),await _0x2141ab[_0x24ac58(0xe3)]({'content':'**'+_0x4ae606[_0x24ac58(0xf3)]+_0x24ac58(0xec)}));}}else _0x2141ab[_0x24ac58(0xe3)]({'content':_0x24ac58(0xdf)});}}};
+const { MessageEmbed } = require("discord.js"),
+  db = require('../../core/db');
+
+module.exports = {
+  name: 'untrust',
+  aliases: ['unwhitelist', 'uwl'],
+  run: async (client, message, args) => {
+    if (message.author.id !== message.guild.ownerId) {
+      message.channel.send({ content: `*This command is only for the server owner` });
+    } else {
+      const enabled = await db.get(`${message.guild.id}_antinuke`);
+      if (enabled === true) {
+        const user = message.mentions.users.first();
+        if (!user) {
+          const guide = new MessageEmbed()
+            .setColor("PURPLE")
+            .setDescription("***Untrust Command***\n*You can untrust your admins by this command. If you do so, they can get banned for doing actions in your server.*\n\n﹒*Usage* :: untrust @user\n﹒*Requires Server Ownership*");
+
+          message.reply({ embeds: [guide] })
+
+        } else {
+          const ID = user.id;
+          const whitelisted = await db.get(`${message.guild.id}_wl_${user.id}`);
+
+          if (!whitelisted) {
+            message.reply({ content: `That user is not whitelisted` });
+          } else {
+            await db.delete(`${message.guild.id}_wl_${ID}`)
+            await message.reply({ content: `**${user.username}** is now unwhitelisted` })
+          }
+        }
+      } else {
+        message.reply({ content: `To run this command, enable antinuke first.` });
+      }
+    }
+  },
+}

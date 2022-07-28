@@ -1,1 +1,13 @@
-const _0x11290e=_0x3dd5;function _0x4acd(){const _0x30418f=['57156AfYLsj','2151215QVJsEV','discord.js','29738coBsWx','setDescription','659080wlsIqW','195VfhSSi','setColor','3071900ilPHsr','33268xVnSXD','9FahEJU','21YmHBFs','33COXNDv','send','PURPLE','2058189TiNACj','exports','***PING***\x0a﹒*latency*\x20::\x20'];_0x4acd=function(){return _0x30418f;};return _0x4acd();}function _0x3dd5(_0x13d7c1,_0x2d9b1){const _0x4acd19=_0x4acd();return _0x3dd5=function(_0x3dd5dc,_0x5b73c8){_0x3dd5dc=_0x3dd5dc-0x1b7;let _0x3db0af=_0x4acd19[_0x3dd5dc];return _0x3db0af;},_0x3dd5(_0x13d7c1,_0x2d9b1);}(function(_0x535534,_0x5518d3){const _0x417868=_0x3dd5,_0x3520be=_0x535534();while(!![]){try{const _0x4f7260=parseInt(_0x417868(0x1c7))/0x1*(-parseInt(_0x417868(0x1be))/0x2)+-parseInt(_0x417868(0x1c6))/0x3*(-parseInt(_0x417868(0x1c4))/0x4)+parseInt(_0x417868(0x1c1))/0x5*(parseInt(_0x417868(0x1bb))/0x6)+parseInt(_0x417868(0x1b8))/0x7+-parseInt(_0x417868(0x1c0))/0x8*(parseInt(_0x417868(0x1c5))/0x9)+parseInt(_0x417868(0x1c3))/0xa+-parseInt(_0x417868(0x1bc))/0xb;if(_0x4f7260===_0x5518d3)break;else _0x3520be['push'](_0x3520be['shift']());}catch(_0x56da24){_0x3520be['push'](_0x3520be['shift']());}}}(_0x4acd,0x400b3));const {MessageEmbed}=require(_0x11290e(0x1bd));module[_0x11290e(0x1b9)]={'name':'ping','aliases':['p'],'run':async(_0x3c94f2,_0x23aa6f,_0x2776fb)=>{const _0x2c70e7=_0x11290e;;const _0x5cf1af=new MessageEmbed()[_0x2c70e7(0x1c2)](_0x2c70e7(0x1b7))[_0x2c70e7(0x1bf)](_0x2c70e7(0x1ba)+_0x3c94f2['ws']['ping']+'ms');_0x23aa6f['channel'][_0x2c70e7(0x1c8)]({'embeds':[_0x5cf1af]});}};
+const { MessageEmbed } = require("discord.js");
+
+module.exports = {
+  name: "ping",
+  aliases: ['p'],
+  run: async (client, message, args) => {;
+    const ping = new MessageEmbed()
+      .setColor("PURPLE")
+      .setDescription(`***PING***\n﹒*latency* :: ${client.ws.ping}ms`)
+    // Sending
+    message.channel.send({ embeds: [ping]});
+  },
+};

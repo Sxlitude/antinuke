@@ -1,1 +1,55 @@
-function _0x2df4(_0x17f9fb,_0x2f6d05){const _0x30c67d=_0x30c6();return _0x2df4=function(_0x2df408,_0x5dfbc7){_0x2df408=_0x2df408-0x7f;let _0x19c5c2=_0x30c67d[_0x2df408];return _0x19c5c2;},_0x2df4(_0x17f9fb,_0x2f6d05);}const _0xfcc3f8=_0x2df4;(function(_0x313cee,_0x3d9d82){const _0x18a1f6=_0x2df4,_0x5303bd=_0x313cee();while(!![]){try{const _0x2a22cf=-parseInt(_0x18a1f6(0x8a))/0x1*(-parseInt(_0x18a1f6(0x89))/0x2)+parseInt(_0x18a1f6(0x86))/0x3*(parseInt(_0x18a1f6(0x84))/0x4)+parseInt(_0x18a1f6(0x94))/0x5*(parseInt(_0x18a1f6(0x9a))/0x6)+parseInt(_0x18a1f6(0x83))/0x7*(parseInt(_0x18a1f6(0x93))/0x8)+parseInt(_0x18a1f6(0x7f))/0x9+parseInt(_0x18a1f6(0x8c))/0xa+-parseInt(_0x18a1f6(0x90))/0xb*(parseInt(_0x18a1f6(0x8b))/0xc);if(_0x2a22cf===_0x3d9d82)break;else _0x5303bd['push'](_0x5303bd['shift']());}catch(_0x55b643){_0x5303bd['push'](_0x5303bd['shift']());}}}(_0x30c6,0x7d68c));const {MessageEmbed}=require(_0xfcc3f8(0x9e)),st=require('../../core/settings')[_0xfcc3f8(0x99)],db=require('../../core/db.js');module['exports']={'name':_0xfcc3f8(0x8e),'aliases':['dm',_0xfcc3f8(0xa0)],'run':async(_0x17c801,_0x1e593d,_0x449e05)=>{const _0x36963c=_0xfcc3f8,_0x1e8612=await db[_0x36963c(0x82)](_0x1e593d[_0x36963c(0x9b)]['id']+_0x36963c(0x80));if(_0x1e8612){let _0x49b12f=await db['get'](_0x1e593d[_0x36963c(0x9b)]['id']+_0x36963c(0x81));if(!_0x49b12f)_0x49b12f=st[_0x36963c(0x88)][_0x36963c(0x98)];const _0x6bfc9d=new MessageEmbed()[_0x36963c(0x91)](_0x36963c(0x9d))[_0x36963c(0xa1)]('_**DM\x20Logging**_\x0a\x0a**Commands**\x0a﹒To\x20enable\x20DM\x20Logging:\x20*'+_0x49b12f+'dmlogs\x20enable*\x0a﹒To\x20disable\x20DM\x20Logging:\x20*'+_0x49b12f+'dmlogs\x20disable*\x0a\x0a**If\x20Logging\x20is\x20Enabled:**\x0a﹒info\x20of\x20unauthorized\x20actions\x20will\x20ve\x20sent\x20in\x20dms.\x0a﹒this\x20info\x20will\x20be\x20sent\x20to\x20the\x20server\x20owner\x20only.'),_0x5ea34c=_0x449e05[0x0],_0xa09dd6=await db[_0x36963c(0x82)](_0x1e593d['guild']['id']+_0x36963c(0x87));if(_0x1e593d[_0x36963c(0xa2)]['id']===_0x1e593d[_0x36963c(0x9b)][_0x36963c(0x96)]){if(!_0x5ea34c)_0x1e593d[_0x36963c(0x97)]({'embeds':[_0x6bfc9d]});else{if(_0x5ea34c===_0x36963c(0x9c))_0xa09dd6?_0x1e593d[_0x36963c(0x97)](':warning:\x20the\x20dmlogs\x20are\x20already\x20enabled.'):(await db[_0x36963c(0x85)](_0x1e593d[_0x36963c(0x9b)]['id']+_0x36963c(0x87),!![]),_0x1e593d['reply'](_0x36963c(0x9f)));else _0x5ea34c===_0x36963c(0x92)&&(!_0xa09dd6?_0x1e593d[_0x36963c(0x97)](_0x36963c(0x95)):(await db[_0x36963c(0x8f)](_0x1e593d['guild']['id']+_0x36963c(0x87)),_0x1e593d[_0x36963c(0x97)](':thumbsup:\x20disabled\x20the\x20dmlogs\x20for\x20this\x20server.')));}}else _0x1e593d[_0x36963c(0x97)]({'embeds':[_0x6bfc9d]});}else _0x1e593d[_0x36963c(0x97)](_0x36963c(0x8d));}};function _0x30c6(){const _0x6e2b17=['disable','552kxbuuV','4613780XqQtYI',':warning:\x20the\x20dmlogs\x20are\x20already\x20disabled.','ownerId','reply','prefix','bot','6FizOFC','guild','enable','PURPLE','discord.js',':thumbsup:\x20enabled\x20the\x20dmlogs\x20for\x20this\x20server.','logging','setDescription','author','5807241VZkKkg','_antinuke','_prefix','get','22183qtZLIX','20TXuhjY','set','232467JKOuCm','_dmlogs','info','3124wSIPwE','271BNcdSK','2712pJFajV','7997970Kayexw','to\x20use\x20this\x20command,\x20you\x20need\x20to\x20enable\x20the\x20antinuke.','dmlogs','delete','140349SSUeTv','setColor'];_0x30c6=function(){return _0x6e2b17;};return _0x30c6();}
+const { MessageEmbed } = require('discord.js'),
+  st = require('../../core/settings').bot,
+  db = require('../../core/db.js');
+
+
+module.exports = {
+  name: 'dmlogs',
+  aliases: ['dm', 'logging'],
+  run: async (client, message, args) => {
+    const antinuke = await db.get(`${message.guild.id}_antinuke`);
+    if (antinuke) {
+    let prefix = await db.get(`${message.guild.id}_prefix`);
+    if (!prefix) prefix = st.info.prefix;
+    
+    const guide = new MessageEmbed()
+      .setColor('PURPLE')
+      .setDescription(`_**DM Logging**_
+
+**Commands**
+﹒To enable DM Logging: *${prefix}dmlogs enable*
+﹒To disable DM Logging: *${prefix}dmlogs disable*
+
+**If Logging is Enabled:**
+﹒info of unauthorized actions will ve sent in dms.
+﹒this info will be sent to the server owner only.`);
+
+    const option = args[0];
+    const isActivatedAlready = await db.get(`${message.guild.id}_dmlogs`);
+
+    if (message.author.id === message.guild.ownerId) {
+      if (!option) {
+        message.reply({ embeds: [guide] });
+      } else if (option === 'enable') {
+        if (isActivatedAlready) {
+          message.reply(`:warning: the dmlogs are already enabled.`)
+        } else {
+          await db.set(`${message.guild.id}_dmlogs`, true);
+          message.reply(`:thumbsup: enabled the dmlogs for this server.`);
+        }
+      } else if (option === 'disable') {
+        if (!isActivatedAlready) {
+          message.reply(`:warning: the dmlogs are already disabled.`)
+          } else {
+              await db.delete(`${message.guild.id}_dmlogs`);
+              message.reply(`:thumbsup: disabled the dmlogs for this server.`);
+            }
+          }
+        } else {
+          message.reply({ embeds: [guide] });
+        }
+      } else {
+      message.reply('to use this command, you need to enable the antinuke.')
+    }
+  }
+}

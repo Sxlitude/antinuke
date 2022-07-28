@@ -1,1 +1,24 @@
-const _0x2f3b63=_0xc5ea;function _0xc5ea(_0x29b114,_0x4d3b62){const _0x8b73c2=_0x8b73();return _0xc5ea=function(_0xc5ea96,_0x5d3d61){_0xc5ea96=_0xc5ea96-0x1ba;let _0x25cc87=_0x8b73c2[_0xc5ea96];return _0x25cc87;},_0xc5ea(_0x29b114,_0x4d3b62);}(function(_0x429277,_0x2a1510){const _0x314c3e=_0xc5ea,_0x5ba47e=_0x429277();while(!![]){try{const _0x2ac91b=parseInt(_0x314c3e(0x1c2))/0x1*(-parseInt(_0x314c3e(0x1ba))/0x2)+parseInt(_0x314c3e(0x1c0))/0x3*(-parseInt(_0x314c3e(0x1c5))/0x4)+-parseInt(_0x314c3e(0x1cb))/0x5+-parseInt(_0x314c3e(0x1c6))/0x6+-parseInt(_0x314c3e(0x1bc))/0x7+parseInt(_0x314c3e(0x1c1))/0x8*(-parseInt(_0x314c3e(0x1c9))/0x9)+parseInt(_0x314c3e(0x1c8))/0xa;if(_0x2ac91b===_0x2a1510)break;else _0x5ba47e['push'](_0x5ba47e['shift']());}catch(_0x1cce2d){_0x5ba47e['push'](_0x5ba47e['shift']());}}}(_0x8b73,0xa6dcf));const {Message,Client,MessageActionRow,MessageButton}=require(_0x2f3b63(0x1bd)),client=require('../../index'),Settings=require(_0x2f3b63(0x1c3));function _0x8b73(){const _0x85206d=['reply','8380127DaKZYi','discord.js','addComponents','invLink','177KMuGkp','664koRNop','1284598UdSzmm','../../core/settings','exports','57832TEaaBx','1007556NjogAr','Invite\x20Me','66396880qbEgHO','122292YkYMvv','setStyle','6628530UIZosS','Click\x20the\x20button\x20below.','setURL','LINK','2XYHnWN'];_0x8b73=function(){return _0x85206d;};return _0x8b73();}module[_0x2f3b63(0x1c4)]={'name':'invite','aliases':['i'],'run':async(_0x2d03a7,_0x4d9998,_0x1ba4b7)=>{const _0x527d19=_0x2f3b63,_0x289361=new MessageActionRow()[_0x527d19(0x1be)](new MessageButton()['setLabel'](_0x527d19(0x1c7))[_0x527d19(0x1ca)](_0x527d19(0x1ce))[_0x527d19(0x1cd)](''+Settings['bot'][_0x527d19(0x1bf)]));_0x4d9998[_0x527d19(0x1bb)]({'content':_0x527d19(0x1cc),'components':[_0x289361]});}};
+// Button Pagination and Discord.js
+const { Message, Client, MessageActionRow, MessageButton } = require("discord.js");
+const client = require("../../index");
+
+const Settings = require("../../core/settings");
+
+// Command
+module.exports = {
+  name: "invite",
+  aliases: ['i'],
+  run: async (client, message, args) => {
+    const button = new MessageActionRow().addComponents(
+      new MessageButton()
+        .setLabel("Invite Me")
+        .setStyle("LINK")
+        .setURL(`${Settings.bot.invLink}`)
+    )
+    
+    // Sending
+    message.reply({
+      content: "Click the button below.", 
+      components: [button] });
+  },
+};

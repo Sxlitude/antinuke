@@ -1,1 +1,187 @@
-const _0x483491=_0x3dd8;(function(_0x561e39,_0x4a5e61){const _0x4a5139=_0x3dd8,_0x158e73=_0x561e39();while(!![]){try{const _0x4399bf=parseInt(_0x4a5139(0xbc))/0x1+-parseInt(_0x4a5139(0xc4))/0x2+parseInt(_0x4a5139(0xa4))/0x3*(parseInt(_0x4a5139(0xd8))/0x4)+parseInt(_0x4a5139(0xd2))/0x5*(parseInt(_0x4a5139(0xcd))/0x6)+-parseInt(_0x4a5139(0xad))/0x7*(-parseInt(_0x4a5139(0xa7))/0x8)+-parseInt(_0x4a5139(0xc6))/0x9+-parseInt(_0x4a5139(0xb4))/0xa;if(_0x4399bf===_0x4a5e61)break;else _0x158e73['push'](_0x158e73['shift']());}catch(_0x496163){_0x158e73['push'](_0x158e73['shift']());}}}(_0x1532,0xd6fb1));function _0x1532(){const _0x3c3022=['_**Antinuke\x20Toggling**_\x0a\x0aIf\x20you\x20enable\x20antinuke,\x20or\x20already\x20did\x20it,\x20make\x20sure\x20to\x20whitelist\x20your\x20server\x20admins\x20&\x20bots\x20so\x20they\x20won\x27t\x20get\x20banned\x20for\x20doing\x20actions.\x0a\x0a**Commands:**\x0a﹒To\x20enable\x20antinuke:\x20*','861107BkBeEh',')\x20if\x20you\x20need\x20help','credits','antinuke\x20enable*\x0a﹒To\x20disable\x20antinuke:\x20*','dmNotifs','reply','whitelist','Support\x20Server','2921992XQYHTC','Guide\x20to\x20set\x20a\x20DM\x20Logger','1322091byWgDg','https://dsc.gg/antiwizz','guild','Commands\x20to\x20enable/disable\x20antinuke','setURL','setLabel','Antinuke\x20Credits','90YNMFwa','discord.js','author','exports','wlCmds','578905zKUOWi','The\x20whitelisting\x20guide','ping','dmlogs\x20disable*\x0a\x0a**If\x20Logging\x20is\x20Enabled:**\x0a﹒info\x20of\x20unauthorized\x20actions\x20will\x20be\x20sent\x20in\x20dms.\x0a﹒this\x20info\x20will\x20be\x20sent\x20to\x20the\x20server\x20owner\x20only.','editReply','values','480328zrljVS','bot','logger','get','Moderation\x20Commands','Choose\x20something...','antinuke\x20disable*\x0a\x0a**If\x20enabled,\x20the\x20bot\x20will:**\x0a﹒ban\x20executor\x20of\x20unauthorized\x20actions\x0a﹒ignore\x20whitelisted\x20admins\x27\x20actions\x0a﹒recover\x20unauthorized\x20actions','Antinuke\x20DM\x20Notifications','isSelectMenu','PURPLE','supportServer','_**DM\x20Logging**_\x0a\x0aThe\x20logs\x20are\x20sent\x20privately\x20to\x20the\x20server\x20owner.\x20The\x20bot\x20fires\x20logs\x20when\x20it\x20bans\x20someone\x20who\x20was\x20not\x20whitelisted\x20&\x20did\x20an\x20action\x20in\x20your\x20server.\x0a\x0a**Commands**\x0a﹒To\x20enable\x20DM\x20Logging:\x20*','setDescription','addOptions','channel','39JclzEg','_**Whitelisting\x20Guide**_\x0a\x0aThe\x20whitelist\x20commands\x20can\x20only\x20be\x20used\x20if\x20the\x20antinuke\x20is\x20enabled\x20in\x20the\x20server.\x20All\x20the\x20antinuke\x20commands\x20can\x20be\x20ran\x20by\x20the\x20server\x20owner.\x0a\x0a**Commands:**\x0a﹒To\x20whitelist\x20a\x20user:\x20*','setStyle','123128eqweYm','deferUpdate','toggleCmds','help','***ANTINUKE***\x20\x0a\x0aThis\x20antinuke\x20bot\x20has\x20many\x20features\x20&\x20all\x20of\x20them\x20are\x20free.\x20This\x20bot\x20only\x20allows\x20whitelisted\x20admins\x20to\x20do\x20actions\x20in\x20your\x20server.\x20For\x20more\x20info\x20about\x20this\x20bot,\x20use\x20the\x20menu\x20given\x20below\x20this\x20message.\x0a\x0a\x0a***PROTECTION\x20FEATURES***\x0a﹒anti\x20webhook\x20(create,\x20edit,\x20delete)\x0a﹒anti\x20channel\x20(create,\x20edit,\x20delete)\x0a﹒anti\x20emoji\x20(create,\x20edit,\x20delete)\x0a﹒anti\x20role\x20(create,\x20edit,\x20delete)\x0a﹒anti\x20member\x20(ban,\x20edit,\x20kick)\x0a﹒anti\x20community\x20spam\x0a﹒anti\x20vanity\x20url\x20snipe\x0a\x0a***LINKS***\x0a﹒If\x20you\x20love\x20my\x20work,\x20make\x20sure\x20to\x20[star\x20my\x20repo](https://github.com/sxlitude/antinuke)\x0a﹒Join\x20the\x20[support\x20server](','helpOption','714CGOsVe','addComponents','createMessageComponentCollector','**__MODERATION__**\x0a\x0aHere\x20are\x20some\x20simple\x20moderation-related\x20commands.\x20If\x20you\x20have\x20required\x20permissions,\x20you\x20can\x20use\x20them.\x0a\x0a***COMMANDS***\x0a﹒*ban*\x0a﹒*kick*\x0a﹒*nickname*\x0a﹒*timeout*\x0a﹒*unban*\x0a﹒*nuke*\x0a\x0a***USAGES***\x0a﹒*ban\x20@user*\x0a﹒*kick\x20@user*\x0a﹒*nick\x20@user*\x0a﹒*timeout\x20@user*\x0a﹒*unban\x20@user*\x0a﹒*nuke*','setColor','unwhitelist\x20@user*\x0a﹒To\x20see\x20all\x20whitelisted\x20users:\x20*','send','32403140rYnhuj','Antinuke\x20Toggle\x20Commands','../../core/settings.js','LINK','prefix','This\x20discord\x20bot\x20is\x20an\x20open-source\x20project.\x20You\x20an\x20star\x20my\x20GitHub\x20repo\x20if\x20you\x20love\x20my\x20work.\x20\x0a\x0a**CREDITS**\x0a﹒This\x20bot\x20is\x20coded\x20by\x20Sxlitude#8885\x0a﹒[Click\x20Here](https://discord.gg/KMw8stwEuN)\x20for\x20official\x20server\x20of\x20this\x20bot.\x0a﹒To\x20invite\x20this\x20bot,\x20[click\x20me](https://dsc.gg/antiwizz)!\x0a\x0a**BOT\x20INFO**\x0a﹒Owner\x20::\x20Sxlitude\x0a﹒Library\x20::\x20discord.js\x0a﹒Latency\x20::\x20','info'];_0x1532=function(){return _0x3c3022;};return _0x1532();}const {MessageEmbed,MessageActionRow,MessageSelectMenu,MessageButton}=require(_0x483491(0xce)),Settings=require(_0x483491(0xb6)),client=require('../../index'),db=require('../../core/db');function _0x3dd8(_0x3d2e88,_0x51d583){const _0x1532d5=_0x1532();return _0x3dd8=function(_0x3dd8e6,_0x46610f){_0x3dd8e6=_0x3dd8e6-0x9a;let _0x1ecd64=_0x1532d5[_0x3dd8e6];return _0x1ecd64;},_0x3dd8(_0x3d2e88,_0x51d583);}module[_0x483491(0xd0)]={'name':'help','aliases':['h'],'run':async(_0x16ba8a,_0x4b91fb,_0x41cb34)=>{const _0x530933=_0x483491;let _0x32b391=await db[_0x530933(0xdb)](_0x4b91fb[_0x530933(0xc8)]['id']+'_prefix');if(!_0x32b391)_0x32b391=Settings[_0x530933(0xd9)][_0x530933(0xba)][_0x530933(0xb8)];const _0x40ef32=embeds(_0x530933(0xaa)),_0x2b915e=new MessageActionRow()[_0x530933(0xae)](new MessageSelectMenu()['setCustomId'](_0x530933(0xac))['setPlaceholder'](_0x530933(0x9a))[_0x530933(0xa2)]([{'label':_0x530933(0xb5),'value':_0x530933(0xa9),'description':_0x530933(0xc9)},{'label':'Antinuke\x20Whitelist\x20Commands','value':_0x530933(0xd1),'description':_0x530933(0xd3)},{'label':_0x530933(0x9c),'value':'dmNotifs','description':_0x530933(0xc5)},{'label':_0x530933(0xdc),'value':'modCmds','description':'Some\x20basic\x20moderation\x20commands'},{'label':_0x530933(0xcc),'value':_0x530933(0xbe),'description':'who\x20created\x20this\x20bot?'}])),_0x599ec6=new MessageActionRow()['addComponents'](new MessageButton()[_0x530933(0xcb)]('Invite\x20Me')['setStyle'](_0x530933(0xb7))[_0x530933(0xca)](_0x530933(0xc7)),new MessageButton()[_0x530933(0xcb)](_0x530933(0xc3))[_0x530933(0xa6)](_0x530933(0xb7))['setURL'](''+Settings['bot']['credits'][_0x530933(0x9f)]));_0x4b91fb['channel'][_0x530933(0xb3)]({'embeds':[_0x40ef32],'components':[_0x2b915e,_0x599ec6]});const _0x311a89=_0xccb813=>_0xccb813[_0x530933(0x9d)](),_0x590646=_0x4b91fb[_0x530933(0xa3)][_0x530933(0xaf)]({'filter':_0x311a89,'limit':0xa});_0x590646['on']('collect',async _0x934b36=>{const _0x3e7a7a=_0x530933;if(_0x934b36['user']['id']!==_0x4b91fb[_0x3e7a7a(0xcf)]['id'])await _0x934b36[_0x3e7a7a(0xc1)]({'content':'this\x20menu\x20is\x20not\x20for\x20you.','ephemeral':!![]});else{await _0x934b36[_0x3e7a7a(0xa8)]();const _0x3a0e31=_0x934b36[_0x3e7a7a(0xd7)][0x0];if(_0x3a0e31==='toggleCmds')await _0x934b36[_0x3e7a7a(0xd6)]({'embeds':[embeds('toggle',_0x32b391)]});else{if(_0x3a0e31===_0x3e7a7a(0xd1))await _0x934b36[_0x3e7a7a(0xd6)]({'embeds':[embeds(_0x3e7a7a(0xc2),_0x32b391)]});else{if(_0x3a0e31===_0x3e7a7a(0xc0))await _0x934b36[_0x3e7a7a(0xd6)]({'embeds':[embeds(_0x3e7a7a(0xda),_0x32b391)]});else{if(_0x3a0e31==='modCmds')await _0x934b36[_0x3e7a7a(0xd6)]({'embeds':[embeds('x')]});else _0x3a0e31===_0x3e7a7a(0xbe)&&await _0x934b36['editReply']({'embeds':[new MessageEmbed()[_0x3e7a7a(0xb1)](_0x3e7a7a(0x9e))['setDescription'](_0x3e7a7a(0xb9)+_0x16ba8a['ws'][_0x3e7a7a(0xd4)]+'ms')]});}}}}});}};function embeds(_0x59e703,_0x20e770,_0x3f3850){const _0x1e3a7f=_0x483491;if(_0x59e703===_0x1e3a7f(0xaa))return new MessageEmbed()[_0x1e3a7f(0xb1)](_0x1e3a7f(0x9e))[_0x1e3a7f(0xa1)](_0x1e3a7f(0xab)+Settings['bot']['credits'][_0x1e3a7f(0x9f)]+_0x1e3a7f(0xbd));else{if(_0x59e703==='x')return new MessageEmbed()[_0x1e3a7f(0xb1)](_0x1e3a7f(0x9e))['setDescription'](_0x1e3a7f(0xb0));else{if(_0x59e703==='toggle')return new MessageEmbed()['setColor'](_0x1e3a7f(0x9e))[_0x1e3a7f(0xa1)](_0x1e3a7f(0xbb)+_0x20e770+_0x1e3a7f(0xbf)+_0x20e770+_0x1e3a7f(0x9b));else{if(_0x59e703===_0x1e3a7f(0xc2))return new MessageEmbed()[_0x1e3a7f(0xb1)]('PURPLE')[_0x1e3a7f(0xa1)](_0x1e3a7f(0xa5)+_0x20e770+'whitelist\x20@user*\x0a﹒To\x20unwhitelist\x20a\x20user:\x20*'+_0x20e770+_0x1e3a7f(0xb2)+_0x20e770+'whitelisted*\x0a\x0a**Whitelisted\x20Admins:**\x0a﹒will\x20be\x20ignored\x20by\x20the\x20antinuke\x0a﹒cannot\x20whitelist\x20other\x20admins');else{if(_0x59e703===_0x1e3a7f(0xda))return new MessageEmbed()[_0x1e3a7f(0xb1)](_0x1e3a7f(0x9e))[_0x1e3a7f(0xa1)](_0x1e3a7f(0xa0)+_0x20e770+'dmlogs\x20enable*\x0a﹒To\x20disable\x20DM\x20Logging:\x20*'+_0x20e770+_0x1e3a7f(0xd5));}}}}};
+const { MessageEmbed, MessageActionRow, MessageSelectMenu, MessageButton } = require('discord.js');
+const Settings = require('../../core/settings.js');
+const client = require('../../index');
+const db = require('../../core/db');
+
+module.exports = {
+  name: 'help',
+  aliases: ['h'],
+  run: async (client, message, args) => {
+    let prefix = await db.get(`${message.guild.id}_prefix`);
+    if (!prefix) prefix = Settings.bot.info.prefix;
+    
+    const helpEmbed = embeds('help');
+    const menuOptions = new MessageActionRow().addComponents(
+      new MessageSelectMenu()
+        .setCustomId('helpOption')
+        .setPlaceholder('Choose something...')
+        .addOptions([
+          {
+            label: 'Antinuke Toggle Commands',
+            value: 'toggleCmds',
+            description: 'Commands to enable/disable antinuke'
+          },
+          {
+            label: 'Antinuke Whitelist Commands',
+            value: 'wlCmds',
+            description: 'The whitelisting guide'
+          },
+          {
+            label: 'Antinuke DM Notifications',
+            value: 'dmNotifs',
+            description: 'Guide to set a DM Logger'
+          },
+          {
+            label: 'Moderation Commands',
+            value: 'modCmds',
+            description: 'Some basic moderation commands'
+          },
+          {
+            label: 'Antinuke Credits',
+            value: 'credits',
+            description: 'who created this bot?'
+          },
+        ])
+    )
+
+    const buttons = new MessageActionRow().addComponents(
+      new MessageButton()
+        .setLabel('Invite Me')
+        .setStyle('LINK')
+        .setURL('https://dsc.gg/antiwizz'),
+      new MessageButton()
+        .setLabel('Support Server')
+        .setStyle('LINK')
+        .setURL(`${Settings.bot.credits.supportServer}`)
+    )
+
+    message.channel.send({
+      embeds: [helpEmbed],
+      components: [menuOptions, buttons]
+    });
+
+    const filter = (i) => i.isSelectMenu();
+    const collector = message.channel.createMessageComponentCollector({ filter, limit: 10 });
+
+    collector.on('collect', async (i) => {
+      if (i.user.id !== message.author.id) {
+        await i.reply({
+          content: 'this menu is not for you.',
+          ephemeral: true,
+        })
+      } else {
+        await i.deferUpdate();
+        const value = i.values[0];
+
+        if (value === 'toggleCmds') {
+          await i.editReply({
+            embeds: [embeds('toggle', prefix)],
+          })
+          
+        } else if (value === 'wlCmds') {
+          await i.editReply({
+            embeds: [embeds('whitelist', prefix)]
+          })
+          
+        } else if (value === 'dmNotifs') {
+          await i.editReply({
+            embeds: [embeds('logger', prefix)]
+          })
+          
+        } else if (value === 'modCmds') {
+          await i.editReply({
+            embeds: [embeds('x')],
+          })
+        } else if (value === 'credits') {
+          await i.editReply({
+            embeds: [new MessageEmbed()
+      .setColor('PURPLE')
+      .setDescription(`This discord bot is an open-source project. You an star my GitHub repo if you love my work. 
+
+**CREDITS**
+﹒This bot is coded by Sxlitude#8885
+﹒[Click Here](https://discord.gg/KMw8stwEuN) for official server of this bot.
+﹒To invite this bot, [click me](https://dsc.gg/antiwizz)!
+
+**BOT INFO**
+﹒Owner :: Sxlitude
+﹒Library :: discord.js
+﹒Latency :: ${client.ws.ping}ms`)]
+          })
+        }
+      }
+    })
+  }
+}
+
+function embeds(embed, prefix, ping) {
+  if (embed === 'help') {
+    return new MessageEmbed()
+      .setColor('PURPLE')
+      .setDescription(`***ANTINUKE*** \n
+This antinuke bot has many features & all of them are free. This bot only allows whitelisted admins to do actions in your server. For more info about this bot, use the menu given below this message.
+
+
+***PROTECTION FEATURES***
+﹒anti webhook (create, edit, delete)
+﹒anti channel (create, edit, delete)
+﹒anti emoji (create, edit, delete)
+﹒anti role (create, edit, delete)
+﹒anti member (ban, edit, kick)
+﹒anti community spam
+﹒anti vanity url snipe
+
+***LINKS***
+﹒If you love my work, make sure to [star my repo](https://github.com/sxlitude/antinuke)
+﹒Join the [support server](${Settings.bot.credits.supportServer}) if you need help`);
+    
+  } else if (embed === 'x') {
+    return new MessageEmbed()
+      .setColor("PURPLE")
+      .setDescription("**__MODERATION__**\n\nHere are some simple moderation-related commands. If you have required permissions, you can use them.\n\n***COMMANDS***\n﹒*ban*\n﹒*kick*\n﹒*nickname*\n﹒*timeout*\n﹒*unban*\n﹒*nuke*\n\n***USAGES***\n﹒*ban @user*\n﹒*kick @user*\n﹒*nick @user*\n﹒*timeout @user*\n﹒*unban @user*\n﹒*nuke*")
+  } else if (embed === 'toggle') {
+    return new MessageEmbed()
+    .setColor('PURPLE')
+    .setDescription(`_**Antinuke Toggling**_\n
+If you enable antinuke, or already did it, make sure to whitelist your server admins & bots so they won't get banned for doing actions.
+
+**Commands:**
+﹒To enable antinuke: *${prefix}antinuke enable*
+﹒To disable antinuke: *${prefix}antinuke disable*
+
+**If enabled, the bot will:**
+﹒ban executor of unauthorized actions
+﹒ignore whitelisted admins' actions
+﹒recover unauthorized actions`);
+
+  } else if (embed === 'whitelist') {
+    return new MessageEmbed()
+      .setColor('PURPLE')
+      .setDescription(`_**Whitelisting Guide**_\n
+The whitelist commands can only be used if the antinuke is enabled in the server. All the antinuke commands can be ran by the server owner.
+
+**Commands:**
+﹒To whitelist a user: *${prefix}whitelist @user*
+﹒To unwhitelist a user: *${prefix}unwhitelist @user*
+﹒To see all whitelisted users: *${prefix}whitelisted*
+
+**Whitelisted Admins:**
+﹒will be ignored by the antinuke
+﹒cannot whitelist other admins`);
+
+    
+  } else if (embed === 'logger') {
+    return new MessageEmbed()
+      .setColor('PURPLE')
+      .setDescription(`_**DM Logging**_\n
+The logs are sent privately to the server owner. The bot fires logs when it bans someone who was not whitelisted & did an action in your server.
+
+**Commands**
+﹒To enable DM Logging: *${prefix}dmlogs enable*
+﹒To disable DM Logging: *${prefix}dmlogs disable*
+
+**If Logging is Enabled:**
+﹒info of unauthorized actions will be sent in dms.
+﹒this info will be sent to the server owner only.`);
+  }
+};

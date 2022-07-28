@@ -1,1 +1,38 @@
-function _0x5363(_0x21275f,_0x3e4ade){const _0x281864=_0x2818();return _0x5363=function(_0x5363b4,_0x5ebfaa){_0x5363b4=_0x5363b4-0x143;let _0x2077d7=_0x281864[_0x5363b4];return _0x2077d7;},_0x5363(_0x21275f,_0x3e4ade);}function _0x2818(){const _0x5dd03a=['user','10323468coygyg','6516472krzCgq','that\x20user\x20is\x20already\x20whitelisted.','the\x20user\x20to\x20whitelist','3304GkrUOU','This\x20command\x20is\x20for\x20the\x20server\x20owner','guild','768605oLbZDc','get','6472752JoJTfl','USER','3LekYWP','reply','whitelist','followUp','3743796HTTDae','exports','7EmDchx','2118320ZVRcwL','_wl_','ownerId','49DahIiv'];_0x2818=function(){return _0x5dd03a;};return _0x2818();}const _0x29b064=_0x5363;(function(_0x3d2ace,_0x4928b8){const _0x40ad26=_0x5363,_0x2fcb51=_0x3d2ace();while(!![]){try{const _0x5bff07=-parseInt(_0x40ad26(0x144))/0x1*(-parseInt(_0x40ad26(0x14a))/0x2)+parseInt(_0x40ad26(0x151))/0x3*(-parseInt(_0x40ad26(0x155))/0x4)+-parseInt(_0x40ad26(0x14d))/0x5+parseInt(_0x40ad26(0x14f))/0x6+-parseInt(_0x40ad26(0x157))/0x7*(parseInt(_0x40ad26(0x147))/0x8)+parseInt(_0x40ad26(0x146))/0x9+parseInt(_0x40ad26(0x158))/0xa;if(_0x5bff07===_0x4928b8)break;else _0x2fcb51['push'](_0x2fcb51['shift']());}catch(_0x231dd8){_0x2fcb51['push'](_0x2fcb51['shift']());}}}(_0x2818,0x95ffb));const {Client,CommandInteraction}=require('discord.js'),db=require('../../core/db.js');module[_0x29b064(0x156)]={'name':_0x29b064(0x153),'description':'whitelist\x20a\x20user','options':[{'name':_0x29b064(0x145),'description':_0x29b064(0x149),'type':_0x29b064(0x150),'required':!![]}],'type':'CHAT_INPUT','run':async(_0x3cfcde,_0x2185dd,_0x6aade9)=>{const _0x579953=_0x29b064;if(_0x2185dd[_0x579953(0x145)]['id']===_0x2185dd['guild'][_0x579953(0x143)]){const [_0x135c49]=_0x6aade9,_0x1712c7=await db[_0x579953(0x14e)](_0x2185dd[_0x579953(0x14c)]['id']+_0x579953(0x159)+_0x135c49);!_0x1712c7?(await db['set'](_0x2185dd[_0x579953(0x14c)]['id']+_0x579953(0x159)+_0x135c49,!![]),await _0x2185dd[_0x579953(0x154)]({'content':'whitelisted\x20that\x20user\x20successfully.','ephemeral':!![]})):await _0x2185dd[_0x579953(0x154)]({'content':_0x579953(0x148),'ephemeral':!![]});}else await _0x2185dd[_0x579953(0x152)]({'content':_0x579953(0x14b)});}};
+const { Client, CommandInteraction } = require("discord.js");
+const db = require('../../core/db.js');
+
+module.exports = {
+  name: "whitelist",
+  description: "whitelist a user",
+  options: [
+    {
+      name: 'user',
+      description: 'the user to whitelist',
+      type: "USER",
+      required: true
+    }
+  ],
+  type: 'CHAT_INPUT',
+  run: async (client, interaction, args) => {
+    if (interaction.user.id === interaction.guild.ownerId) {
+    const [userId] = args;
+    const isWhitelisted = await db.get(`${interaction.guild.id}_wl_${userId}`);
+    if (!isWhitelisted) {
+      await db.set(`${interaction.guild.id}_wl_${userId}`, true);
+      await interaction.followUp({
+        content: `whitelisted that user successfully.`,
+        ephemeral: true
+      })
+    } else {
+      await interaction.followUp({
+        content: `that user is already whitelisted.`,
+        ephemeral: true
+      })
+    }
+    } else {
+      await interaction.reply({
+        content: 'This command is for the server owner'
+      })
+    }
+  },
+};

@@ -1,1 +1,33 @@
-function _0x57eb(_0x1d87a8,_0x6cc927){const _0x4d7484=_0x4d74();return _0x57eb=function(_0x57ebfe,_0x19225c){_0x57ebfe=_0x57ebfe-0xd6;let _0x4237d9=_0x4d7484[_0x57ebfe];return _0x4237d9;},_0x57eb(_0x1d87a8,_0x6cc927);}const _0x19a3bc=_0x57eb;(function(_0x126e99,_0x3fdbb4){const _0x5dac91=_0x57eb,_0xc526c=_0x126e99();while(!![]){try{const _0x2a26c5=-parseInt(_0x5dac91(0xe8))/0x1*(-parseInt(_0x5dac91(0xf1))/0x2)+parseInt(_0x5dac91(0xe5))/0x3+parseInt(_0x5dac91(0xec))/0x4+-parseInt(_0x5dac91(0xd8))/0x5*(parseInt(_0x5dac91(0xd9))/0x6)+-parseInt(_0x5dac91(0xe2))/0x7+parseInt(_0x5dac91(0xd6))/0x8+-parseInt(_0x5dac91(0xde))/0x9;if(_0x2a26c5===_0x3fdbb4)break;else _0xc526c['push'](_0xc526c['shift']());}catch(_0x1f1eb5){_0xc526c['push'](_0xc526c['shift']());}}}(_0x4d74,0xda64d));const client=require('../../index');client['on'](_0x19a3bc(0xed),async _0x3cc06e=>{const _0x51f13c=_0x19a3bc;if(_0x3cc06e[_0x51f13c(0xdc)]()){await _0x3cc06e['deferReply']({'ephemeral':![]})[_0x51f13c(0xe3)](()=>{});const _0x26d22d=client[_0x51f13c(0xea)][_0x51f13c(0xeb)](_0x3cc06e[_0x51f13c(0xdf)]);if(!_0x26d22d)return _0x3cc06e[_0x51f13c(0xe1)]({'content':_0x51f13c(0xdb)});const _0x26ea97=[];for(let _0x3c5632 of _0x3cc06e['options'][_0x51f13c(0xf0)]){if(_0x3c5632[_0x51f13c(0xe6)]===_0x51f13c(0xf2)){if(_0x3c5632['name'])_0x26ea97['push'](_0x3c5632['name']);_0x3c5632[_0x51f13c(0xe7)]?.['forEach'](_0x409dea=>{const _0x4bbac7=_0x51f13c;if(_0x409dea[_0x4bbac7(0xda)])_0x26ea97['push'](_0x409dea[_0x4bbac7(0xda)]);});}else{if(_0x3c5632['value'])_0x26ea97['push'](_0x3c5632['value']);}}_0x3cc06e[_0x51f13c(0xdd)]=_0x3cc06e[_0x51f13c(0xe0)][_0x51f13c(0xd7)][_0x51f13c(0xe9)][_0x51f13c(0xeb)](_0x3cc06e[_0x51f13c(0xee)]['id']),_0x26d22d[_0x51f13c(0xef)](client,_0x3cc06e,_0x26ea97);}else{if(_0x3cc06e['isContextMenu']()){await _0x3cc06e[_0x51f13c(0xe4)]({'ephemeral':![]});const _0x50fc5f=client[_0x51f13c(0xea)]['get'](_0x3cc06e[_0x51f13c(0xdf)]);if(_0x50fc5f)_0x50fc5f[_0x51f13c(0xef)](client,_0x3cc06e);}}});function _0x4d74(){const _0x324eb2=['members','60ypYhKf','143778CazkHS','value','An\x20error\x20has\x20occured\x20','isCommand','member','7350264WeKJZk','commandName','guild','followUp','10976420IQcTkc','catch','deferReply','3445821owqOxN','type','options','17TKPNjX','cache','slashCommands','get','6304080PdZxVZ','interactionCreate','user','run','data','59654wccVyO','SUB_COMMAND','2681336NiTWBi'];_0x4d74=function(){return _0x324eb2;};return _0x4d74();}
+const client = require('../../index');
+
+client.on("interactionCreate", async (interaction) => {
+  // Slash Command Handling
+  if (interaction.isCommand()) {
+    await interaction.deferReply({ ephemeral: false }).catch(() => { });
+
+    const cmd = client.slashCommands.get(interaction.commandName);
+    if (!cmd)
+      return interaction.followUp({ content: "An error has occured " });
+
+    const args = [];
+
+    for (let option of interaction.options.data) {
+      if (option.type === 'SUB_COMMAND') {
+        if (option.name) args.push(option.name);
+        option.options?.forEach((x) => {
+          if (x.value) args.push(x.value);
+        });
+      } else if (option.value) args.push(option.value);
+    }
+    interaction.member = interaction.guild.members.cache.get(interaction.user.id);
+
+    cmd.run(client, interaction, args);
+  }
+
+  // Context Menu Handling
+  else if (interaction.isContextMenu()) {
+    await interaction.deferReply({ ephemeral: false });
+    const command = client.slashCommands.get(interaction.commandName);
+    if (command) command.run(client, interaction);
+  }
+});

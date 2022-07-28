@@ -1,1 +1,24 @@
-function _0x395e(){const _0x482175=['bot','9bLESAV','slice','length','../../core/settings','author','messageCreate','5yJgbcV','commands','toLowerCase','7196568EudEQF','get','prefix','content','includes','delete','then','3675dxrsrJ','split',':warning:\x20this\x20command\x20is\x20invalid,\x20try\x20','guild','../../core/db','find','6634070uKBYit','11622kdlzqc','2426548ddMUlx','169191nUUTNA','1317154cWuxiy','2365176boTExH'];_0x395e=function(){return _0x482175;};return _0x395e();}const _0x581f4d=_0x2bdf;(function(_0xc2f7b6,_0x5d7471){const _0x78de1c=_0x2bdf,_0x2ea698=_0xc2f7b6();while(!![]){try{const _0x12050b=-parseInt(_0x78de1c(0x13c))/0x1+parseInt(_0x78de1c(0x13d))/0x2+-parseInt(_0x78de1c(0x13e))/0x3+-parseInt(_0x78de1c(0x13b))/0x4*(-parseInt(_0x78de1c(0x129))/0x5)+parseInt(_0x78de1c(0x13a))/0x6*(-parseInt(_0x78de1c(0x133))/0x7)+parseInt(_0x78de1c(0x12c))/0x8*(parseInt(_0x78de1c(0x140))/0x9)+parseInt(_0x78de1c(0x139))/0xa;if(_0x12050b===_0x5d7471)break;else _0x2ea698['push'](_0x2ea698['shift']());}catch(_0x3af4a7){_0x2ea698['push'](_0x2ea698['shift']());}}}(_0x395e,0xd06b4));const client=require('../../index'),st=require(_0x581f4d(0x126))[_0x581f4d(0x13f)],db=require(_0x581f4d(0x137));function _0x2bdf(_0xe991a7,_0x892945){const _0x395e61=_0x395e();return _0x2bdf=function(_0x2bdf20,_0x584a39){_0x2bdf20=_0x2bdf20-0x126;let _0x2b7646=_0x395e61[_0x2bdf20];return _0x2b7646;},_0x2bdf(_0xe991a7,_0x892945);}client['on'](_0x581f4d(0x128),async _0x2da28f=>{const _0x303846=_0x581f4d;let _0x529b60=await db[_0x303846(0x12d)](_0x2da28f['guild']['id']+'_prefix');if(!_0x529b60)_0x529b60=st['info'][_0x303846(0x12e)];if(_0x2da28f[_0x303846(0x127)]['bot']||!_0x2da28f[_0x303846(0x136)]||!_0x2da28f[_0x303846(0x12f)]['toLowerCase']()['startsWith'](_0x529b60))return;const [_0x37c64c,..._0x528a6e]=_0x2da28f[_0x303846(0x12f)][_0x303846(0x141)](_0x529b60[_0x303846(0x142)])['trim']()[_0x303846(0x134)](/ +/g),_0x31da0f=client[_0x303846(0x12a)]['get'](_0x37c64c[_0x303846(0x12b)]())||client['commands'][_0x303846(0x138)](_0x10f656=>_0x10f656['aliases']?.[_0x303846(0x130)](_0x37c64c['toLowerCase']()));!_0x31da0f&&_0x2da28f['reply']({'content':_0x303846(0x135)+_0x529b60+'help'})[_0x303846(0x132)](_0x5f0be1=>{setTimeout(()=>{const _0x52b77e=_0x2bdf;_0x5f0be1[_0x52b77e(0x131)]();},0xbb8);}),await _0x31da0f['run'](client,_0x2da28f,_0x528a6e);});
+const client = require('../../index'),
+  st = require('../../core/settings').bot,
+  db = require('../../core/db');
+
+client.on('messageCreate', async (message) => {
+  let prefix = await db.get(`${message.guild.id}_prefix`);
+  if (!prefix) prefix = st.info.prefix;
+
+  if (message.author.bot || !message.guild || !message.content.toLowerCase().startsWith(prefix)) return;
+
+  const [cmd, ...args] = message.content
+    .slice(prefix.length)
+    .trim()
+    .split(/ +/g);
+
+  const command = client.commands.get(cmd.toLowerCase()) || client.commands.find(c => c.aliases?.includes(cmd.toLowerCase()));
+
+  if (!command) {
+    message.reply({ content: `:warning: this command is invalid, try ${prefix}help` }).then((msg) => {
+      setTimeout(() => { msg.delete() }, 3000)
+    })
+  }
+  await command.run(client, message, args);
+});
