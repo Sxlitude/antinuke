@@ -1,5 +1,5 @@
 ## Terror Antinuke
-Use this tool to protect your discord servers against nukes.
+Protect your discord servers against nukes.
 
 This tool protects your servers from 16 type of events and it has recovery feature like Flantic.
 
@@ -21,7 +21,7 @@ Click [this](https://github.com/Sxlitude/antinuke/tree/heroku) for Heroku Versio
 4. Edit `src/core/settings.js` and paste your Bot Token
 5. Run the Repl and Copy the `repl.co` link. Use that link in [Uptimerobot](https://uptimerobot.com)
 
-### Have issues?
+## Have issues?
 
 if you find a bug in the antinuke or want to ask something about the bot, you can report it by opening an issue ;)
 You Can Contact Me On Discord Too. I'm **Sxlitude#8885**
